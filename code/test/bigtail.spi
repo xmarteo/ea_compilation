@@ -1,0 +1,173 @@
+.data                  
+globals:               
+.space 0           
+heap_info:
+	.space 12
+    .text                 
+main:                 
+la    $gp, globals    
+# allocate the heap   
+li    $a0, 65536        
+li    $v0, 9          
+syscall               
+# saving heap size    
+move  $a2, $a0        
+# computing heap_info 
+la    $a0, heap_info  
+# beginning of heap   
+sw    $v0, 0($a0)     
+# current position    
+sw    $v0, 4($a0)     
+# end of heap         
+add   $a2, $a2, $v0   
+sw    $a2, 8($a0)     
+j     _main30              
+write:                
+li    $v0, 1          
+syscall               
+j     $ra             
+.data                 
+nl:                   
+.asciiz "\n"       
+.align 2              
+.text                 
+writeln:              
+li    $v0, 1          
+syscall               
+la    $a0, nl         
+li    $v0, 4          
+syscall               
+j     $ra             
+readln:               
+li    $v0, 5          
+syscall               
+j     $ra             
+alloc:                
+la    $a1, heap_info  
+# adding extra word   
+addi  $t1, $a0, 4     
+# current position    
+lw    $v0, 4($a1)     
+move  $t0, $v0        
+# end of the heap     
+lw    $a2, 8($a1)     
+add   $v0, $t1, $v0   
+# must have v0<=a2    
+bgt   $v0, $a2, oom   
+sw    $v0, 4($a1)     
+# length is written   
+move  $v0, $t0        
+div   $a0, $a0, 4     
+sw    $a0, 0($v0)     
+addi  $v0, $v0, 4     
+j     $ra             
+.data                 
+error_str:            
+.asciiz "out0fMem"  
+.align 2              
+.text                 
+oom:                  
+# means out of mem.   
+la $a0, error_str     
+li $v0, 4             
+syscall               
+li $v0, 10            
+syscall               
+j     $ra             
+
+# begin somme2
+somme2_37:
+addiu $sp, $sp, -16
+lw    $t0, 12($sp)
+lw    $t1, 8($sp)
+lw    $t2, 4($sp)
+lw    $v0, 0($sp)
+somme2_17:
+beq   $a0, $zero, somme2_15
+somme2_2:
+addu  $v0, $a0, $v0
+move  $a0, $a1
+move  $a1, $a2
+move  $a2, $a3
+move  $a3, $t0
+move  $t0, $t1
+move  $t1, $t2
+move  $t2, $zero
+j     somme2_17
+somme2_15:
+bne   $a1, $zero, somme2_2
+bne   $a2, $zero, somme2_2
+bne   $a3, $zero, somme2_2
+bne   $t0, $zero, somme2_2
+bne   $t1, $zero, somme2_2
+bne   $t2, $zero, somme2_2
+addiu $sp, $sp, 16
+jr    $ra
+# end somme2
+
+# begin somme
+somme37:
+addiu $sp, $sp, -16
+lw    $t1, 12($sp)
+lw    $t2, 8($sp)
+lw    $t3, 4($sp)
+lw    $v0, 0($sp)
+somme17:
+beq   $a0, $zero, somme15
+somme3:
+li    $t0, 0
+addu  $v0, $t3, $v0
+move  $t3, $t2
+move  $t2, $t1
+move  $t1, $a3
+move  $a3, $a2
+move  $a2, $a1
+move  $a1, $a0
+move  $a0, $t0
+j     somme17
+somme15:
+bne   $a1, $zero, somme3
+bne   $a2, $zero, somme3
+bne   $a3, $zero, somme3
+bne   $t1, $zero, somme3
+bne   $t2, $zero, somme3
+bne   $t3, $zero, somme3
+addiu $sp, $sp, 16
+jr    $ra
+# end somme
+
+# begin _main
+_main30:
+addiu $sp, $sp, -4
+sw    $ra, 0($sp)
+li    $a0, 1
+li    $a1, 2
+li    $a2, 3
+li    $a3, 4
+li    $t1, 5
+li    $t0, 6
+li    $v0, 7
+sw    $t1, -4($sp)
+sw    $t0, -8($sp)
+sw    $v0, -12($sp)
+sw    $zero, -16($sp)
+jal   somme37
+move  $a0, $v0
+jal   writeln
+li    $a0, 1
+li    $a1, 2
+li    $a2, 3
+li    $a3, 4
+li    $t1, 5
+li    $t0, 6
+li    $v0, 7
+sw    $t1, -4($sp)
+sw    $t0, -8($sp)
+sw    $v0, -12($sp)
+sw    $zero, -16($sp)
+jal   somme2_37
+move  $a0, $v0
+lw    $ra, 0($sp)
+addiu $sp, $sp, 4
+j     writeln
+# end _main

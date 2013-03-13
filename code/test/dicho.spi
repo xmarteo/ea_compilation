@@ -1,0 +1,223 @@
+.data                  
+globals:               
+.space 4           
+heap_info:
+	.space 12
+    .text                 
+main:                 
+la    $gp, globals    
+# allocate the heap   
+li    $a0, 65536        
+li    $v0, 9          
+syscall               
+# saving heap size    
+move  $a2, $a0        
+# computing heap_info 
+la    $a0, heap_info  
+# beginning of heap   
+sw    $v0, 0($a0)     
+# current position    
+sw    $v0, 4($a0)     
+# end of heap         
+add   $a2, $a2, $v0   
+sw    $a2, 8($a0)     
+j     _main65              
+write:                
+li    $v0, 1          
+syscall               
+j     $ra             
+.data                 
+nl:                   
+.asciiz "\n"       
+.align 2              
+.text                 
+writeln:              
+li    $v0, 1          
+syscall               
+la    $a0, nl         
+li    $v0, 4          
+syscall               
+j     $ra             
+readln:               
+li    $v0, 5          
+syscall               
+j     $ra             
+alloc:                
+la    $a1, heap_info  
+# adding extra word   
+addi  $t1, $a0, 4     
+# current position    
+lw    $v0, 4($a1)     
+move  $t0, $v0        
+# end of the heap     
+lw    $a2, 8($a1)     
+add   $v0, $t1, $v0   
+# must have v0<=a2    
+bgt   $v0, $a2, oom   
+sw    $v0, 4($a1)     
+# length is written   
+move  $v0, $t0        
+div   $a0, $a0, 4     
+sw    $a0, 0($v0)     
+addi  $v0, $v0, 4     
+j     $ra             
+.data                 
+error_str:            
+.asciiz "out0fMem"  
+.align 2              
+.text                 
+oom:                  
+# means out of mem.   
+la $a0, error_str     
+li $v0, 4             
+syscall               
+li $v0, 10            
+syscall               
+j     $ra             
+
+# begin findLoop
+findLoop46:
+li    $v0, 0
+li    $t2, 1
+findLoop28:
+bgtz  $t2, findLoop27
+jr    $ra
+findLoop27:
+li    $t2, 0
+beq   $a0, $a1, findLoop25
+addiu $t0, $a0, 1
+beq   $t0, $a1, findLoop22
+addu  $t1, $a0, $a1
+li    $t0, 2
+div   $t1, $t1, $t0
+sll   $t0, $t1, 2
+addu  $t0, $a2, $t0
+lw    $t0, 0($t0)
+slt   $t3, $t0, $a3
+bgtz  $t3, findLoop10
+beq   $t0, $a3, findLoop4
+move  $a1, $t1
+li    $t2, 1
+j     findLoop28
+findLoop4:
+li    $v0, 1
+j     findLoop28
+findLoop10:
+move  $a0, $t1
+li    $t2, 1
+j     findLoop28
+findLoop22:
+sll   $v0, $a0, 2
+addu  $v0, $a2, $v0
+lw    $v0, 0($v0)
+seq   $v0, $v0, $a3
+j     findLoop28
+findLoop25:
+li    $v0, 0
+j     findLoop28
+# end findLoop
+
+# begin find
+find39:
+find23:
+beq   $a0, $a1, find22
+addiu $v0, $a0, 1
+beq   $v0, $a1, find19
+addu  $t0, $a0, $a1
+li    $v0, 2
+div   $v0, $t0, $v0
+sll   $t0, $v0, 2
+addu  $t0, $a2, $t0
+lw    $t0, 0($t0)
+slt   $t1, $t0, $a3
+bgtz  $t1, find60
+beq   $t0, $a3, find2
+move  $a1, $v0
+j     find23
+find2:
+li    $v0, 1
+find41:
+jr    $ra
+find60:
+move  $a0, $v0
+j     find23
+find19:
+sll   $v0, $a0, 2
+addu  $v0, $a2, $v0
+lw    $v0, 0($v0)
+seq   $v0, $v0, $a3
+j     find41
+find22:
+li    $v0, 0
+j     find41
+# end find
+
+# begin _main
+_main65:
+addiu $sp, $sp, -4
+sw    $ra, 0($sp)
+li    $a0, 16
+jal   alloc
+sw    $v0, 0($gp)
+lw    $a2, 0($gp)
+li    $v0, 3
+sw    $v0, 0($a2)
+li    $v0, 5
+sw    $v0, 4($a2)
+li    $v0, 7
+sw    $v0, 8($a2)
+li    $v0, 48
+sw    $v0, 12($a2)
+li    $a0, 0
+li    $a1, 4
+li    $a3, 7
+jal   find39
+bgtz  $v0, _main34
+li    $a0, 0
+jal   writeln
+_main30:
+li    $a0, 0
+li    $a1, 4
+lw    $a2, 0($gp)
+li    $a3, 53
+jal   find39
+bgtz  $v0, _main24
+li    $a0, 0
+jal   writeln
+_main20:
+li    $a0, 0
+li    $a1, 4
+lw    $a2, 0($gp)
+li    $a3, 3
+jal   findLoop46
+bgtz  $v0, _main14
+li    $a0, 0
+jal   writeln
+_main10:
+li    $a0, 0
+li    $a1, 4
+lw    $a2, 0($gp)
+li    $a3, 4
+jal   findLoop46
+bgtz  $v0, _main4
+li    $a0, 0
+_main87:
+lw    $ra, 0($sp)
+addiu $sp, $sp, 4
+j     writeln
+_main4:
+li    $a0, 1
+j     _main87
+_main14:
+li    $a0, 1
+jal   writeln
+j     _main10
+_main24:
+li    $a0, 1
+jal   writeln
+j     _main20
+_main34:
+li    $a0, 1
+jal   writeln
+j     _main30
+# end _main
