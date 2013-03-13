@@ -50,6 +50,11 @@ and raw_expression =
     (* Array length. Parameter is an array *)
    
   | EArrayLength of expression
+  
+    (* Tricking the typechecker into thinking
+       e is of type t *)
+       
+  | ECastVar of expression * typ
 
 (* Constants. *)
 

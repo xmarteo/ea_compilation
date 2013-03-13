@@ -126,6 +126,8 @@ rule main = parse
     { INTEGER }
 | "length"
     { LENGTH }
+| "cast"
+    { CAST }
 | "boolean"
     { BOOLEAN }
 | "array"

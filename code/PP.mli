@@ -38,6 +38,10 @@ type expression =
     (* Array length *)
   
   | EArrayLength of expression
+  
+    (* To escape type constraints, we can cast any type to another *)
+    
+  | ECastVar of expression * typ
 
 (* Constants. *)
 

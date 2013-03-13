@@ -273,6 +273,11 @@ and interpret_expression defs genv env = function
   | EArrayLength tab ->
       let t = asArray (interpret_expression defs genv env tab) in
       VInt (Array.length t)
+      
+  (* like in pp2upp.ml, casting actually does nothing *)
+  
+  | ECastVar (expr, t) ->
+      interpret_expression defs genv env expr
 
 (* ------------------------------------------------------------------------- *)
 

@@ -41,6 +41,7 @@ type token =
   | COMMA
   | COLONEQ
   | COLON
+  | CAST
   | BOOLEAN
   | BOOLCONST of (bool)
   | BEGIN

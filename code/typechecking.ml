@@ -154,8 +154,13 @@ and typecheck_expression (fenv : function_env) (venv : variable_env) (e : LPP.ex
       typecheck_expression_expecting fenv venv TypInt elength;
       TypArray typ
   | EArrayLength earray ->
+      begin
       match typecheck_expression_expecting_array fenv venv earray with
-      | _ -> TypInt
+      | _ -> TypInt end
+  | ECastVar (evar, typ) ->
+      begin
+      match typecheck_expression fenv venv evar with
+      | _ -> typ end
 
 (* ------------------------------------------------------------------------- *)
 

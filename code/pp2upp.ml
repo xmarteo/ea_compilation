@@ -151,12 +151,20 @@ let rec translate_expression (genv : genv) (env : env) = function
         [ w2b (translate_expression genv env e) ]
       )
       
+  (* the length of an array t is stored in t[-1] *)
+  
   | PP.EArrayLength earray ->
       mkload (
         element_address
           (translate_expression genv env earray)
           (UPP.EConst Int32.minus_one)
       )
+      
+  (* casting a variable to some type does actually completely nothing
+     except mess with the typechecking *)
+     
+  | PP.ECastVar (e, _) ->
+      translate_expression genv env e
 
 (* ------------------------------------------------------------------------- *)
 

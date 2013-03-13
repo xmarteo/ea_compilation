@@ -22,7 +22,7 @@
 %token PLUS MINUS TIMES SLASH AND OR NOT LT LE GT GE EQ NE
 %token LPAREN RPAREN LBRACKET RBRACKET COMMA COLONEQ SEMICOLON COLON DOT
 %token PROGRAM BEGIN END IF THEN ELSE WHILE DO PROCEDURE FUNCTION VAR
-%token NEW READLN WRITE WRITELN LENGTH
+%token NEW READLN WRITE WRITELN LENGTH CAST
 %token INTEGER BOOLEAN ARRAY OF
 
 (* ------------------------------------------------------------------------- *)
@@ -138,6 +138,8 @@ raw_expression:
     { EArrayAlloc (t, e) }
 | LENGTH LPAREN e = expression RPAREN
     { EArrayLength e }
+| CAST LPAREN e = expression COMMA t = typ RPAREN
+    { ECastVar (e, t) }
 
 (* Binary operators are defined as a separate nonterminal symbol
    for enhanced readability. However, note that this symbol is

@@ -18,6 +18,8 @@ and translate_raw_expression = function
       PP.EArrayAlloc (t, translate_expression e)
   | LPP.EArrayLength t ->
       PP.EArrayLength (translate_expression t)
+  | LPP.ECastVar (e, t) ->
+      PP.ECastVar (translate_expression e, t)
 
 let rec translate_condition = function
   | LPP.CExpression e ->
