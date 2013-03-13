@@ -1,0 +1,217 @@
+.data                  
+globals:               
+.space 0           
+heap_info:
+	.space 12
+    .text                 
+main:                 
+la    $gp, globals    
+# allocate the heap   
+li    $a0, 65536        
+li    $v0, 9          
+syscall               
+# saving heap size    
+move  $a2, $a0        
+# computing heap_info 
+la    $a0, heap_info  
+# beginning of heap   
+sw    $v0, 0($a0)     
+# current position    
+sw    $v0, 4($a0)     
+# end of heap         
+add   $a2, $a2, $v0   
+sw    $a2, 8($a0)     
+j     _main19              
+write:                
+li    $v0, 1          
+syscall               
+j     $ra             
+.data                 
+nl:                   
+.asciiz "\n"       
+.align 2              
+.text                 
+writeln:              
+li    $v0, 1          
+syscall               
+la    $a0, nl         
+li    $v0, 4          
+syscall               
+j     $ra             
+readln:               
+li    $v0, 5          
+syscall               
+j     $ra             
+alloc:                
+la    $a1, heap_info  
+# adding extra word   
+addi  $t1, $a0, 4     
+# current position    
+lw    $v0, 4($a1)     
+move  $t0, $v0        
+# end of the heap     
+lw    $a2, 8($a1)     
+add   $v0, $t1, $v0   
+# must have v0<=a2    
+bgt   $v0, $a2, oom   
+sw    $v0, 4($a1)     
+# length is written   
+move  $v0, $t0        
+div   $a0, $a0, 4     
+sw    $a0, 0($v0)     
+addi  $v0, $v0, 4     
+j     $ra             
+.data                 
+error_str:            
+.asciiz "out0fMem"  
+.align 2              
+.text                 
+oom:                  
+# means out of mem.   
+la $a0, error_str     
+li $v0, 4             
+syscall               
+li $v0, 10            
+syscall               
+j     $ra             
+
+# begin k
+k32:
+addiu $sp, $sp, -12
+sw    $ra, 8($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+move  $s1, $a0
+li    $a1, 1
+move  $a0, $s1
+jal   g14
+move  $s0, $v0
+li    $a1, 2
+move  $a0, $s1
+jal   g14
+subu  $v0, $zero, $v0
+addu  $s0, $v0, $s0
+li    $a1, 3
+move  $a0, $s1
+jal   g14
+addu  $s0, $v0, $s0
+li    $a1, 4
+move  $a0, $s1
+jal   g14
+subu  $v0, $zero, $v0
+addu  $s0, $v0, $s0
+li    $a1, 5
+move  $a0, $s1
+jal   g14
+addu  $s0, $v0, $s0
+move  $v0, $s0
+lw    $ra, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 12
+jr    $ra
+# end k
+
+# begin h
+h28:
+addiu $sp, $sp, -12
+sw    $ra, 8($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+move  $s1, $a0
+li    $a1, 4
+move  $a0, $s1
+jal   g14
+move  $s0, $v0
+li    $a1, 5
+move  $a0, $s1
+jal   g14
+subu  $s0, $s0, $v0
+li    $a1, 3
+move  $a0, $s1
+jal   g14
+subu  $s0, $v0, $s0
+li    $a1, 2
+move  $a0, $s1
+jal   g14
+subu  $s0, $v0, $s0
+li    $a1, 1
+move  $a0, $s1
+jal   g14
+subu  $s0, $v0, $s0
+move  $v0, $s0
+lw    $ra, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 12
+jr    $ra
+# end h
+
+# begin g
+g14:
+addu  $v0, $a0, $a1
+jr    $ra
+# end g
+
+# begin f
+f26:
+addiu $sp, $sp, -24
+sw    $ra, 20($sp)
+sw    $s4, 16($sp)
+sw    $s3, 12($sp)
+sw    $s2, 8($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+move  $s4, $a0
+li    $a1, 1
+move  $a0, $s4
+jal   g14
+move  $s3, $v0
+li    $a1, 2
+move  $a0, $s4
+jal   g14
+move  $s2, $v0
+li    $a1, 3
+move  $a0, $s4
+jal   g14
+move  $s1, $v0
+li    $a1, 4
+move  $a0, $s4
+jal   g14
+move  $s0, $v0
+li    $a1, 5
+move  $a0, $s4
+jal   g14
+subu  $v0, $s0, $v0
+subu  $v0, $s1, $v0
+subu  $v0, $s2, $v0
+subu  $v0, $s3, $v0
+lw    $ra, 20($sp)
+lw    $s4, 16($sp)
+lw    $s3, 12($sp)
+lw    $s2, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 24
+jr    $ra
+# end f
+
+# begin _main
+_main19:
+addiu $sp, $sp, -4
+sw    $ra, 0($sp)
+li    $a0, 10
+jal   f26
+move  $a0, $v0
+jal   writeln
+li    $a0, 10
+jal   h28
+move  $a0, $v0
+jal   writeln
+li    $a0, 10
+jal   k32
+move  $a0, $v0
+lw    $ra, 0($sp)
+addiu $sp, $sp, 4
+j     writeln
+# end _main

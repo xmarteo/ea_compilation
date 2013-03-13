@@ -1,0 +1,82 @@
+.data                  
+globals:               
+.space 0           
+heap_info:
+	.space 12
+    .text                 
+main:                 
+la    $gp, globals    
+# allocate the heap   
+li    $a0, 65536        
+li    $v0, 9          
+syscall               
+# saving heap size    
+move  $a2, $a0        
+# computing heap_info 
+la    $a0, heap_info  
+# beginning of heap   
+sw    $v0, 0($a0)     
+# current position    
+sw    $v0, 4($a0)     
+# end of heap         
+add   $a2, $a2, $v0   
+sw    $a2, 8($a0)     
+j     _main12              
+write:                
+li    $v0, 1          
+syscall               
+j     $ra             
+.data                 
+nl:                   
+.asciiz "\n"       
+.align 2              
+.text                 
+writeln:              
+li    $v0, 1          
+syscall               
+la    $a0, nl         
+li    $v0, 4          
+syscall               
+j     $ra             
+readln:               
+li    $v0, 5          
+syscall               
+j     $ra             
+alloc:                
+la    $a1, heap_info  
+# adding extra word   
+addi  $t1, $a0, 4     
+# current position    
+lw    $v0, 4($a1)     
+move  $t0, $v0        
+# end of the heap     
+lw    $a2, 8($a1)     
+add   $v0, $t1, $v0   
+# must have v0<=a2    
+bgt   $v0, $a2, oom   
+sw    $v0, 4($a1)     
+# length is written   
+move  $v0, $t0        
+div   $a0, $a0, 4     
+sw    $a0, 0($v0)     
+addi  $v0, $v0, 4     
+j     $ra             
+.data                 
+error_str:            
+.asciiz "out0fMem"  
+.align 2              
+.text                 
+oom:                  
+# means out of mem.   
+la $a0, error_str     
+li $v0, 4             
+syscall               
+li $v0, 10            
+syscall               
+j     $ra             
+
+# begin _main
+_main12:
+li    $a0, 10
+j     writeln
+# end _main
