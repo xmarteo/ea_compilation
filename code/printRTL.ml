@@ -51,7 +51,7 @@ let instruction () = function
       sprintf " --> %a" lab l ::
       []
   | INewArray (destr, len, l) ->
-      sprintf "newarray %a" reg len ::
+      sprintf "newarray len %a to %a" reg len reg destr ::
       sprintf " --> %a" lab l ::
       []
   | IGoto l ->

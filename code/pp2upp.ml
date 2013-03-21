@@ -141,9 +141,8 @@ let rec translate_expression (genv : genv) (env : env) = function
       )
 
     (* Array allocation. Forget about the type and convert the
-       desired size, which is expressed as a number of elements,
-       into a number of bytes. Convert the expression into a call
-       to the [Alloc] primitive function. *)
+       desired size, which is expressed as a number of elements. 
+    *)
 
   | PP.EArrayAlloc (t, e) ->
 
