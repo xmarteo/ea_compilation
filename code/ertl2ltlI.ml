@@ -237,6 +237,9 @@ let translate_instruction (instruction : ERTL.instruction) : LTL.instruction =
       read2 addressr valuer (fun addresshwr valuehwr ->
 	LTL.IStore (addresshwr, offset, valuehwr, l)
       )
+      
+  | ERTL.INewArray l ->
+	LTL.INewArray l
 
   | ERTL.IGetGlobal (destr, offset, l) ->
       let desthwr, l = write destr l in

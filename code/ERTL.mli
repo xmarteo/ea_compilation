@@ -158,6 +158,12 @@ and instruction =
        before [IReturn true], and dead just before [IReturn false]. *)
 
   | IReturn of bool
+  
+    (* Array allocation. The calling convention has been explicited, so
+       at this point length is already in a0 and result will be in v0. 
+       No arguments. *)
+    
+  | INewArray of Label.t
 
 (* Function definitions. *)
 

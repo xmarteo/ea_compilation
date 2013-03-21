@@ -178,6 +178,9 @@ let interpret p =
     | ISetGlobal (offset, sourcer, l) ->
 	gwrite genv offset (read env sourcer);
 	l
+    
+    | INewArray (destr, len, l) ->
+	failwith "Unimplented, too hard ! fix me !" (* marteo should fix it *)
 
     | IGoto l ->
 	l

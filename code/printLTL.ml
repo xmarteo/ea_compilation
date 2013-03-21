@@ -65,6 +65,10 @@ let instruction () = function
       sprintf "j" ::
       sprintf " --> %a" lab l ::
       []
+  | INewArray l ->
+      sprintf "unimplemented, fix me ! marteo !"::
+      sprintf " --> %a" lab l ::
+      []
   | IUnBranch (cond, sourcer, l1, l2) ->
       sprintf "%a" (PrintOps.uncon reg) (cond, sourcer) ::
       sprintf " --> %a, %a" lab l1 lab l2 ::
@@ -91,6 +95,7 @@ let successors = function
   | IBinOp (_, _, _, _, l)
   | ICall (_, l)
   | ILoad (_, _, _, l)
+  | INewArray l
   | IStore (_, _, _, l)
   | IGoto l ->
       [ l ]

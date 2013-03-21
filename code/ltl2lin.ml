@@ -1,3 +1,5 @@
+open Primitive
+
 (* ------------------------------------------------------------------------- *)
 
 (* [translate_instruction] translates an [LTL] instruction into a
@@ -49,6 +51,12 @@ let translate_instruction = function
       LIN.IReturn
   | LTL.ITailCall callee ->
       LIN.ITailCall callee
+      
+    (* Array allocation takes place now *)
+    
+  | LTL.INewArray _ ->
+      LIN.ICall (CPrimitiveFunction Alloc) (* this obviously does not work,
+      not taking the arguments into account *)
 
 (* ------------------------------------------------------------------------- *)
 

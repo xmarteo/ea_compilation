@@ -63,6 +63,8 @@ let compress entry graph =
 	ILoad (r1, r2, o, rep l)
     | IStore (r1, o, r2, l) ->
 	IStore (r1, o, r2, rep l)
+    | INewArray l ->
+	INewArray (rep l)
     | IGoto l ->
 	IGoto (rep l) (* instruction will be unreachable *)
     | IUnBranch (c, r, l1, l2) ->

@@ -20,6 +20,8 @@ let rec pure = function
       pure e1 && pure e2
   | EFunCall _ ->
       false
+  | ENewArray _ ->
+      false (* marteo should check this *)
 
 (* ------------------------------------------------------------------------- *)
 

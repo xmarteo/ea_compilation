@@ -22,6 +22,7 @@
 open Integer
 open Primitive
 open MIPSOps
+open LPP
 
 (* ------------------------------------------------------------------------- *)
 
@@ -144,12 +145,9 @@ let rec translate_expression (genv : genv) (env : env) = function
        into a number of bytes. Convert the expression into a call
        to the [Alloc] primitive function. *)
 
-  | PP.EArrayAlloc (_, e) ->
+  | PP.EArrayAlloc (t, e) ->
 
-      UPP.EFunCall (
-        CPrimitiveFunction Alloc,
-        [ w2b (translate_expression genv env e) ]
-      )
+      UPP.ENewArray(translate_expression genv env e)
       
   (* the length of an array t is stored in t[-1] *)
   

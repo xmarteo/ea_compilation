@@ -354,6 +354,9 @@ let interpret p =
 	gwrite genv offset (read stack sourcer);
 	stack,
 	AddrCode (proc, l)
+	
+    | INewArray _ ->
+	failwith "Unimplemented, too hard ! Fix me !" (* marteo should fix it *)
 
     | IGoto l ->
 	stack,

@@ -19,6 +19,7 @@ let examine_instruction _ instruction uses =
   | IDeleteFrame _
   | ICall _
   | ITailCall _
+  | INewArray _
   | IGoto _
   | IReturn _ ->
       uses

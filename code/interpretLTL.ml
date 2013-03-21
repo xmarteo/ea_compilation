@@ -206,6 +206,8 @@ let interpret p =
     | IStore (addressr, offset, valuer, l) ->
 	store (hread henv addressr) offset (hread henv valuer);
 	stack, AddrCode (proc, l)
+	
+    | INewArray _ -> failwith "Unimplemented !" (* marteo should fix this *)
 
     | IGoto l ->
 	stack, AddrCode (proc, l)

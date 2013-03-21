@@ -148,6 +148,7 @@ end) = struct
       | LTL.IUnOp (_, _, _, l)
       | LTL.IBinOp (_, _, _, _, l)
       | LTL.ICall (_, l)
+      | LTL.INewArray l
       | LTL.ILoad (_, _, _, l)
       | LTL.IStore (_, _, _, l)
       | LTL.IGoto l ->

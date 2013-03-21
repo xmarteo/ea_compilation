@@ -92,6 +92,10 @@ and instruction =
     (* No operation (just jump to the continuation label). *)
 
   | IGoto of Label.t
+  
+    (* Array allocation. Arguments are dest register and length *)
+    
+  | INewArray of Label.t
 
     (* Unary conditional branch. Parameters are a unary condition, the
        register that the condition is applied to, the label that is

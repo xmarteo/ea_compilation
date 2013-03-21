@@ -94,6 +94,11 @@ let translate_procedure f proc =
     | RTL.ISetGlobal (offset, valuer, l) ->
 	ERTL.ISetGlobal (offset, valuer, l)
 
+    | RTL.INewArray (destr, len, l) ->
+	let firstl = generate(ERTL.IGetHwReg (destr, MIPS.result, l)) in
+	let secl = generate(ERTL.INewArray firstl) in
+	ERTL.ISetHwReg (List.hd MIPS.parameters, len, secl)
+	
     | RTL.IGoto l ->
 	ERTL.IGoto l
 

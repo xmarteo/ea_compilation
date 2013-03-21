@@ -292,6 +292,15 @@ let interpret p =
 
     | ELoad (e, offset) ->
 	load (interpret_expression env e) offset
+	
+    | ENewArray e ->
+      let n = asInt (interpret_expression env e) in
+      begin try
+	VArray ((Array.make n default), n)
+      with Invalid_argument _ ->
+	fprintf stderr "Runtime error -- negative array length (%ld).\n" n;
+	raise RuntimeError
+      end
 
   (* ----------------------------------------------------------------------- *)
 

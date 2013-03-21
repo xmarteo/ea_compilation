@@ -27,6 +27,7 @@ let instruction_successors (i : instruction) =
   | ICall (_, _, l)
   | ILoad (_, _, _, l)
   | IStore (_, _, _, l)
+  | INewArray l
   | IGoto l ->
       Label.Set.singleton l
   | IUnBranch (_, _, l1, l2)
@@ -86,6 +87,7 @@ let defined (i : instruction) : L.t =
   | ILoad (r, _, _, _)
   | IGetGlobal (r, _, _) ->
       L.psingleton r
+  | INewArray _
   | ICall _ ->
       (* [ICall] potentially destroys all caller-save hardware registers. *)
       Register.Set.empty, MIPS.caller_saved
@@ -130,6 +132,9 @@ let used (i : instruction) : L.t =
   | IStore (r1, _, r2, _)
   | IBinBranch (_, r1, r2, _, _) ->
       Register.Set.couple r1 r2, MIPS.RegisterSet.empty
+  | INewArray _ ->
+      Register.Set.empty,
+      MIPS.RegisterSet.of_list (Misc.prefix 1l MIPS.parameters)
   | ICall (_, nparams, _) ->
       (* [ICall] reads the hardware registers that are used to pass
 	 parameters. So does [ITailCall]. *)
@@ -184,6 +189,7 @@ let eliminable ((pliveafter, hliveafter) : L.t) (i : instruction) =
   | IDeleteFrame _
   | ISetStack _
   | ISetGlobal _
+  | INewArray _ (* marteo has to check this *)
   | ICall _
   | IStore _
   | IGoto _

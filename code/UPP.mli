@@ -39,6 +39,10 @@ type expression =
     (* Memory read. Parameters are a pointer and a constant offset. *)
 
   | ELoad of expression * offset
+  
+    (* Array allocation *)
+    
+  | ENewArray of expression
 
 (* Conditions. *)
 

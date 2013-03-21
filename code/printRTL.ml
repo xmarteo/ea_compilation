@@ -50,6 +50,10 @@ let instruction () = function
       sprintf "setg  %ld, %a" offset reg valuer ::
       sprintf " --> %a" lab l ::
       []
+  | INewArray (destr, len, l) ->
+      sprintf "newarray %a" reg len ::
+      sprintf " --> %a" lab l ::
+      []
   | IGoto l ->
       sprintf "j" ::
       sprintf " --> %a" lab l ::
@@ -74,6 +78,7 @@ let successors = function
   | ICall (_, _, _, l)
   | ILoad (_, _, _, l)
   | IStore (_, _, _, l)
+  | INewArray (_, _, l)
   | IGoto l ->
       [ l ]
   | IUnBranch (_, _, l1, l2)

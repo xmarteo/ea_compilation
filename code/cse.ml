@@ -26,6 +26,7 @@ let instruction_successors (i : instruction) =
   | ICall (_, _, _, l)
   | ILoad (_, _, _, l)
   | IStore (_, _, _, l)
+  | INewArray (_, _, l)
   | IGoto l ->
       Label.Set.singleton l
   | IUnBranch (_, _, l1, l2)
@@ -300,6 +301,11 @@ end) = struct
 	  let env = Env.map (prune symvar invalidated) env in
 	  generate label i;
 	  jump next env
+	  
+      (* I have no idea what I'm doing *)
+      
+      | INewArray (_, _, next) ->
+	  jump next env (* This probably is the local equivalent of "do nothing" *)
 
       | ISetGlobal (o1, _, next) ->
 	  let invalidated = function

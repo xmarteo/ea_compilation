@@ -17,6 +17,7 @@ let nonzeroable = function
   | IBinBranch _
   | IReturn _
   | ITailCall _
+  | INewArray _
   | IConst (_, 0l, _) ->
       Register.Set.empty
   | IGetHwReg (r, _, _)

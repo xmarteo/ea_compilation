@@ -83,6 +83,10 @@ type instruction =
        jumped to if the condition does not hold. *)
 
   | IBinBranch of bincon * Register.t * Register.t * Label.t * Label.t
+  
+    (* Array allocation. Parameters are destination register and length *)
+    
+  | INewArray of Register.t * Register.t * Label.t
 
 (* Function definitions. *)
 
