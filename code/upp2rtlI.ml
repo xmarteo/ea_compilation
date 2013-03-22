@@ -150,7 +150,9 @@ let rec translate_expression
       
   | UPP.ENewArray e ->
       let lenr = pick_destination e in
+      translate_expression lenr e (
       generate (RTL.INewArray (destr, lenr, destl))
+      )
 
 (* Translating function and procedure calls. This is analogous to the
    case of binary operator applications above, except the number of

@@ -50,6 +50,8 @@ let rec expr0 () = function
       sprintf "global(%ld)" offset
   | EFunCall (c, es) ->
       sprintf "%s(%a)" (PrintPrimitive.callee c) (seplist comma expr) es
+  | ENewArray e ->
+      sprintf "newarray len %a" expr e
   | e ->
       sprintf "(%a)" expr e
 
