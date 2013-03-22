@@ -145,8 +145,8 @@ let rec translate_expression (genv : genv) (env : env) = function
     *)
 
   | PP.EArrayAlloc (t, e) ->
-
-      UPP.ENewArray(translate_expression genv env e)
+      let len = translate_expression genv env e in
+      UPP.ENewArray(w2b len)
       
   (* the length of an array t is stored in t[-1] *)
   

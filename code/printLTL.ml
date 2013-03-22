@@ -66,7 +66,7 @@ let instruction () = function
       sprintf " --> %a" lab l ::
       []
   | INewArray l ->
-      sprintf "unimplemented, fix me ! marteo !"::
+      sprintf "newarray"::
       sprintf " --> %a" lab l ::
       []
   | IUnBranch (cond, sourcer, l1, l2) ->

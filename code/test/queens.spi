@@ -1,1 +1,224 @@
-../compilo failed with exit code: 0
+.data                  
+globals:               
+.space 20           
+heap_info:
+	.space 12
+    .text                 
+main:                 
+la    $gp, globals    
+# allocate the heap   
+li    $a0, 65536        
+li    $v0, 9          
+syscall               
+# saving heap size    
+move  $a2, $a0        
+# computing heap_info 
+la    $a0, heap_info  
+# beginning of heap   
+sw    $v0, 0($a0)     
+# current position    
+sw    $v0, 4($a0)     
+# end of heap         
+add   $a2, $a2, $v0   
+sw    $a2, 8($a0)     
+j     _main32              
+write:                
+li    $v0, 1          
+syscall               
+j     $ra             
+.data                 
+nl:                   
+.asciiz "\n"       
+.align 2              
+.text                 
+writeln:              
+li    $v0, 1          
+syscall               
+la    $a0, nl         
+li    $v0, 4          
+syscall               
+j     $ra             
+readln:               
+li    $v0, 5          
+syscall               
+j     $ra             
+alloc:                
+la    $a1, heap_info  
+# adding extra word   
+addi  $t1, $a0, 4     
+# current position    
+lw    $v0, 4($a1)     
+move  $t0, $v0        
+# end of the heap     
+lw    $a2, 8($a1)     
+add   $v0, $t1, $v0   
+# must have v0<=a2    
+bgt   $v0, $a2, oom   
+sw    $v0, 4($a1)     
+# length is written   
+move  $v0, $t0        
+div   $a0, $a0, 4     
+sw    $a0, 0($v0)     
+addi  $v0, $v0, 4     
+j     $ra             
+.data                 
+error_str:            
+.asciiz "out0fMem"  
+.align 2              
+.text                 
+oom:                  
+# means out of mem.   
+la $a0, error_str     
+li $v0, 4             
+syscall               
+li $v0, 10            
+syscall               
+j     $ra             
+
+# begin try
+try78:
+addiu $sp, $sp, -12
+sw    $ra, 8($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+move  $s1, $a0
+lw    $v0, 12($gp)
+beq   $s1, $v0, try102
+li    $s0, 0
+try62:
+lw    $v0, 12($gp)
+slt   $v0, $s0, $v0
+bgtz  $v0, try59
+lw    $ra, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 12
+jr    $ra
+try59:
+lw    $a0, 16($gp)
+sll   $v0, $s0, 2
+addu  $v0, $a0, $v0
+lw    $a0, 0($v0)
+bgtz  $a0, try2
+lw    $a1, 4($gp)
+addu  $a0, $s0, $s1
+sll   $a0, $a0, 2
+addu  $a0, $a1, $a0
+lw    $a1, 0($a0)
+bgtz  $a1, try2
+lw    $a2, 8($gp)
+subu  $a1, $s0, $s1
+sll   $a1, $a1, 2
+addu  $a1, $a2, $a1
+lw    $a2, 28($a1)
+bgtz  $a2, try2
+li    $a2, 1
+sw    $a2, 0($v0)
+li    $v0, 1
+sw    $v0, 0($a0)
+li    $v0, 1
+sw    $v0, 28($a1)
+lw    $a0, 0($gp)
+sll   $v0, $s1, 2
+addu  $v0, $a0, $v0
+sw    $s0, 0($v0)
+addiu $a0, $s1, 1
+jal   try78
+lw    $a0, 16($gp)
+sll   $v0, $s0, 2
+addu  $v0, $a0, $v0
+sw    $zero, 0($v0)
+lw    $a0, 4($gp)
+addu  $v0, $s0, $s1
+sll   $v0, $v0, 2
+addu  $v0, $a0, $v0
+sw    $zero, 0($v0)
+lw    $a0, 8($gp)
+subu  $v0, $s0, $s1
+sll   $v0, $v0, 2
+addu  $v0, $a0, $v0
+sw    $zero, 28($v0)
+try2:
+addiu $s0, $s0, 1
+j     try62
+try102:
+lw    $ra, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 12
+j     printboard37
+# end try
+
+# begin printboard
+printboard37:
+addiu $sp, $sp, -12
+sw    $ra, 8($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+li    $s1, 0
+printboard24:
+lw    $v0, 12($gp)
+slt   $v0, $s1, $v0
+bgtz  $v0, printboard21
+li    $a0, 2
+lw    $ra, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 12
+j     writeln
+printboard21:
+li    $s0, 0
+printboard20:
+lw    $v0, 12($gp)
+slt   $v0, $s0, $v0
+bgtz  $v0, printboard17
+li    $a0, 2
+jal   writeln
+addiu $s1, $s1, 1
+j     printboard24
+printboard17:
+lw    $a0, 0($gp)
+sll   $v0, $s1, 2
+addu  $v0, $a0, $v0
+lw    $v0, 0($v0)
+beq   $v0, $s0, printboard12
+li    $a0, 0
+jal   write
+printboard8:
+addiu $s0, $s0, 1
+j     printboard20
+printboard12:
+li    $a0, 1
+jal   write
+j     printboard8
+# end printboard
+
+# begin _main
+_main32:
+addiu $sp, $sp, -4
+sw    $ra, 0($sp)
+jal   readln
+sw    $v0, 12($gp)
+lw    $v0, 12($gp)
+sll   $a0, $v0, 2
+jal   alloc
+sw    $v0, 16($gp)
+lw    $v0, 12($gp)
+sll   $a0, $v0, 2
+jal   alloc
+sw    $v0, 0($gp)
+lw    $v0, 12($gp)
+sll   $v0, $v0, 3
+addiu $a0, $v0, -4
+jal   alloc
+sw    $v0, 4($gp)
+lw    $v0, 12($gp)
+sll   $v0, $v0, 3
+addiu $a0, $v0, -4
+jal   alloc
+sw    $v0, 8($gp)
+li    $a0, 0
+lw    $ra, 0($sp)
+addiu $sp, $sp, 4
+j     try78
+# end _main

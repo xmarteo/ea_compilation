@@ -1,1 +1,280 @@
-../compilo failed with exit code: 0
+.data                  
+globals:               
+.space 16           
+heap_info:
+	.space 12
+    .text                 
+main:                 
+la    $gp, globals    
+# allocate the heap   
+li    $a0, 65536        
+li    $v0, 9          
+syscall               
+# saving heap size    
+move  $a2, $a0        
+# computing heap_info 
+la    $a0, heap_info  
+# beginning of heap   
+sw    $v0, 0($a0)     
+# current position    
+sw    $v0, 4($a0)     
+# end of heap         
+add   $a2, $a2, $v0   
+sw    $a2, 8($a0)     
+j     _main24              
+write:                
+li    $v0, 1          
+syscall               
+j     $ra             
+.data                 
+nl:                   
+.asciiz "\n"       
+.align 2              
+.text                 
+writeln:              
+li    $v0, 1          
+syscall               
+la    $a0, nl         
+li    $v0, 4          
+syscall               
+j     $ra             
+readln:               
+li    $v0, 5          
+syscall               
+j     $ra             
+alloc:                
+la    $a1, heap_info  
+# adding extra word   
+addi  $t1, $a0, 4     
+# current position    
+lw    $v0, 4($a1)     
+move  $t0, $v0        
+# end of the heap     
+lw    $a2, 8($a1)     
+add   $v0, $t1, $v0   
+# must have v0<=a2    
+bgt   $v0, $a2, oom   
+sw    $v0, 4($a1)     
+# length is written   
+move  $v0, $t0        
+div   $a0, $a0, 4     
+sw    $a0, 0($v0)     
+addi  $v0, $v0, 4     
+j     $ra             
+.data                 
+error_str:            
+.asciiz "out0fMem"  
+.align 2              
+.text                 
+oom:                  
+# means out of mem.   
+la $a0, error_str     
+li $v0, 4             
+syscall               
+li $v0, 10            
+syscall               
+j     $ra             
+
+# begin mread
+mread35:
+addiu $sp, $sp, -20
+sw    $ra, 16($sp)
+sw    $s3, 12($sp)
+sw    $s2, 8($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+move  $s3, $a0
+move  $a0, $s3
+jal   malloc27
+move  $s0, $v0
+li    $s2, 0
+mread17:
+slt   $v0, $s2, $s3
+bgtz  $v0, mread15
+move  $v0, $s0
+lw    $ra, 16($sp)
+lw    $s3, 12($sp)
+lw    $s2, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 20
+jr    $ra
+mread15:
+li    $s1, 0
+mread14:
+slt   $v0, $s1, $s3
+bgtz  $v0, mread49
+addiu $s2, $s2, 1
+j     mread17
+mread49:
+jal   readln
+sll   $a0, $s2, 2
+addu  $a0, $s0, $a0
+lw    $a1, 0($a0)
+sll   $a0, $s1, 2
+addu  $a0, $a1, $a0
+sw    $v0, 0($a0)
+addiu $s1, $s1, 1
+j     mread14
+# end mread
+
+# begin mmult
+mmult57:
+addiu $sp, $sp, -16
+sw    $ra, 12($sp)
+sw    $s2, 8($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+move  $s0, $a0
+move  $s1, $a1
+move  $s2, $a2
+move  $a0, $s0
+jal   malloc27
+li    $t1, 0
+mmult36:
+slt   $a0, $t1, $s0
+bgtz  $a0, mmult34
+lw    $ra, 12($sp)
+lw    $s2, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 16
+jr    $ra
+mmult34:
+li    $t0, 0
+mmult33:
+slt   $a0, $t0, $s0
+bgtz  $a0, mmult31
+addiu $t1, $t1, 1
+j     mmult36
+mmult31:
+li    $a2, 0
+li    $a3, 0
+mmult29:
+slt   $a0, $a3, $s0
+bgtz  $a0, mmult27
+sll   $a0, $t1, 2
+addu  $a0, $v0, $a0
+lw    $a1, 0($a0)
+sll   $a0, $t0, 2
+addu  $a0, $a1, $a0
+sw    $a2, 0($a0)
+addiu $t0, $t0, 1
+j     mmult33
+mmult27:
+sll   $a0, $t1, 2
+addu  $a0, $s1, $a0
+lw    $a1, 0($a0)
+sll   $a0, $a3, 2
+addu  $a1, $a1, $a0
+lw    $a1, 0($a1)
+addu  $a0, $s2, $a0
+lw    $t2, 0($a0)
+sll   $a0, $t0, 2
+addu  $a0, $t2, $a0
+lw    $a0, 0($a0)
+mul   $a0, $a1, $a0
+addu  $a2, $a2, $a0
+addiu $a3, $a3, 1
+j     mmult29
+# end mmult
+
+# begin malloc
+malloc27:
+addiu $sp, $sp, -20
+sw    $ra, 16($sp)
+sw    $s3, 12($sp)
+sw    $s2, 8($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+move  $s3, $a0
+sll   $a0, $s3, 2
+jal   alloc
+move  $s1, $v0
+li    $s2, 0
+malloc10:
+slt   $v0, $s2, $s3
+bgtz  $v0, malloc8
+move  $v0, $s1
+lw    $ra, 16($sp)
+lw    $s3, 12($sp)
+lw    $s2, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 20
+jr    $ra
+malloc8:
+sll   $v0, $s2, 2
+addu  $s0, $s1, $v0
+sll   $a0, $s3, 2
+jal   alloc
+sw    $v0, 0($s0)
+addiu $s2, $s2, 1
+j     malloc10
+# end malloc
+
+# begin affiche
+affiche31:
+addiu $sp, $sp, -20
+sw    $ra, 16($sp)
+sw    $s3, 12($sp)
+sw    $s2, 8($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+move  $s2, $a0
+move  $s3, $a1
+li    $s1, 0
+affiche16:
+slt   $v0, $s1, $s2
+bgtz  $v0, affiche14
+lw    $ra, 16($sp)
+lw    $s3, 12($sp)
+lw    $s2, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 20
+jr    $ra
+affiche14:
+li    $s0, 0
+affiche13:
+slt   $v0, $s0, $s2
+bgtz  $v0, affiche11
+addiu $s1, $s1, 1
+j     affiche16
+affiche11:
+sll   $v0, $s1, 2
+addu  $v0, $s3, $v0
+lw    $a0, 0($v0)
+sll   $v0, $s0, 2
+addu  $v0, $a0, $v0
+lw    $a0, 0($v0)
+jal   writeln
+addiu $s0, $s0, 1
+j     affiche13
+# end affiche
+
+# begin _main
+_main24:
+addiu $sp, $sp, -8
+sw    $ra, 4($sp)
+sw    $s0, 0($sp)
+jal   readln
+sw    $v0, 4($gp)
+lw    $a0, 4($gp)
+jal   mread35
+sw    $v0, 0($gp)
+lw    $a0, 4($gp)
+jal   mread35
+sw    $v0, 8($gp)
+lw    $s0, 4($gp)
+lw    $a1, 0($gp)
+lw    $a2, 8($gp)
+move  $a0, $s0
+jal   mmult57
+move  $a0, $s0
+move  $a1, $v0
+lw    $ra, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 8
+j     affiche31
+# end _main

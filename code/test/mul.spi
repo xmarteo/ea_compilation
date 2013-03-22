@@ -1,1 +1,275 @@
-../compilo failed with exit code: 0
+.data                  
+globals:               
+.space 8           
+heap_info:
+	.space 12
+    .text                 
+main:                 
+la    $gp, globals    
+# allocate the heap   
+li    $a0, 65536        
+li    $v0, 9          
+syscall               
+# saving heap size    
+move  $a2, $a0        
+# computing heap_info 
+la    $a0, heap_info  
+# beginning of heap   
+sw    $v0, 0($a0)     
+# current position    
+sw    $v0, 4($a0)     
+# end of heap         
+add   $a2, $a2, $v0   
+sw    $a2, 8($a0)     
+j     _main18              
+write:                
+li    $v0, 1          
+syscall               
+j     $ra             
+.data                 
+nl:                   
+.asciiz "\n"       
+.align 2              
+.text                 
+writeln:              
+li    $v0, 1          
+syscall               
+la    $a0, nl         
+li    $v0, 4          
+syscall               
+j     $ra             
+readln:               
+li    $v0, 5          
+syscall               
+j     $ra             
+alloc:                
+la    $a1, heap_info  
+# adding extra word   
+addi  $t1, $a0, 4     
+# current position    
+lw    $v0, 4($a1)     
+move  $t0, $v0        
+# end of the heap     
+lw    $a2, 8($a1)     
+add   $v0, $t1, $v0   
+# must have v0<=a2    
+bgt   $v0, $a2, oom   
+sw    $v0, 4($a1)     
+# length is written   
+move  $v0, $t0        
+div   $a0, $a0, 4     
+sw    $a0, 0($v0)     
+addi  $v0, $v0, 4     
+j     $ra             
+.data                 
+error_str:            
+.asciiz "out0fMem"  
+.align 2              
+.text                 
+oom:                  
+# means out of mem.   
+la $a0, error_str     
+li $v0, 4             
+syscall               
+li $v0, 10            
+syscall               
+j     $ra             
+
+# begin pow
+pow27:
+addiu $sp, $sp, -12
+sw    $ra, 8($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+move  $s0, $a0
+move  $s1, $a1
+li    $v0, 1
+beq   $s0, $v0, pow39
+li    $v0, 2
+div   $a0, $s0, $v0
+move  $a1, $s1
+jal   pow27
+move  $a0, $v0
+move  $a1, $v0
+jal   matmult63
+li    $a0, 2
+div   $a0, $s0, $a0
+sll   $a0, $a0, 1
+beq   $a0, $s0, pow2
+move  $a0, $s1
+move  $a1, $v0
+lw    $ra, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 12
+j     matmult63
+pow2:
+move  $s1, $v0
+pow39:
+move  $v0, $s1
+lw    $ra, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 12
+jr    $ra
+# end pow
+
+# begin matmult
+matmult63:
+addiu $sp, $sp, -12
+sw    $ra, 8($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+move  $s0, $a0
+move  $s1, $a1
+lw    $v0, 4($gp)
+mul   $v0, $v0, $v0
+sll   $a0, $v0, 2
+jal   alloc
+li    $a3, 0
+matmult39:
+lw    $a0, 4($gp)
+slt   $a0, $a3, $a0
+bgtz  $a0, matmult36
+lw    $ra, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 12
+jr    $ra
+matmult36:
+li    $a2, 0
+matmult35:
+lw    $a0, 4($gp)
+slt   $a0, $a2, $a0
+bgtz  $a0, matmult32
+addiu $a3, $a3, 1
+j     matmult39
+matmult32:
+li    $t0, 0
+li    $a1, 0
+matmult30:
+lw    $a0, 4($gp)
+slt   $t1, $t0, $a0
+bgtz  $t1, matmult26
+mul   $a0, $a0, $a3
+addu  $a0, $a0, $a2
+sll   $a0, $a0, 2
+addu  $a0, $v0, $a0
+sw    $a1, 0($a0)
+addiu $a2, $a2, 1
+j     matmult35
+matmult26:
+mul   $t1, $a0, $a3
+addu  $t1, $t1, $t0
+sll   $t1, $t1, 2
+addu  $t1, $s0, $t1
+lw    $t1, 0($t1)
+mul   $a0, $a0, $t0
+addu  $a0, $a0, $a2
+sll   $a0, $a0, 2
+addu  $a0, $s1, $a0
+lw    $a0, 0($a0)
+mul   $a0, $t1, $a0
+addu  $a1, $a1, $a0
+addiu $t0, $t0, 1
+j     matmult30
+# end matmult
+
+# begin lire
+lire40:
+addiu $sp, $sp, -16
+sw    $ra, 12($sp)
+sw    $s2, 8($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+lw    $v0, 4($gp)
+mul   $v0, $v0, $v0
+sll   $a0, $v0, 2
+jal   alloc
+move  $s0, $v0
+li    $s2, 0
+lire19:
+lw    $v0, 4($gp)
+slt   $v0, $s2, $v0
+bgtz  $v0, lire16
+move  $v0, $s0
+lw    $ra, 12($sp)
+lw    $s2, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 16
+jr    $ra
+lire16:
+li    $s1, 0
+lire15:
+lw    $v0, 4($gp)
+slt   $v0, $s1, $v0
+bgtz  $v0, lire54
+addiu $s2, $s2, 1
+j     lire19
+lire54:
+jal   readln
+lw    $a0, 4($gp)
+mul   $a0, $a0, $s2
+addu  $a0, $a0, $s1
+sll   $a0, $a0, 2
+addu  $a0, $s0, $a0
+sw    $v0, 0($a0)
+addiu $s1, $s1, 1
+j     lire15
+# end lire
+
+# begin affiche
+affiche32:
+addiu $sp, $sp, -16
+sw    $ra, 12($sp)
+sw    $s2, 8($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+move  $s2, $a0
+li    $s1, 0
+affiche18:
+lw    $v0, 4($gp)
+slt   $v0, $s1, $v0
+bgtz  $v0, affiche15
+lw    $ra, 12($sp)
+lw    $s2, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 16
+jr    $ra
+affiche15:
+li    $s0, 0
+affiche14:
+lw    $v0, 4($gp)
+slt   $a0, $s0, $v0
+bgtz  $a0, affiche10
+addiu $s1, $s1, 1
+j     affiche18
+affiche10:
+mul   $v0, $v0, $s1
+addu  $v0, $v0, $s0
+sll   $v0, $v0, 2
+addu  $v0, $s2, $v0
+lw    $a0, 0($v0)
+jal   writeln
+addiu $s0, $s0, 1
+j     affiche14
+# end affiche
+
+# begin _main
+_main18:
+addiu $sp, $sp, -4
+sw    $ra, 0($sp)
+jal   readln
+sw    $v0, 4($gp)
+jal   lire40
+sw    $v0, 0($gp)
+lw    $a0, 4($gp)
+lw    $a1, 0($gp)
+jal   pow27
+move  $a0, $v0
+lw    $ra, 0($sp)
+addiu $sp, $sp, 4
+j     affiche32
+# end _main

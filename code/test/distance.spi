@@ -1,1 +1,219 @@
-../compilo failed with exit code: 0
+.data                  
+globals:               
+.space 16           
+heap_info:
+	.space 12
+    .text                 
+main:                 
+la    $gp, globals    
+# allocate the heap   
+li    $a0, 65536        
+li    $v0, 9          
+syscall               
+# saving heap size    
+move  $a2, $a0        
+# computing heap_info 
+la    $a0, heap_info  
+# beginning of heap   
+sw    $v0, 0($a0)     
+# current position    
+sw    $v0, 4($a0)     
+# end of heap         
+add   $a2, $a2, $v0   
+sw    $a2, 8($a0)     
+j     _main22              
+write:                
+li    $v0, 1          
+syscall               
+j     $ra             
+.data                 
+nl:                   
+.asciiz "\n"       
+.align 2              
+.text                 
+writeln:              
+li    $v0, 1          
+syscall               
+la    $a0, nl         
+li    $v0, 4          
+syscall               
+j     $ra             
+readln:               
+li    $v0, 5          
+syscall               
+j     $ra             
+alloc:                
+la    $a1, heap_info  
+# adding extra word   
+addi  $t1, $a0, 4     
+# current position    
+lw    $v0, 4($a1)     
+move  $t0, $v0        
+# end of the heap     
+lw    $a2, 8($a1)     
+add   $v0, $t1, $v0   
+# must have v0<=a2    
+bgt   $v0, $a2, oom   
+sw    $v0, 4($a1)     
+# length is written   
+move  $v0, $t0        
+div   $a0, $a0, 4     
+sw    $a0, 0($v0)     
+addi  $v0, $v0, 4     
+j     $ra             
+.data                 
+error_str:            
+.asciiz "out0fMem"  
+.align 2              
+.text                 
+oom:                  
+# means out of mem.   
+la $a0, error_str     
+li $v0, 4             
+syscall               
+li $v0, 10            
+syscall               
+j     $ra             
+
+# begin min
+min17:
+move  $v0, $a1
+slt   $a1, $a0, $v0
+bgtz  $a1, min2
+min19:
+jr    $ra
+min2:
+move  $v0, $a0
+j     min19
+# end min
+
+# begin input
+input26:
+addiu $sp, $sp, -20
+sw    $ra, 16($sp)
+sw    $s3, 12($sp)
+sw    $s2, 8($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+move  $s3, $a0
+sll   $a0, $s3, 2
+jal   alloc
+move  $s1, $v0
+li    $s2, 0
+input9:
+slt   $v0, $s2, $s3
+bgtz  $v0, input7
+move  $v0, $s1
+lw    $ra, 16($sp)
+lw    $s3, 12($sp)
+lw    $s2, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 20
+jr    $ra
+input7:
+sll   $v0, $s2, 2
+addu  $s0, $s1, $v0
+jal   readln
+sw    $v0, 0($s0)
+addiu $s2, $s2, 1
+j     input9
+# end input
+
+# begin distance
+distance82:
+addiu $sp, $sp, -24
+sw    $ra, 20($sp)
+sw    $s4, 16($sp)
+sw    $s3, 12($sp)
+sw    $s2, 8($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+lw    $v0, 4($gp)
+sll   $v0, $v0, 2
+addiu $a0, $v0, 4
+jal   alloc
+move  $s1, $v0
+li    $s4, 0
+distance61:
+lw    $v0, 4($gp)
+sle   $a0, $s4, $v0
+bgtz  $a0, distance58
+lw    $v0, 0($gp)
+addiu $s4, $v0, -1
+distance49:
+bgez  $s4, distance48
+lw    $v0, 0($s1)
+lw    $ra, 20($sp)
+lw    $s4, 16($sp)
+lw    $s3, 12($sp)
+lw    $s2, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 24
+jr    $ra
+distance48:
+lw    $v0, 4($gp)
+sll   $a0, $v0, 2
+addu  $a0, $s1, $a0
+lw    $s2, 0($a0)
+addiu $a1, $s2, 1
+sw    $a1, 0($a0)
+addiu $s3, $v0, -1
+distance33:
+bgez  $s3, distance32
+addiu $s4, $s4, -1
+j     distance49
+distance32:
+move  $a0, $s2
+sll   $v0, $s3, 2
+addu  $s0, $s1, $v0
+lw    $s2, 0($s0)
+lw    $a2, 8($gp)
+sll   $a1, $s4, 2
+addu  $a1, $a2, $a1
+lw    $a2, 0($a1)
+lw    $a1, 12($gp)
+addu  $v0, $a1, $v0
+lw    $v0, 0($v0)
+beq   $a2, $v0, distance17
+lw    $a1, 4($s0)
+move  $a0, $s2
+jal   min17
+addiu $v0, $v0, 1
+sw    $v0, 0($s0)
+distance5:
+addiu $s3, $s3, -1
+j     distance33
+distance17:
+sw    $a0, 0($s0)
+j     distance5
+distance58:
+sll   $a0, $s4, 2
+addu  $a0, $s1, $a0
+subu  $v0, $v0, $s4
+sw    $v0, 0($a0)
+addiu $s4, $s4, 1
+j     distance61
+# end distance
+
+# begin _main
+_main22:
+addiu $sp, $sp, -4
+sw    $ra, 0($sp)
+jal   readln
+sw    $v0, 0($gp)
+lw    $a0, 0($gp)
+jal   input26
+sw    $v0, 8($gp)
+jal   readln
+sw    $v0, 4($gp)
+lw    $a0, 4($gp)
+jal   input26
+sw    $v0, 12($gp)
+jal   distance82
+move  $a0, $v0
+lw    $ra, 0($sp)
+addiu $sp, $sp, 4
+j     writeln
+# end _main

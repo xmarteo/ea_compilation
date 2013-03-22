@@ -1,1 +1,201 @@
-../compilo failed with exit code: 0
+.data                  
+globals:               
+.space 8           
+heap_info:
+	.space 12
+    .text                 
+main:                 
+la    $gp, globals    
+# allocate the heap   
+li    $a0, 65536        
+li    $v0, 9          
+syscall               
+# saving heap size    
+move  $a2, $a0        
+# computing heap_info 
+la    $a0, heap_info  
+# beginning of heap   
+sw    $v0, 0($a0)     
+# current position    
+sw    $v0, 4($a0)     
+# end of heap         
+add   $a2, $a2, $v0   
+sw    $a2, 8($a0)     
+j     _main16              
+write:                
+li    $v0, 1          
+syscall               
+j     $ra             
+.data                 
+nl:                   
+.asciiz "\n"       
+.align 2              
+.text                 
+writeln:              
+li    $v0, 1          
+syscall               
+la    $a0, nl         
+li    $v0, 4          
+syscall               
+j     $ra             
+readln:               
+li    $v0, 5          
+syscall               
+j     $ra             
+alloc:                
+la    $a1, heap_info  
+# adding extra word   
+addi  $t1, $a0, 4     
+# current position    
+lw    $v0, 4($a1)     
+move  $t0, $v0        
+# end of the heap     
+lw    $a2, 8($a1)     
+add   $v0, $t1, $v0   
+# must have v0<=a2    
+bgt   $v0, $a2, oom   
+sw    $v0, 4($a1)     
+# length is written   
+move  $v0, $t0        
+div   $a0, $a0, 4     
+sw    $a0, 0($v0)     
+addi  $v0, $v0, 4     
+j     $ra             
+.data                 
+error_str:            
+.asciiz "out0fMem"  
+.align 2              
+.text                 
+oom:                  
+# means out of mem.   
+la $a0, error_str     
+li $v0, 4             
+syscall               
+li $v0, 10            
+syscall               
+j     $ra             
+
+# begin tri
+tri62:
+addiu $sp, $sp, -16
+sw    $ra, 12($sp)
+sw    $s2, 8($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+move  $s1, $a0
+move  $s2, $a2
+tri45:
+slt   $v0, $a1, $s2
+bgtz  $v0, tri43
+lw    $ra, 12($sp)
+lw    $s2, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 16
+jr    $ra
+tri43:
+sll   $v0, $a1, 2
+addu  $v0, $s1, $v0
+lw    $t0, 0($v0)
+move  $s0, $a1
+addiu $t1, $a1, 1
+tri38:
+slt   $v0, $t1, $s2
+bgtz  $v0, tri36
+sll   $v0, $s0, 2
+addu  $v0, $s1, $v0
+lw    $a3, 0($v0)
+sll   $a0, $a1, 2
+addu  $a0, $s1, $a0
+lw    $a2, 0($a0)
+sw    $a2, 0($v0)
+sw    $a3, 0($a0)
+move  $a0, $s1
+move  $a2, $s0
+jal   tri62
+addiu $a1, $s0, 1
+j     tri45
+tri36:
+sll   $v0, $t1, 2
+addu  $v0, $s1, $v0
+lw    $a0, 0($v0)
+slt   $a2, $a0, $t0
+bgtz  $a2, tri31
+addiu $t1, $t1, 1
+j     tri38
+tri31:
+addiu $s0, $s0, 1
+sll   $a2, $s0, 2
+addu  $a2, $s1, $a2
+lw    $a3, 0($a2)
+sw    $a0, 0($a2)
+sw    $a3, 0($v0)
+addiu $t1, $t1, 1
+j     tri38
+# end tri
+
+# begin lire
+lire28:
+addiu $sp, $sp, -8
+sw    $ra, 4($sp)
+sw    $s0, 0($sp)
+jal   readln
+sw    $v0, 0($gp)
+lw    $v0, 0($gp)
+sll   $a0, $v0, 2
+jal   alloc
+sw    $v0, 4($gp)
+lw    $s0, 0($gp)
+lire8:
+bne   $s0, $zero, lire7
+lw    $ra, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 8
+jr    $ra
+lire7:
+addiu $s0, $s0, -1
+jal   readln
+lw    $a1, 4($gp)
+sll   $a0, $s0, 2
+addu  $a0, $a1, $a0
+sw    $v0, 0($a0)
+j     lire8
+# end lire
+
+# begin affiche
+affiche22:
+addiu $sp, $sp, -8
+sw    $ra, 4($sp)
+sw    $s0, 0($sp)
+li    $s0, 0
+affiche10:
+lw    $v0, 0($gp)
+slt   $v0, $s0, $v0
+bgtz  $v0, affiche7
+lw    $ra, 4($sp)
+lw    $s0, 0($sp)
+addiu $sp, $sp, 8
+jr    $ra
+affiche7:
+lw    $a0, 4($gp)
+sll   $v0, $s0, 2
+addu  $v0, $a0, $v0
+lw    $a0, 0($v0)
+jal   writeln
+addiu $s0, $s0, 1
+j     affiche10
+# end affiche
+
+# begin _main
+_main16:
+addiu $sp, $sp, -4
+sw    $ra, 0($sp)
+jal   lire28
+lw    $a0, 4($gp)
+li    $a1, 0
+lw    $a2, 0($gp)
+jal   tri62
+lw    $ra, 0($sp)
+addiu $sp, $sp, 4
+j     affiche22
+# end _main

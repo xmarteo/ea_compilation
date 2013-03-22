@@ -6,5 +6,6 @@ t : array of integer ;
 begin
   len := 42 ;
   writeln(len) ;
-  t := new array of integer [len]
+  t := new array of integer [len] ;
+  writeln(length(t))
 end.

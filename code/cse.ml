@@ -305,7 +305,8 @@ end) = struct
       (* I have no idea what I'm doing *)
       
       | INewArray (_, _, next) ->
-	  jump next env (* This probably is the local equivalent of "do nothing" *)
+	  generate label i;
+	  jump next (init())
 
       | ISetGlobal (o1, _, next) ->
 	  let invalidated = function
