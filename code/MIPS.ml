@@ -181,8 +181,8 @@ let caller_saved =
     if Settings.few then
       [ v0; a0; a1; a2; a3; t0; t1; ra ]
     else
-      [ v0; a0; a1; a2; a3; t0; t1; t2; t3; t4; t5; t6; t7; t8; t9; ra ]
-  )
+      [ v0; a0; a1; a2; a3; t0; t1; t2; t3; t4; t5; t6; t7; t8; ra ]
+  ) (* $t9 is let aside and reserved for the compiler *)
 
 let callee_saved =
   RegisterSet.of_list (

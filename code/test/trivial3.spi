@@ -32,6 +32,8 @@ nl:
 .align 2              
 .text                 
 writeln:              
+sub   $a0, 1          
+div   $a0, $a0, $t9   
 li    $v0, 1          
 syscall               
 la    $a0, nl         
@@ -80,29 +82,73 @@ _main44:
 sw    $zero, 4($gp)
 sw    $zero, 0($gp)
 lw    $v0, 4($gp)
-addiu $v0, $v0, 1
+sub $v0, 1          
+div $v0, $v0, $t9    
+addiu $v0, $v0, 1 
+mul $v0, $v0, $t9    
+addi $v0, 1         
+
 sw    $v0, 4($gp)
 lw    $a0, 0($gp)
 lw    $v0, 4($gp)
-addu  $a0, $a0, $v0
+sub $a0, 1          
+div $a0, $a0, $t9    
+sub $v0, 1          
+div $v0, $v0, $t9    
+addu  $a0, $a0, $v0      
+mul $a0, $a0, $t9    
+addi $a0, 1
 sw    $a0, 0($gp)
-addiu $v0, $v0, 1
+sub $v0, 1          
+div $v0, $v0, $t9    
+addiu $v0, $v0, 1 
+mul $v0, $v0, $t9    
+addi $v0, 1         
+
 sw    $v0, 4($gp)
 lw    $a0, 0($gp)
 lw    $v0, 4($gp)
-addu  $a0, $a0, $v0
+sub $a0, 1          
+div $a0, $a0, $t9    
+sub $v0, 1          
+div $v0, $v0, $t9    
+addu  $a0, $a0, $v0      
+mul $a0, $a0, $t9    
+addi $a0, 1
 sw    $a0, 0($gp)
-addiu $v0, $v0, 1
+sub $v0, 1          
+div $v0, $v0, $t9    
+addiu $v0, $v0, 1 
+mul $v0, $v0, $t9    
+addi $v0, 1         
+
 sw    $v0, 4($gp)
 lw    $a0, 0($gp)
 lw    $v0, 4($gp)
-addu  $a0, $a0, $v0
+sub $a0, 1          
+div $a0, $a0, $t9    
+sub $v0, 1          
+div $v0, $v0, $t9    
+addu  $a0, $a0, $v0      
+mul $a0, $a0, $t9    
+addi $a0, 1
 sw    $a0, 0($gp)
-addiu $v0, $v0, 1
+sub $v0, 1          
+div $v0, $v0, $t9    
+addiu $v0, $v0, 1 
+mul $v0, $v0, $t9    
+addi $v0, 1         
+
 sw    $v0, 4($gp)
 lw    $a0, 0($gp)
 lw    $v0, 4($gp)
-addu  $v0, $a0, $v0
+sub $a0, 1          
+div $a0, $a0, $t9    
+sub $v0, 1          
+div $v0, $v0, $t9    
+addu  $v0, $a0, $v0      
+mul $v0, $v0, $t9    
+addi $v0, 1
 sw    $v0, 0($gp)
 lw    $a0, 0($gp)
 j     writeln
