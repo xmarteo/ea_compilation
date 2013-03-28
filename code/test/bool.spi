@@ -76,103 +76,154 @@ syscall
 j     $ra             
 
 # begin test
-test37:
+test65:
 addiu $sp, $sp, -8
 sw    $ra, 4($sp)
 sw    $s0, 0($sp)
 jal   readln
-move  $s0, $v0
-test24:
-bne   $s0, $zero, test22
-sge   $a0, $s0, $zero
-sle   $a1, $s0, $zero
-jal   band16
+sll   $v0, $v0, 1
+addiu $s0, $v0, 1
+test51:
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bne   $v0, $zero, test42
+sge   $a0, $v0, $zero
+sle   $a1, $v0, $zero
+jal   band23
 move  $a0, $v0
 lw    $ra, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 8
-j     pbool16
-test22:
-slt   $a0, $zero, $s0
-jal   pbool16
-sge   $a0, $s0, $zero
-sle   $a1, $s0, $zero
-jal   band16
+j     pbool22
+test42:
+slt   $a0, $zero, $v0
+jal   pbool22
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sge   $a0, $v0, $zero
+sle   $a1, $v0, $zero
+jal   band23
 move  $a0, $v0
-jal   pbool16
-sgt   $a0, $s0, $zero
-sle   $a1, $s0, $zero
-jal   implies15
+jal   pbool22
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sgt   $a0, $v0, $zero
+sle   $a1, $v0, $zero
+jal   implies23
 move  $a0, $v0
-jal   pbool16
+jal   pbool22
 jal   readln
-move  $s0, $v0
-j     test24
+sll   $v0, $v0, 1
+addiu $s0, $v0, 1
+j     test51
 # end test
 
 # begin pbool
-pbool16:
-bgtz  $a0, pbool3
-li    $a0, 0
-pbool29:
+pbool22:
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bgtz  $v0, pbool6
+li    $v0, 1
+pbool4:
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 j     writeln
-pbool3:
-li    $a0, 1
-j     pbool29
+pbool6:
+li    $v0, 3
+j     pbool4
 # end pbool
 
 # begin implies
-implies15:
+implies23:
 addiu $sp, $sp, -8
 sw    $ra, 4($sp)
-sw    $a1, 0($sp)
-jal   bnot15
+sw    $s0, 0($sp)
+move  $s0, $a1
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
+jal   bnot18
+addiu $a1, $s0, -1
+li    $a0, 2
+div   $a1, $a1, $a0
 move  $a0, $v0
-lw    $a1, 0($sp)
+jal   bor25
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 lw    $ra, 4($sp)
+lw    $s0, 0($sp)
 addiu $sp, $sp, 8
-j     bor17
+jr    $ra
 # end implies
 
 # begin bor
-bor17:
+bor25:
 addiu $sp, $sp, -12
 sw    $ra, 8($sp)
-sw    $a1, 0($sp)
-jal   bnot15
-sw    $v0, 4($sp)
-lw    $a0, 0($sp)
-jal   bnot15
-lw    $a0, 4($sp)
+sw    $s1, 4($sp)
+sw    $s0, 0($sp)
+move  $s1, $a1
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
+jal   bnot18
+move  $s0, $v0
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a0, $a0, $v0
+jal   bnot18
+move  $a0, $s0
 move  $a1, $v0
-jal   band16
+jal   band23
 move  $a0, $v0
+jal   bnot18
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 lw    $ra, 8($sp)
+lw    $s1, 4($sp)
+lw    $s0, 0($sp)
 addiu $sp, $sp, 12
-j     bnot15
+jr    $ra
 # end bor
 
 # begin bnot
-bnot15:
-bgtz  $a0, bnot2
-li    $v0, 1
-bnot17:
+bnot18:
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bgtz  $v0, bnot2
+li    $v0, 3
+bnot20:
 jr    $ra
 bnot2:
-li    $v0, 0
-j     bnot17
+li    $v0, 1
+j     bnot20
 # end bnot
 
 # begin band
-band16:
-move  $v0, $a1
-bgtz  $a0, band18
-li    $v0, 0
-band18:
+band23:
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bgtz  $v0, band6
+li    $v0, 1
+band25:
 jr    $ra
+band6:
+addiu $a0, $a1, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+j     band25
 # end band
 
 # begin _main
 _main11:
-j     test37
+j     test65
 # end _main

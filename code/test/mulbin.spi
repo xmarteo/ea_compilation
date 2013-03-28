@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main26              
+j     _main43              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,7 +76,7 @@ syscall
 j     $ra             
 
 # begin prod
-prod32:
+prod79:
 addiu $sp, $sp, -20
 sw    $ra, 16($sp)
 sw    $s3, 12($sp)
@@ -85,15 +85,29 @@ sw    $s1, 4($sp)
 sw    $s0, 0($sp)
 move  $s2, $a0
 move  $s3, $a1
-bltz  $s2, prod15
-move  $s0, $s2
-prod13:
-li    $s1, 0
-prod12:
-bgtz  $s0, prod47
-bltz  $s2, prod2
-prod44:
-move  $v0, $s1
+addiu $a0, $s2, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bltz  $v0, prod56
+sll   $v0, $v0, 1
+addiu $s0, $v0, 1
+prod48:
+li    $s1, 1
+prod47:
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
+bgtz  $a0, prod93
+addiu $a0, $s2, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bltz  $v0, prod11
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+prod90:
 lw    $ra, 16($sp)
 lw    $s3, 12($sp)
 lw    $s2, 8($sp)
@@ -101,57 +115,99 @@ lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 20
 jr    $ra
-prod2:
-subu  $s1, $zero, $s1
-j     prod44
-prod47:
-move  $a0, $s0
-jal   odd16
-bgtz  $v0, prod9
-prod8:
+prod11:
+addiu $a0, $s1, -1
 li    $v0, 2
-div   $s0, $s0, $v0
-sll   $s3, $s3, 1
-j     prod12
-prod9:
-addu  $s1, $s1, $s3
-j     prod8
-prod15:
-subu  $s0, $zero, $s2
-j     prod13
-# end prod
-
-# begin odd
-odd16:
+div   $v0, $a0, $v0
+subu  $v0, $zero, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+j     prod90
+prod93:
+jal   odd24
+bgtz  $v0, prod38
+prod29:
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
-sne   $v0, $a0, $v0
+addiu $s0, $v0, 1
+addiu $a0, $s3, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 2
+addiu $s3, $v0, 1
+j     prod47
+prod38:
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a1, $a0, $v0
+addiu $a0, $s3, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+addu  $v0, $a1, $v0
+sll   $v0, $v0, 1
+addiu $s1, $v0, 1
+j     prod29
+prod56:
+subu  $v0, $zero, $v0
+sll   $v0, $v0, 1
+addiu $s0, $v0, 1
+j     prod48
+# end prod
+
+# begin odd
+odd24:
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+li    $a0, 2
+div   $a0, $v0, $a0
+sll   $a0, $a0, 1
+sne   $v0, $v0, $a0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 jr    $ra
 # end odd
 
 # begin _main
-_main26:
+_main43:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 jal   readln
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 4($gp)
 jal   readln
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 0($gp)
-_main12:
-lw    $a0, 4($gp)
-bne   $a0, $zero, _main8
+_main25:
+lw    $v0, 4($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
+bne   $a0, $zero, _main15
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra
-_main8:
-lw    $a1, 0($gp)
-jal   prod32
+_main15:
+lw    $v0, 0($gp)
+addiu $a1, $v0, -1
+li    $v0, 2
+div   $a1, $a1, $v0
+jal   prod79
 move  $a0, $v0
 jal   writeln
 jal   readln
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 4($gp)
 jal   readln
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 0($gp)
-j     _main12
+j     _main25
 # end _main

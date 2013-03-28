@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main15              
+j     _main20              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,25 +76,44 @@ syscall
 j     $ra             
 
 # begin fact
-fact19:
-li    $v0, 1
-fact5:
-bgtz  $a0, fact4
-jr    $ra
-fact4:
-mul   $v0, $v0, $a0
+fact38:
+li    $a1, 3
+fact24:
 addiu $a0, $a0, -1
-j     fact5
+li    $v0, 2
+div   $v0, $a0, $v0
+bgtz  $v0, fact20
+addiu $a0, $a1, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+jr    $ra
+fact20:
+addiu $a1, $a1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+mul   $a0, $a0, $v0
+sll   $a0, $a0, 1
+addiu $a1, $a0, 1
+sll   $v0, $v0, 1
+addiu $a0, $v0, -1
+j     fact24
 # end fact
 
 # begin _main
-_main15:
+_main20:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 jal   readln
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 0($gp)
-lw    $a0, 0($gp)
-jal   fact19
+lw    $v0, 0($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
+jal   fact38
 move  $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4

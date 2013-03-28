@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main74              
+j     _main129              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,72 +76,118 @@ syscall
 j     $ra             
 
 # begin _main
-_main74:
+_main129:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 li    $a0, 4
 jal   writeln
-li    $v0, 1
+li    $v0, 3
 sw    $v0, 4($gp)
 lw    $v0, 4($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 addu  $v0, $v0, $v0
 addiu $a0, $v0, 3
 jal   writeln
 lw    $v0, 4($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $a0, $v0, 2
 jal   writeln
 lw    $v0, 4($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $a0, $v0, 2
 jal   writeln
 lw    $v0, 4($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $a0, $v0, 4
 jal   writeln
 li    $a0, 0
 jal   writeln
-lw    $a0, 4($gp)
+lw    $v0, 4($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 jal   writeln
 lw    $v0, 4($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 subu  $v0, $v0, $v0
-addiu $v0, $v0, 3
+sll   $v0, $v0, 1
+addiu $v0, $v0, 7
 sw    $v0, 0($gp)
-lw    $a0, 0($gp)
+lw    $v0, 0($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 jal   writeln
 li    $a0, 3
 lw    $v0, 0($gp)
+addiu $a1, $v0, -1
+li    $v0, 2
+div   $v0, $a1, $v0
 sle   $a0, $a0, $v0
-bgtz  $a0, _main30
-_main26:
-li    $a0, 1000
+bgtz  $a0, _main51
+_main47:
+li    $a1, 1000
 lw    $v0, 4($gp)
-mul   $v0, $a0, $v0
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+mul   $v0, $a1, $v0
 addiu $a0, $v0, 110
 jal   writeln
-li    $a0, 24
+li    $a1, 24
 lw    $v0, 4($gp)
-mul   $a0, $a0, $v0
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+mul   $a0, $a1, $v0
 jal   writeln
-li    $a0, 24
+li    $a1, 24
 lw    $v0, 4($gp)
-mul   $a0, $a0, $v0
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+mul   $a0, $a1, $v0
 jal   writeln
-li    $a0, 24
+li    $a1, 24
 lw    $v0, 4($gp)
-mul   $a0, $a0, $v0
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+mul   $a0, $a1, $v0
 jal   writeln
 lw    $v0, 4($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $a0, $v0, 3
 jal   writeln
-lw    $a0, 0($gp)
+lw    $v0, 0($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a1, $a0, $v0
 lw    $v0, 4($gp)
-addu  $v0, $a0, $v0
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+addu  $v0, $a1, $v0
 subu  $a0, $zero, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 j     writeln
-_main30:
+_main51:
 slti  $v0, $v0, 6
-blez  $v0, _main26
+blez  $v0, _main47
 li    $a0, 1
 jal   writeln
-j     _main26
+j     _main47
 # end _main

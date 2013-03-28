@@ -34,10 +34,13 @@ let translate_procedure f proc =
      variable, and the local variables to fresh pseudo-registers. *)
 
   let env, formals =
+    let formalsList =
+      List.map fst proc.UPP.formals
+    in
     List.fold_right (fun formal (env, formals) ->
       let register = allocate() in
       StringMap.add formal register env, register :: formals
-    ) proc.UPP.formals (StringMap.empty, [])
+    ) formalsList (StringMap.empty, [])
   in
 
   let env, result =
@@ -49,10 +52,13 @@ let translate_procedure f proc =
   in
 
   let env =
+    let localsSet =
+     StringMap.domain proc.UPP.locals
+    in
     StringSet.fold (fun local env ->
       let register = allocate() in
       StringMap.add local register env
-    ) proc.UPP.locals env
+    ) localsSet env
   in
 
   (* Define a function that looks up a variable in this

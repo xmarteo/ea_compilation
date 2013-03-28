@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main32              
+j     _main46              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,143 +76,205 @@ syscall
 j     $ra             
 
 # begin try
-try78:
+try148:
 addiu $sp, $sp, -12
 sw    $ra, 8($sp)
 sw    $s1, 4($sp)
 sw    $s0, 0($sp)
 move  $s1, $a0
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a1, $a0, $v0
 lw    $v0, 12($gp)
-beq   $s1, $v0, try102
-li    $s0, 0
-try62:
-lw    $v0, 12($gp)
-slt   $v0, $s0, $v0
-bgtz  $v0, try59
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+beq   $a1, $v0, try172
+li    $s0, 1
+try126:
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+lw    $a0, 12($gp)
+addiu $a1, $a0, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+slt   $a0, $v0, $a0
+bgtz  $a0, try117
 lw    $ra, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 12
 jr    $ra
-try59:
+try117:
 lw    $a0, 16($gp)
-sll   $v0, $s0, 2
-addu  $v0, $a0, $v0
-lw    $a0, 0($v0)
-bgtz  $a0, try2
+sll   $a1, $v0, 2
+addu  $a1, $a0, $a1
+lw    $a0, 0($a1)
+bgtz  $a0, try6
+lw    $a2, 4($gp)
+addiu $a3, $s1, -1
+li    $a0, 2
+div   $a0, $a3, $a0
+addu  $a3, $v0, $a0
+sll   $a3, $a3, 2
+addu  $a2, $a2, $a3
+lw    $a3, 0($a2)
+bgtz  $a3, try6
+lw    $a3, 8($gp)
+subu  $t0, $v0, $a0
+sll   $t0, $t0, 2
+addu  $a3, $a3, $t0
+lw    $t0, 28($a3)
+bgtz  $t0, try6
+li    $t0, 1
+sw    $t0, 0($a1)
+li    $a1, 1
+sw    $a1, 0($a2)
+li    $a1, 1
+sw    $a1, 28($a3)
+lw    $a1, 0($gp)
+sll   $a2, $a0, 2
+addu  $a1, $a1, $a2
+sw    $v0, 0($a1)
+addiu $a0, $a0, 1
+jal   try148
+lw    $a0, 16($gp)
+addiu $a1, $s0, -1
+li    $v0, 2
+div   $v0, $a1, $v0
+sll   $a1, $v0, 2
+addu  $a0, $a0, $a1
+sw    $zero, 0($a0)
 lw    $a1, 4($gp)
-addu  $a0, $s0, $s1
-sll   $a0, $a0, 2
-addu  $a0, $a1, $a0
-lw    $a1, 0($a0)
-bgtz  $a1, try2
-lw    $a2, 8($gp)
-subu  $a1, $s0, $s1
-sll   $a1, $a1, 2
-addu  $a1, $a2, $a1
-lw    $a2, 28($a1)
-bgtz  $a2, try2
-li    $a2, 1
-sw    $a2, 0($v0)
-li    $v0, 1
-sw    $v0, 0($a0)
-li    $v0, 1
-sw    $v0, 28($a1)
-lw    $a0, 0($gp)
-sll   $v0, $s1, 2
-addu  $v0, $a0, $v0
-sw    $s0, 0($v0)
-addiu $a0, $s1, 1
-jal   try78
-lw    $a0, 16($gp)
-sll   $v0, $s0, 2
-addu  $v0, $a0, $v0
-sw    $zero, 0($v0)
-lw    $a0, 4($gp)
-addu  $v0, $s0, $s1
+addiu $a2, $s1, -1
+li    $a0, 2
+div   $a0, $a2, $a0
+addu  $a2, $v0, $a0
+sll   $a2, $a2, 2
+addu  $a1, $a1, $a2
+sw    $zero, 0($a1)
+lw    $a1, 8($gp)
+subu  $v0, $v0, $a0
 sll   $v0, $v0, 2
-addu  $v0, $a0, $v0
-sw    $zero, 0($v0)
-lw    $a0, 8($gp)
-subu  $v0, $s0, $s1
-sll   $v0, $v0, 2
-addu  $v0, $a0, $v0
+addu  $v0, $a1, $v0
 sw    $zero, 28($v0)
-try2:
-addiu $s0, $s0, 1
-j     try62
-try102:
+try6:
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $s0, $v0, 3
+j     try126
+try172:
 lw    $ra, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 12
-j     printboard37
+j     printboard63
 # end try
 
 # begin printboard
-printboard37:
+printboard63:
 addiu $sp, $sp, -12
 sw    $ra, 8($sp)
 sw    $s1, 4($sp)
 sw    $s0, 0($sp)
-li    $s1, 0
-printboard24:
+li    $s1, 1
+printboard50:
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a1, $a0, $v0
 lw    $v0, 12($gp)
-slt   $v0, $s1, $v0
-bgtz  $v0, printboard21
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+slt   $v0, $a1, $v0
+bgtz  $v0, printboard41
 li    $a0, 2
 lw    $ra, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 12
 j     writeln
-printboard21:
-li    $s0, 0
-printboard20:
-lw    $v0, 12($gp)
-slt   $v0, $s0, $v0
-bgtz  $v0, printboard17
+printboard41:
+li    $s0, 1
+printboard40:
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+lw    $a0, 12($gp)
+addiu $a1, $a0, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+slt   $a0, $v0, $a0
+bgtz  $a0, printboard31
 li    $a0, 2
 jal   writeln
-addiu $s1, $s1, 1
-j     printboard24
-printboard17:
-lw    $a0, 0($gp)
-sll   $v0, $s1, 2
-addu  $v0, $a0, $v0
-lw    $v0, 0($v0)
-beq   $v0, $s0, printboard12
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $s1, $v0, 3
+j     printboard50
+printboard31:
+lw    $a2, 0($gp)
+addiu $a1, $s1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 2
+addu  $a0, $a2, $a0
+lw    $a0, 0($a0)
+beq   $a0, $v0, printboard20
 li    $a0, 0
 jal   write
-printboard8:
-addiu $s0, $s0, 1
-j     printboard20
-printboard12:
+printboard16:
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $s0, $v0, 3
+j     printboard40
+printboard20:
 li    $a0, 1
 jal   write
-j     printboard8
+j     printboard16
 # end printboard
 
 # begin _main
-_main32:
+_main46:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 jal   readln
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 12($gp)
 lw    $v0, 12($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $a0, $v0, 2
 jal   alloc
 sw    $v0, 16($gp)
 lw    $v0, 12($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $a0, $v0, 2
 jal   alloc
 sw    $v0, 0($gp)
 lw    $v0, 12($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 3
 addiu $a0, $v0, -4
 jal   alloc
 sw    $v0, 4($gp)
 lw    $v0, 12($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 3
 addiu $a0, $v0, -4
 jal   alloc
@@ -220,5 +282,5 @@ sw    $v0, 8($gp)
 li    $a0, 0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
-j     try78
+j     try148
 # end _main

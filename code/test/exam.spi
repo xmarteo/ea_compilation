@@ -76,16 +76,32 @@ syscall
 j     $ra             
 
 # begin sum
-sum18:
-move  $v0, $a1
-sum5:
-bgtz  $a0, sum4
+sum36:
+addiu $sp, $sp, -4
+sw    $ra, 0($sp)
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bgtz  $v0, sum16
+addiu $a0, $a1, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+sum47:
+lw    $ra, 0($sp)
+addiu $sp, $sp, 4
 jr    $ra
-sum4:
-addiu $a1, $a0, -1
-addu  $v0, $v0, $a0
-move  $a0, $a1
-j     sum5
+sum16:
+addiu $a0, $v0, -1
+addiu $a2, $a1, -1
+li    $a1, 2
+div   $a1, $a2, $a1
+addu  $a1, $a1, $v0
+jal   sum36
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+j     sum47
 # end sum
 
 # begin _main
@@ -94,7 +110,7 @@ addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 li    $a0, 10
 li    $a1, 0
-jal   sum18
+jal   sum36
 move  $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4

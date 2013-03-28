@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main18              
+j     _main23              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,36 +76,42 @@ syscall
 j     $ra             
 
 # begin pow
-pow27:
+pow39:
 addiu $sp, $sp, -12
 sw    $ra, 8($sp)
 sw    $s1, 4($sp)
 sw    $s0, 0($sp)
 move  $s0, $a0
 move  $s1, $a1
-li    $v0, 1
-beq   $s0, $v0, pow39
+addiu $a0, $s0, -1
 li    $v0, 2
-div   $a0, $s0, $v0
+div   $v0, $a0, $v0
+li    $a0, 1
+beq   $v0, $a0, pow51
+li    $a0, 2
+div   $a0, $v0, $a0
 move  $a1, $s1
-jal   pow27
+jal   pow39
 move  $a0, $v0
 move  $a1, $v0
-jal   matmult63
+jal   matmult134
+addiu $a1, $s0, -1
 li    $a0, 2
-div   $a0, $s0, $a0
-sll   $a0, $a0, 1
-beq   $a0, $s0, pow2
+div   $a0, $a1, $a0
+li    $a1, 2
+div   $a1, $a0, $a1
+sll   $a1, $a1, 1
+beq   $a1, $a0, pow2
 move  $a0, $s1
 move  $a1, $v0
 lw    $ra, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 12
-j     matmult63
+j     matmult134
 pow2:
 move  $s1, $v0
-pow39:
+pow51:
 move  $v0, $s1
 lw    $ra, 8($sp)
 lw    $s1, 4($sp)
@@ -115,7 +121,7 @@ jr    $ra
 # end pow
 
 # begin matmult
-matmult63:
+matmult134:
 addiu $sp, $sp, -12
 sw    $ra, 8($sp)
 sw    $s1, 4($sp)
@@ -123,75 +129,131 @@ sw    $s0, 0($sp)
 move  $s0, $a0
 move  $s1, $a1
 lw    $v0, 4($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 mul   $v0, $v0, $v0
 sll   $a0, $v0, 2
 jal   alloc
-li    $a3, 0
-matmult39:
+li    $a2, 1
+matmult104:
+addiu $a1, $a2, -1
+li    $a0, 2
+div   $a3, $a1, $a0
 lw    $a0, 4($gp)
+addiu $a1, $a0, -1
+li    $a0, 2
+div   $a0, $a1, $a0
 slt   $a0, $a3, $a0
-bgtz  $a0, matmult36
+bgtz  $a0, matmult95
 lw    $ra, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 12
 jr    $ra
-matmult36:
-li    $a2, 0
-matmult35:
+matmult95:
+li    $a3, 1
+matmult94:
+addiu $a1, $a3, -1
+li    $a0, 2
+div   $t0, $a1, $a0
 lw    $a0, 4($gp)
-slt   $a0, $a2, $a0
-bgtz  $a0, matmult32
-addiu $a3, $a3, 1
-j     matmult39
-matmult32:
-li    $t0, 0
-li    $a1, 0
-matmult30:
+addiu $a1, $a0, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+slt   $a0, $t0, $a0
+bgtz  $a0, matmult85
+addiu $a1, $a2, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $a2, $a0, 3
+j     matmult104
+matmult85:
+li    $a0, 1
+li    $t0, 1
+matmult83:
+addiu $a1, $a0, -1
+li    $a0, 2
+div   $a1, $a1, $a0
 lw    $a0, 4($gp)
-slt   $t1, $t0, $a0
-bgtz  $t1, matmult26
-mul   $a0, $a0, $a3
-addu  $a0, $a0, $a2
-sll   $a0, $a0, 2
-addu  $a0, $v0, $a0
-sw    $a1, 0($a0)
-addiu $a2, $a2, 1
-j     matmult35
-matmult26:
-mul   $t1, $a0, $a3
-addu  $t1, $t1, $t0
+addiu $t1, $a0, -1
+li    $a0, 2
+div   $a0, $t1, $a0
+slt   $t1, $a1, $a0
+bgtz  $t1, matmult74
+addiu $t1, $a2, -1
+li    $a1, 2
+div   $a1, $t1, $a1
+mul   $a1, $a0, $a1
+addiu $a3, $a3, -1
+li    $a0, 2
+div   $a0, $a3, $a0
+addu  $a1, $a1, $a0
+sll   $a1, $a1, 2
+addu  $a1, $v0, $a1
+addiu $t0, $t0, -1
+li    $a3, 2
+div   $a3, $t0, $a3
+sw    $a3, 0($a1)
+sll   $a0, $a0, 1
+addiu $a3, $a0, 3
+j     matmult94
+matmult74:
+addiu $t1, $t0, -1
+li    $t0, 2
+div   $t0, $t1, $t0
+addiu $t2, $a2, -1
+li    $t1, 2
+div   $t1, $t2, $t1
+mul   $t1, $a0, $t1
+addu  $t1, $t1, $a1
 sll   $t1, $t1, 2
 addu  $t1, $s0, $t1
 lw    $t1, 0($t1)
-mul   $a0, $a0, $t0
-addu  $a0, $a0, $a2
+mul   $t3, $a0, $a1
+addiu $t2, $a3, -1
+li    $a0, 2
+div   $a0, $t2, $a0
+addu  $a0, $t3, $a0
 sll   $a0, $a0, 2
 addu  $a0, $s1, $a0
 lw    $a0, 0($a0)
 mul   $a0, $t1, $a0
-addu  $a1, $a1, $a0
-addiu $t0, $t0, 1
-j     matmult30
+addu  $a0, $t0, $a0
+sll   $a0, $a0, 1
+addiu $t0, $a0, 1
+sll   $a0, $a1, 1
+addiu $a0, $a0, 3
+j     matmult83
 # end matmult
 
 # begin lire
-lire40:
+lire80:
 addiu $sp, $sp, -16
 sw    $ra, 12($sp)
 sw    $s2, 8($sp)
 sw    $s1, 4($sp)
 sw    $s0, 0($sp)
 lw    $v0, 4($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 mul   $v0, $v0, $v0
 sll   $a0, $v0, 2
 jal   alloc
 move  $s0, $v0
-li    $s2, 0
-lire19:
+li    $s2, 1
+lire53:
+addiu $a0, $s2, -1
+li    $v0, 2
+div   $a1, $a0, $v0
 lw    $v0, 4($gp)
-slt   $v0, $s2, $v0
-bgtz  $v0, lire16
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+slt   $v0, $a1, $v0
+bgtz  $v0, lire44
 move  $v0, $s0
 lw    $ra, 12($sp)
 lw    $s2, 8($sp)
@@ -199,77 +261,130 @@ lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 16
 jr    $ra
-lire16:
-li    $s1, 0
-lire15:
+lire44:
+li    $s1, 1
+lire43:
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a1, $a0, $v0
 lw    $v0, 4($gp)
-slt   $v0, $s1, $v0
-bgtz  $v0, lire54
-addiu $s2, $s2, 1
-j     lire19
-lire54:
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+slt   $v0, $a1, $v0
+bgtz  $v0, lire94
+addiu $a0, $s2, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $s2, $v0, 3
+j     lire53
+lire94:
 jal   readln
-lw    $a0, 4($gp)
-mul   $a0, $a0, $s2
-addu  $a0, $a0, $s1
-sll   $a0, $a0, 2
-addu  $a0, $s0, $a0
-sw    $v0, 0($a0)
-addiu $s1, $s1, 1
-j     lire15
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+lw    $v0, 4($gp)
+addiu $a1, $v0, -1
+li    $v0, 2
+div   $a2, $a1, $v0
+addiu $a1, $s2, -1
+li    $v0, 2
+div   $v0, $a1, $v0
+mul   $a1, $a2, $v0
+addiu $a2, $s1, -1
+li    $v0, 2
+div   $v0, $a2, $v0
+addu  $a1, $a1, $v0
+sll   $a1, $a1, 2
+addu  $a1, $s0, $a1
+addiu $a2, $a0, -1
+li    $a0, 2
+div   $a0, $a2, $a0
+sw    $a0, 0($a1)
+sll   $v0, $v0, 1
+addiu $s1, $v0, 3
+j     lire43
 # end lire
 
 # begin affiche
-affiche32:
+affiche61:
 addiu $sp, $sp, -16
 sw    $ra, 12($sp)
 sw    $s2, 8($sp)
 sw    $s1, 4($sp)
 sw    $s0, 0($sp)
 move  $s2, $a0
-li    $s1, 0
-affiche18:
+li    $s1, 1
+affiche47:
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a1, $a0, $v0
 lw    $v0, 4($gp)
-slt   $v0, $s1, $v0
-bgtz  $v0, affiche15
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+slt   $v0, $a1, $v0
+bgtz  $v0, affiche38
 lw    $ra, 12($sp)
 lw    $s2, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 16
 jr    $ra
-affiche15:
-li    $s0, 0
-affiche14:
+affiche38:
+li    $s0, 1
+affiche37:
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 lw    $v0, 4($gp)
-slt   $a0, $s0, $v0
-bgtz  $a0, affiche10
-addiu $s1, $s1, 1
-j     affiche18
-affiche10:
-mul   $v0, $v0, $s1
-addu  $v0, $v0, $s0
+addiu $a1, $v0, -1
+li    $v0, 2
+div   $v0, $a1, $v0
+slt   $a1, $a0, $v0
+bgtz  $a1, affiche24
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $s1, $v0, 3
+j     affiche47
+affiche24:
+addiu $a2, $s1, -1
+li    $a1, 2
+div   $a1, $a2, $a1
+mul   $v0, $v0, $a1
+addu  $v0, $v0, $a0
 sll   $v0, $v0, 2
 addu  $v0, $s2, $v0
 lw    $a0, 0($v0)
 jal   writeln
-addiu $s0, $s0, 1
-j     affiche14
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $s0, $v0, 3
+j     affiche37
 # end affiche
 
 # begin _main
-_main18:
+_main23:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 jal   readln
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 4($gp)
-jal   lire40
+jal   lire80
 sw    $v0, 0($gp)
-lw    $a0, 4($gp)
+lw    $v0, 4($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 lw    $a1, 0($gp)
-jal   pow27
+jal   pow39
 move  $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
-j     affiche32
+j     affiche61
 # end _main

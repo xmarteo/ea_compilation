@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main53              
+j     _main91              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,99 +76,172 @@ syscall
 j     $ra             
 
 # begin insertion
-insertion54:
-li    $a3, 1
-insertion39:
-lw    $v0, 4($gp)
-slt   $v0, $a3, $v0
-bgtz  $v0, insertion36
+insertion114:
+li    $a2, 3
+insertion99:
+addiu $a0, $a2, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+lw    $a0, 4($gp)
+addiu $a1, $a0, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+slt   $a0, $v0, $a0
+bgtz  $a0, insertion90
 jr    $ra
-insertion36:
+insertion90:
+lw    $a0, 8($gp)
+sll   $a1, $v0, 2
+addu  $a1, $a0, $a1
+lw    $a1, 0($a1)
+sll   $a1, $a1, 1
+addiu $a3, $a1, 1
+sll   $v0, $v0, 1
+addiu $a1, $v0, 1
+addiu $t0, $a1, -1
+li    $v0, 2
+div   $v0, $t0, $v0
+bgtz  $v0, insertion68
+li    $v0, 1
+insertion58:
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bgtz  $v0, insertion54
 lw    $v0, 8($gp)
-sll   $a0, $a3, 2
-addu  $a0, $v0, $a0
-lw    $a1, 0($a0)
-move  $a2, $a3
-bgtz  $a2, insertion29
-li    $v0, 0
-insertion24:
-bgtz  $v0, insertion23
-lw    $v0, 8($gp)
-sll   $a0, $a2, 2
+addiu $a1, $a1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 2
 addu  $v0, $v0, $a0
-sw    $a1, 0($v0)
-addiu $a3, $a3, 1
-j     insertion39
-insertion23:
-lw    $v0, 8($gp)
-sll   $a0, $a2, 2
-addu  $a0, $v0, $a0
-lw    $t0, -4($a0)
-sw    $t0, 0($a0)
-addiu $a2, $a2, -1
-bgtz  $a2, insertion12
-li    $v0, 0
-j     insertion24
-insertion12:
-sll   $a0, $a2, 2
-addu  $v0, $v0, $a0
-lw    $v0, -4($v0)
-sgt   $v0, $v0, $a1
-j     insertion24
-insertion29:
-sll   $a0, $a2, 2
-addu  $v0, $v0, $a0
-lw    $v0, -4($v0)
-sgt   $v0, $v0, $a1
-j     insertion24
+addiu $a1, $a3, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sw    $a0, 0($v0)
+addiu $a0, $a2, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a2, $v0, 3
+j     insertion99
+insertion54:
+lw    $a0, 8($gp)
+addiu $a1, $a1, -1
+li    $v0, 2
+div   $v0, $a1, $v0
+sll   $a1, $v0, 2
+addu  $a1, $a0, $a1
+lw    $t0, -4($a1)
+sw    $t0, 0($a1)
+sll   $v0, $v0, 1
+addiu $a1, $v0, -1
+addiu $t0, $a1, -1
+li    $v0, 2
+div   $v0, $t0, $v0
+bgtz  $v0, insertion27
+li    $v0, 1
+j     insertion58
+insertion27:
+sll   $v0, $v0, 2
+addu  $v0, $a0, $v0
+lw    $t0, -4($v0)
+addiu $a0, $a3, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sgt   $v0, $t0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+j     insertion58
+insertion68:
+sll   $v0, $v0, 2
+addu  $v0, $a0, $v0
+lw    $t0, -4($v0)
+addiu $a0, $a3, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sgt   $v0, $t0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+j     insertion58
 # end insertion
 
 # begin _main
-_main53:
+_main91:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 li    $a0, 400
 jal   alloc
 sw    $v0, 8($gp)
-sw    $zero, 0($gp)
+li    $v0, 1
+sw    $v0, 0($gp)
 jal   readln
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 12($gp)
-_main36:
+_main72:
 lw    $v0, 12($gp)
-bne   $v0, $zero, _main33
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bne   $v0, $zero, _main66
 lw    $v0, 0($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 4($gp)
-lw    $a0, 4($gp)
+lw    $v0, 4($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 jal   writeln
-jal   insertion54
-sw    $zero, 0($gp)
-_main14:
+jal   insertion114
+li    $v0, 1
+sw    $v0, 0($gp)
+_main27:
 lw    $v0, 0($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 lw    $a0, 4($gp)
+addiu $a1, $a0, -1
+li    $a0, 2
+div   $a0, $a1, $a0
 slt   $a0, $v0, $a0
-bgtz  $a0, _main10
+bgtz  $a0, _main17
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra
-_main10:
+_main17:
 lw    $a0, 8($gp)
 sll   $v0, $v0, 2
 addu  $v0, $a0, $v0
 lw    $a0, 0($v0)
 jal   writeln
 lw    $v0, 0($gp)
-addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 3
 sw    $v0, 0($gp)
-j     _main14
-_main33:
-lw    $a2, 8($gp)
+j     _main27
+_main66:
+lw    $a1, 8($gp)
 lw    $a0, 0($gp)
-sll   $a1, $a0, 2
-addu  $a1, $a2, $a1
+addiu $a2, $a0, -1
+li    $a0, 2
+div   $a0, $a2, $a0
+sll   $a2, $a0, 2
+addu  $a1, $a1, $a2
 sw    $v0, 0($a1)
-addiu $v0, $a0, 1
+sll   $v0, $a0, 1
+addiu $v0, $v0, 3
 sw    $v0, 0($gp)
 jal   readln
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 12($gp)
-j     _main36
+j     _main72
 # end _main

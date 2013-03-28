@@ -154,11 +154,10 @@ let vars () vars =
 
 let proc () (name, proc) =
   Settings.delimit name (
-    sprintf "%s %s(%a);\n%a%a;"
+    sprintf "%s %s(%a);\n%a;"
       (if proc.result then "function" else "procedure")
       name
-      (seplist semicolon binding) proc.formals
-      vars (StringSet.elements proc.locals)
+      (seplist semicolon binding) (List.map fst proc.formals)
       block proc.body
   )
 

@@ -76,23 +76,40 @@ syscall
 j     $ra             
 
 # begin test
-test25:
+test46:
 addiu $sp, $sp, -8
 sw    $ra, 4($sp)
 sw    $s0, 0($sp)
-li    $a0, 15
+li    $v0, 31
+li    $a2, 0
 li    $a1, 0
-li    $v0, 0
-subu  $a0, $zero, $a0
-subu  $v0, $v0, $a0
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+subu  $v0, $zero, $v0
 subu  $v0, $a1, $v0
-addiu $a0, $v0, 3
-jal   rien13
-move  $s0, $v0
+subu  $v0, $a2, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 7
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
+jal   rien17
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $s0, $a0, $v0
 move  $a0, $s0
-jal   rien13
-addu  $s0, $s0, $v0
-move  $v0, $s0
+jal   rien17
+addu  $v0, $s0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 lw    $ra, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 8
@@ -100,8 +117,12 @@ jr    $ra
 # end test
 
 # begin rien
-rien13:
-move  $v0, $a0
+rien17:
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 jr    $ra
 # end rien
 
@@ -110,7 +131,7 @@ _main13:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 li    $a0, 10
-jal   test25
+jal   test46
 move  $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4

@@ -76,80 +76,132 @@ syscall
 j     $ra             
 
 # begin findLoop
-findLoop46:
+findLoop97:
 li    $v0, 0
-li    $t2, 1
-findLoop28:
-bgtz  $t2, findLoop27
-jr    $ra
-findLoop27:
-li    $t2, 0
-beq   $a0, $a1, findLoop25
-addiu $t0, $a0, 1
-beq   $t0, $a1, findLoop22
-addu  $t1, $a0, $a1
+li    $t2, 3
+findLoop79:
+addiu $t1, $t2, -1
 li    $t0, 2
-div   $t1, $t1, $t0
-sll   $t0, $t1, 2
-addu  $t0, $a2, $t0
-lw    $t0, 0($t0)
-slt   $t3, $t0, $a3
-bgtz  $t3, findLoop10
-beq   $t0, $a3, findLoop4
-move  $a1, $t1
+div   $t0, $t1, $t0
+bgtz  $t0, findLoop75
+jr    $ra
+findLoop75:
 li    $t2, 1
-j     findLoop28
-findLoop4:
-li    $v0, 1
-j     findLoop28
-findLoop10:
-move  $a0, $t1
-li    $t2, 1
-j     findLoop28
-findLoop22:
-sll   $v0, $a0, 2
+addiu $t1, $a0, -1
+li    $t0, 2
+div   $t0, $t1, $t0
+addiu $t3, $a1, -1
+li    $t1, 2
+div   $t1, $t3, $t1
+beq   $t0, $t1, findLoop67
+addiu $t3, $t0, 1
+beq   $t3, $t1, findLoop55
+addu  $t1, $t0, $t1
+li    $t0, 2
+div   $t0, $t1, $t0
+sll   $t0, $t0, 1
+addiu $t0, $t0, 1
+addiu $t1, $t0, -1
+li    $t0, 2
+div   $t0, $t1, $t0
+sll   $t1, $t0, 2
+addu  $t1, $a2, $t1
+lw    $t3, 0($t1)
+addiu $t4, $a3, -1
+li    $t1, 2
+div   $t1, $t4, $t1
+slt   $t4, $t3, $t1
+bgtz  $t4, findLoop21
+beq   $t3, $t1, findLoop8
+sll   $a1, $t0, 1
+addiu $a1, $a1, 1
+li    $t2, 3
+j     findLoop79
+findLoop8:
+li    $v0, 3
+j     findLoop79
+findLoop21:
+sll   $a0, $t0, 1
+addiu $a0, $a0, 1
+li    $t2, 3
+j     findLoop79
+findLoop55:
+sll   $v0, $t0, 2
 addu  $v0, $a2, $v0
-lw    $v0, 0($v0)
-seq   $v0, $v0, $a3
-j     findLoop28
-findLoop25:
-li    $v0, 0
-j     findLoop28
+lw    $t1, 0($v0)
+addiu $t0, $a3, -1
+li    $v0, 2
+div   $v0, $t0, $v0
+seq   $v0, $t1, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+j     findLoop79
+findLoop67:
+li    $v0, 1
+j     findLoop79
 # end findLoop
 
 # begin find
-find39:
-find23:
-beq   $a0, $a1, find22
-addiu $v0, $a0, 1
-beq   $v0, $a1, find19
-addu  $t0, $a0, $a1
+find101:
+addiu $sp, $sp, -4
+sw    $ra, 0($sp)
+addiu $a0, $a0, -1
 li    $v0, 2
-div   $v0, $t0, $v0
-sll   $t0, $v0, 2
+div   $a0, $a0, $v0
+addiu $a1, $a1, -1
+li    $v0, 2
+div   $v0, $a1, $v0
+beq   $a0, $v0, find78
+addiu $a1, $a0, 1
+beq   $a1, $v0, find66
+addu  $t0, $a0, $v0
+li    $a1, 2
+div   $a1, $t0, $a1
+sll   $a1, $a1, 1
+addiu $a1, $a1, 1
+addiu $t0, $a1, -1
+li    $a1, 2
+div   $a1, $t0, $a1
+sll   $t0, $a1, 2
 addu  $t0, $a2, $t0
 lw    $t0, 0($t0)
+addiu $t1, $a3, -1
+li    $a3, 2
+div   $a3, $t1, $a3
 slt   $t1, $t0, $a3
-bgtz  $t1, find60
-beq   $t0, $a3, find2
-move  $a1, $v0
-j     find23
-find2:
-li    $v0, 1
-find41:
+bgtz  $t1, find125
+beq   $t0, $a3, find13
+jal   find101
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+find112:
+lw    $ra, 0($sp)
+addiu $sp, $sp, 4
 jr    $ra
-find60:
-move  $a0, $v0
-j     find23
-find19:
+find13:
+li    $v0, 3
+j     find112
+find125:
+move  $a0, $a1
+move  $a1, $v0
+jal   find101
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+j     find112
+find66:
 sll   $v0, $a0, 2
 addu  $v0, $a2, $v0
 lw    $v0, 0($v0)
-seq   $v0, $v0, $a3
-j     find41
-find22:
-li    $v0, 0
-j     find41
+addiu $a1, $a3, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+seq   $v0, $v0, $a0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+j     find112
+find78:
+li    $v0, 1
+j     find112
 # end find
 
 # begin _main
@@ -171,7 +223,7 @@ sw    $v0, 12($a2)
 li    $a0, 0
 li    $a1, 4
 li    $a3, 7
-jal   find39
+jal   find101
 bgtz  $v0, _main34
 li    $a0, 0
 jal   writeln
@@ -180,7 +232,7 @@ li    $a0, 0
 li    $a1, 4
 lw    $a2, 0($gp)
 li    $a3, 53
-jal   find39
+jal   find101
 bgtz  $v0, _main24
 li    $a0, 0
 jal   writeln
@@ -189,7 +241,7 @@ li    $a0, 0
 li    $a1, 4
 lw    $a2, 0($gp)
 li    $a3, 3
-jal   findLoop46
+jal   findLoop97
 bgtz  $v0, _main14
 li    $a0, 0
 jal   writeln
@@ -198,7 +250,7 @@ li    $a0, 0
 li    $a1, 4
 lw    $a2, 0($gp)
 li    $a3, 4
-jal   findLoop46
+jal   findLoop97
 bgtz  $v0, _main4
 li    $a0, 0
 _main87:

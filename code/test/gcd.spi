@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main22              
+j     _main38              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,61 +76,119 @@ syscall
 j     $ra             
 
 # begin gcditer
-gcditer24:
-move  $v0, $a1
-gcditer11:
-bgtz  $a0, gcditer10
-gcditer3:
-beq   $a0, $zero, gcditer26
-move  $v0, $a0
-gcditer26:
+gcditer63:
+gcditer50:
+addiu $a2, $a0, -1
+li    $v0, 2
+div   $a2, $a2, $v0
+bgtz  $a2, gcditer46
+gcditer15:
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+beq   $v0, $zero, gcditer10
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+gcditer65:
 jr    $ra
 gcditer10:
-blez  $v0, gcditer3
-slt   $a1, $a0, $v0
-bgtz  $a1, gcditer7
-subu  $a0, $a0, $v0
-j     gcditer11
-gcditer7:
-subu  $v0, $v0, $a0
-j     gcditer11
+addiu $a0, $a1, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+j     gcditer65
+gcditer46:
+addiu $a3, $a1, -1
+li    $v0, 2
+div   $v0, $a3, $v0
+blez  $v0, gcditer15
+slt   $a3, $a2, $v0
+bgtz  $a3, gcditer28
+subu  $v0, $a2, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+j     gcditer50
+gcditer28:
+subu  $v0, $v0, $a2
+sll   $v0, $v0, 1
+addiu $a1, $v0, 1
+j     gcditer50
 # end gcditer
 
 # begin gcd
-gcd25:
-move  $v0, $a1
-gcd11:
-beq   $a0, $zero, gcd27
-beq   $v0, $zero, gcd7
-slt   $a1, $a0, $v0
-bgtz  $a1, gcd4
-subu  $a0, $a0, $v0
-j     gcd11
-gcd4:
-subu  $v0, $v0, $a0
-j     gcd11
-gcd7:
-move  $v0, $a0
-gcd27:
+gcd67:
+addiu $sp, $sp, -4
+sw    $ra, 0($sp)
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
+beq   $a0, $zero, gcd49
+addiu $a1, $a1, -1
+li    $v0, 2
+div   $a1, $a1, $v0
+beq   $a1, $zero, gcd36
+slt   $v0, $a0, $a1
+bgtz  $v0, gcd17
+subu  $a0, $a0, $a1
+jal   gcd67
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+gcd78:
+lw    $ra, 0($sp)
+addiu $sp, $sp, 4
 jr    $ra
+gcd17:
+subu  $a1, $a1, $a0
+jal   gcd67
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+j     gcd78
+gcd36:
+sll   $v0, $a0, 1
+addiu $v0, $v0, 1
+j     gcd78
+gcd49:
+addiu $a0, $a1, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+j     gcd78
 # end gcd
 
 # begin _main
-_main22:
+_main38:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 jal   readln
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 0($gp)
 jal   readln
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 4($gp)
-lw    $a0, 0($gp)
-lw    $a1, 4($gp)
-jal   gcd25
+lw    $v0, 0($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
+lw    $v0, 4($gp)
+addiu $a1, $v0, -1
+li    $v0, 2
+div   $a1, $a1, $v0
+jal   gcd67
 move  $a0, $v0
 jal   writeln
-lw    $a0, 0($gp)
-lw    $a1, 4($gp)
-jal   gcditer24
+lw    $v0, 0($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
+lw    $v0, 4($gp)
+addiu $a1, $v0, -1
+li    $v0, 2
+div   $a1, $a1, $v0
+jal   gcditer63
 move  $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4

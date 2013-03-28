@@ -221,43 +221,7 @@ let interpret p =
 
     | CUserFunction f ->
 
-	(* Lookup the definition of the procedure [f]. *)
-
-	let proc =
-	  try
-	    StringMap.find f p.defs
-	  with Not_found ->
-	    assert false
-	in
-
-	(* Create a new local environment with bindings for the actual
-	   parameters, local variables, and return value. The latter two
-	   are initialized with default values. *)
-
-	let env =
-	  List.fold_right2 (fun formal actual env ->
-	    StringMap.add formal (ref actual) env
-	  ) proc.formals actuals StringMap.empty
-	in
-
-	let env =
-	  if proc.result then StringMap.add f (ref default) env else env
-	in
-
-	let env =
-	  StringMap.addm (StringMap.lift allocate proc.locals) env
-	in
-
-	(* Execute the procedure body. *)
-
-	interpret_instruction env proc.body;
-
-	(* Fetch the result in the result variable. *)
-
-	if proc.result then
-	  Some !(lookup env f)
-	else
-	  None
+	failwith "unimplemented, fix me ! marteo !"
 
   (* ----------------------------------------------------------------------- *)
 

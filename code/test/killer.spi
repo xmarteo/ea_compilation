@@ -76,30 +76,50 @@ syscall
 j     $ra             
 
 # begin g
-g31:
+g51:
 addiu $sp, $sp, -8
 lw    $v0, 4($sp)
 lw    $t0, 0($sp)
+addiu $t1, $a0, -1
+li    $a0, 2
+div   $a0, $t1, $a0
+addiu $t1, $a1, -1
+li    $a1, 2
+div   $a1, $t1, $a1
 sll   $a1, $a1, 1
 addu  $a1, $a0, $a1
 li    $a0, 3
+addiu $t1, $a2, -1
+li    $a2, 2
+div   $a2, $t1, $a2
 mul   $a0, $a0, $a2
 addu  $a1, $a1, $a0
 li    $a0, 5
-mul   $a0, $a0, $a3
+addiu $a3, $a3, -1
+li    $a2, 2
+div   $a2, $a3, $a2
+mul   $a0, $a0, $a2
 addu  $a1, $a1, $a0
 li    $a0, 7
+addiu $a2, $v0, -1
+li    $v0, 2
+div   $v0, $a2, $v0
 mul   $v0, $a0, $v0
 addu  $a0, $a1, $v0
 li    $v0, 11
-mul   $v0, $v0, $t0
+addiu $a2, $t0, -1
+li    $a1, 2
+div   $a1, $a2, $a1
+mul   $v0, $v0, $a1
 addu  $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 addiu $sp, $sp, 8
 jr    $ra
 # end g
 
 # begin f
-f19:
+f21:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 li    $a0, 1
@@ -110,7 +130,9 @@ li    $t0, 5
 li    $v0, 6
 sw    $t0, -4($sp)
 sw    $v0, -8($sp)
-jal   g31
+jal   g51
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra
@@ -121,7 +143,7 @@ _main13:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 li    $a0, 10
-jal   f19
+jal   f21
 move  $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4

@@ -20,8 +20,8 @@ and raw_expression =
 
     (* Constants. *)
 
-  | EConst of constant                         
-
+  | EConst of constant                    
+  
     (* Global or local variable access. *)
 
   | EGetVar of identifier

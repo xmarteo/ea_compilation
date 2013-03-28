@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main18              
+j     _main28              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,7 +76,7 @@ syscall
 j     $ra             
 
 # begin power
-power25:
+power59:
 addiu $sp, $sp, -16
 sw    $ra, 12($sp)
 sw    $s2, 8($sp)
@@ -84,50 +84,92 @@ sw    $s1, 4($sp)
 sw    $s0, 0($sp)
 move  $s1, $a0
 move  $s2, $a1
-beq   $s2, $zero, power9
+addiu $a0, $s2, -1
 li    $v0, 2
-div   $a1, $s2, $v0
-move  $a0, $s1
-jal   power25
-move  $s0, $v0
-mul   $s0, $s0, $s0
-move  $a0, $s2
-jal   even16
-bgtz  $v0, power37
-mul   $s0, $s1, $s0
-power37:
-move  $v0, $s0
+div   $v0, $a0, $v0
+beq   $v0, $zero, power40
+addiu $a1, $s1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+li    $a1, 2
+div   $a1, $v0, $a1
+jal   power59
+sll   $v0, $v0, 1
+addiu $s0, $v0, 1
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+mul   $v0, $v0, $v0
+sll   $v0, $v0, 1
+addiu $s0, $v0, 1
+addiu $a0, $s2, -1
+li    $v0, 2
+div   $a0, $a0, $v0
+jal   even24
+bgtz  $v0, power14
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+addiu $a1, $s0, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+mul   $v0, $v0, $a0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+power70:
 lw    $ra, 12($sp)
 lw    $s2, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 16
 jr    $ra
-power9:
-li    $s0, 1
-j     power37
-# end power
-
-# begin even
-even16:
+power14:
+addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
-seq   $v0, $v0, $a0
+addiu $v0, $v0, 1
+j     power70
+power40:
+li    $v0, 3
+j     power70
+# end power
+
+# begin even
+even24:
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+li    $a0, 2
+div   $a0, $v0, $a0
+sll   $a0, $a0, 1
+seq   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 jr    $ra
 # end even
 
 # begin _main
-_main18:
+_main28:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 jal   readln
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 4($gp)
 jal   readln
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 0($gp)
-lw    $a0, 4($gp)
-lw    $a1, 0($gp)
-jal   power25
+lw    $v0, 4($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
+lw    $v0, 0($gp)
+addiu $a1, $v0, -1
+li    $v0, 2
+div   $a1, $a1, $v0
+jal   power59
 move  $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4

@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main22              
+j     _main32              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,23 +76,30 @@ syscall
 j     $ra             
 
 # begin _main
-_main22:
+_main32:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
-li    $v0, 1073741823
+li    $v0, 1073741821
 sw    $v0, 0($gp)
-_main10:
-lw    $a0, 0($gp)
-li    $v0, 1073741834
+_main20:
+lw    $v0, 0($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
+li    $v0, 536870921
 slt   $v0, $a0, $v0
-bgtz  $v0, _main34
+bgtz  $v0, _main44
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra
-_main34:
+_main44:
 jal   writeln
 lw    $v0, 0($gp)
-addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 3
 sw    $v0, 0($gp)
-j     _main10
+j     _main20
 # end _main

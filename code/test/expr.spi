@@ -76,67 +76,107 @@ syscall
 j     $ra             
 
 # begin min
-min17:
-move  $v0, $a1
-slt   $a1, $a0, $v0
-bgtz  $a1, min2
-min19:
+min31:
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+addiu $a1, $a1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+slt   $a1, $v0, $a0
+bgtz  $a1, min7
+sll   $v0, $a0, 1
+addiu $v0, $v0, 1
+min33:
 jr    $ra
-min2:
-move  $v0, $a0
-j     min19
+min7:
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+j     min33
 # end min
 
 # begin f
-f18:
+f25:
 li    $v0, 3
+addiu $a2, $a1, -1
+li    $a1, 2
+div   $a1, $a2, $a1
 mul   $v0, $v0, $a1
+addiu $a1, $a0, -1
+li    $a0, 2
+div   $a0, $a1, $a0
 sll   $a0, $a0, 1
 addu  $v0, $v0, $a0
-addiu $v0, $v0, 1
+sll   $v0, $v0, 1
+addiu $v0, $v0, 3
 jr    $ra
 # end f
 
 # begin efface
-efface22:
-li    $a2, 0
-efface8:
-slt   $v0, $a2, $a1
-bgtz  $v0, efface6
+efface35:
+li    $v0, 1
+efface21:
+addiu $a2, $v0, -1
+li    $v0, 2
+div   $v0, $a2, $v0
+addiu $a3, $a1, -1
+li    $a2, 2
+div   $a2, $a3, $a2
+slt   $a2, $v0, $a2
+bgtz  $a2, efface10
 jr    $ra
-efface6:
-sll   $v0, $a2, 2
-addu  $v0, $a0, $v0
-sw    $zero, 0($v0)
-addiu $a2, $a2, 1
-j     efface8
+efface10:
+sll   $a2, $v0, 2
+addu  $a2, $a0, $a2
+sw    $zero, 0($a2)
+sll   $v0, $v0, 1
+addiu $v0, $v0, 3
+j     efface21
 # end efface
 
 # begin chiffre
-chiffre17:
-bgez  $a0, chiffre4
+chiffre23:
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bgez  $v0, chiffre4
 chiffre1:
-li    $v0, 0
-chiffre19:
+li    $v0, 1
+chiffre25:
 jr    $ra
 chiffre4:
-slti  $v0, $a0, 10
+slti  $v0, $v0, 10
 blez  $v0, chiffre1
-li    $v0, 1
-j     chiffre19
+li    $v0, 3
+j     chiffre25
 # end chiffre
 
 # begin branche
-branche20:
-slt   $v0, $a0, $a1
-bgtz  $v0, branche4
-li    $v0, 0
-branche2:
+branche34:
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+addiu $a1, $a1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+slt   $v0, $v0, $a0
+bgtz  $v0, branche12
+li    $v0, 1
+branche10:
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 3
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
 addiu $v0, $v0, 1
 jr    $ra
-branche4:
-li    $v0, 1
-j     branche2
+branche12:
+li    $v0, 3
+j     branche10
 # end branche
 
 # begin _main
@@ -145,10 +185,10 @@ addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 li    $a0, 3
 li    $a1, 4
-jal   f18
+jal   f25
 li    $a1, 5
 move  $a0, $v0
-jal   min17
+jal   min31
 move  $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4

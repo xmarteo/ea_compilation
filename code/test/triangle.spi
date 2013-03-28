@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main14              
+j     _main19              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,7 +76,7 @@ syscall
 j     $ra             
 
 # begin triangle
-triangle51:
+triangle100:
 addiu $sp, $sp, -20
 sw    $ra, 16($sp)
 sw    $s3, 12($sp)
@@ -84,14 +84,23 @@ sw    $s2, 8($sp)
 sw    $s1, 4($sp)
 sw    $s0, 0($sp)
 move  $s3, $a0
-li    $s1, 0
-sll   $v0, $s3, 2
+li    $s1, 1
+addiu $a0, $s3, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 2
 addiu $a0, $v0, 4
 jal   alloc
 move  $s2, $v0
-triangle33:
-sle   $v0, $s1, $s3
-bgtz  $v0, triangle31
+triangle79:
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+addiu $a1, $s3, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sle   $a0, $v0, $a0
+bgtz  $a0, triangle68
 lw    $ra, 16($sp)
 lw    $s3, 12($sp)
 lw    $s2, 8($sp)
@@ -99,48 +108,72 @@ lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 20
 jr    $ra
-triangle31:
-addiu $s0, $s1, -1
-triangle30:
-bgtz  $s0, triangle29
+triangle68:
+sll   $v0, $v0, 1
+addiu $s0, $v0, -1
+triangle66:
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bgtz  $v0, triangle59
 li    $v0, 1
 sw    $v0, 0($s2)
-sll   $v0, $s1, 2
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 2
 addu  $a0, $s2, $v0
 li    $v0, 1
 sw    $v0, 0($a0)
-li    $s0, 0
-triangle10:
-sle   $v0, $s0, $s1
-bgtz  $v0, triangle8
-addiu $s1, $s1, 1
-j     triangle33
-triangle8:
-sll   $v0, $s0, 2
+li    $s0, 1
+triangle27:
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+addiu $a1, $s1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sle   $a1, $v0, $a0
+bgtz  $a1, triangle16
+sll   $v0, $a0, 1
+addiu $s1, $v0, 3
+j     triangle79
+triangle16:
+sll   $v0, $v0, 2
 addu  $v0, $s2, $v0
 lw    $a0, 0($v0)
 jal   writeln
-addiu $s0, $s0, 1
-j     triangle10
-triangle29:
-sll   $v0, $s0, 2
-addu  $v0, $s2, $v0
-lw    $a0, -4($v0)
-lw    $a1, 0($v0)
-addu  $a0, $a0, $a1
-sw    $a0, 0($v0)
-addiu $s0, $s0, -1
-j     triangle30
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $s0, $v0, 3
+j     triangle27
+triangle59:
+sll   $a0, $v0, 2
+addu  $a0, $s2, $a0
+lw    $a1, -4($a0)
+lw    $a2, 0($a0)
+addu  $a1, $a1, $a2
+sw    $a1, 0($a0)
+sll   $v0, $v0, 1
+addiu $s0, $v0, -1
+j     triangle66
 # end triangle
 
 # begin _main
-_main14:
+_main19:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 jal   readln
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 0($gp)
-lw    $a0, 0($gp)
+lw    $v0, 0($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
-j     triangle51
+j     triangle100
 # end _main

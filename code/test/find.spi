@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main27              
+j     _main43              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,7 +76,7 @@ syscall
 j     $ra             
 
 # begin input
-input27:
+input43:
 addiu $sp, $sp, -20
 sw    $ra, 16($sp)
 sw    $s3, 12($sp)
@@ -84,14 +84,23 @@ sw    $s2, 8($sp)
 sw    $s1, 4($sp)
 sw    $s0, 0($sp)
 move  $s3, $a0
-sll   $v0, $s3, 2
+addiu $a0, $s3, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 2
 addiu $a0, $v0, 4
 jal   alloc
 move  $s1, $v0
-li    $s2, 1
-input9:
-sle   $v0, $s2, $s3
-bgtz  $v0, input7
+li    $s2, 3
+input22:
+addiu $a0, $s2, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+addiu $a1, $s3, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sle   $a0, $v0, $a0
+bgtz  $a0, input11
 move  $v0, $s1
 lw    $ra, 16($sp)
 lw    $s3, 12($sp)
@@ -100,93 +109,162 @@ lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 20
 jr    $ra
-input7:
-sll   $v0, $s2, 2
+input11:
+sll   $v0, $v0, 2
 addu  $s0, $s1, $v0
 jal   readln
 sw    $v0, 0($s0)
-addiu $s2, $s2, 1
-j     input9
+addiu $a0, $s2, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $s2, $v0, 3
+j     input22
 # end input
 
 # begin find
-find68:
-li    $t3, 1
-find49:
-slt   $v0, $t3, $a0
-bgtz  $v0, find47
+find172:
+li    $t1, 3
+find153:
+addiu $a3, $t1, -1
+li    $v0, 2
+div   $v0, $a3, $v0
+addiu $t0, $a0, -1
+li    $a3, 2
+div   $a3, $t0, $a3
+slt   $t0, $v0, $a3
+bgtz  $t0, find145
 jr    $ra
-find47:
-sll   $v0, $a1, 2
-addu  $v0, $a2, $v0
-lw    $t2, 0($v0)
-move  $t5, $t3
-move  $t4, $a0
-find42:
-sle   $v0, $t5, $t4
-bgtz  $v0, find40
-sle   $v0, $a1, $t4
-bgtz  $v0, find7
-sle   $v0, $t5, $a1
-bgtz  $v0, find4
-move  $a0, $a1
-move  $t3, $a0
-j     find49
-find4:
-move  $t3, $t5
-j     find49
-find7:
-move  $a0, $t4
-j     find49
-find40:
-sll   $v0, $t5, 2
-addu  $v0, $a2, $v0
-lw    $v0, 0($v0)
-slt   $v0, $v0, $t2
-bgtz  $v0, find35
-find33:
-sll   $v0, $t4, 2
-addu  $v0, $a2, $v0
-lw    $a3, 0($v0)
-slt   $t0, $t2, $a3
-bgtz  $t0, find28
-sle   $t0, $t5, $t4
-blez  $t0, find42
-sll   $t0, $t5, 2
+find145:
+addiu $t2, $a1, -1
+li    $t0, 2
+div   $t0, $t2, $t0
+sll   $t0, $t0, 2
 addu  $t0, $a2, $t0
-lw    $t1, 0($t0)
-sw    $a3, 0($t0)
-sw    $t1, 0($v0)
-addiu $t5, $t5, 1
-addiu $t4, $t4, -1
-j     find42
-find28:
-addiu $t4, $t4, -1
-j     find33
-find35:
-addiu $t5, $t5, 1
-j     find40
+lw    $t0, 0($t0)
+sll   $t0, $t0, 1
+addiu $t0, $t0, 1
+sll   $v0, $v0, 1
+addiu $t3, $v0, 1
+sll   $v0, $a3, 1
+addiu $t5, $v0, 1
+find127:
+addiu $a3, $t3, -1
+li    $v0, 2
+div   $t2, $a3, $v0
+addiu $a3, $t5, -1
+li    $v0, 2
+div   $v0, $a3, $v0
+sle   $a3, $t2, $v0
+bgtz  $a3, find119
+addiu $t0, $a1, -1
+li    $a3, 2
+div   $a3, $t0, $a3
+sle   $t0, $a3, $v0
+bgtz  $t0, find26
+sle   $v0, $t2, $a3
+bgtz  $v0, find13
+sll   $v0, $a3, 1
+addiu $a0, $v0, 1
+move  $t1, $a0
+j     find153
+find13:
+sll   $v0, $t2, 1
+addiu $t1, $v0, 1
+j     find153
+find26:
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+j     find153
+find119:
+addiu $a3, $t3, -1
+li    $v0, 2
+div   $v0, $a3, $v0
+sll   $a3, $v0, 2
+addu  $a3, $a2, $a3
+lw    $t4, 0($a3)
+addiu $t2, $t0, -1
+li    $a3, 2
+div   $a3, $t2, $a3
+slt   $a3, $t4, $a3
+bgtz  $a3, find105
+find102:
+addiu $a3, $t0, -1
+li    $v0, 2
+div   $a3, $a3, $v0
+addiu $t2, $t5, -1
+li    $v0, 2
+div   $v0, $t2, $v0
+sll   $t2, $v0, 2
+addu  $t2, $a2, $t2
+lw    $t4, 0($t2)
+slt   $a3, $a3, $t4
+bgtz  $a3, find88
+addiu $t6, $t3, -1
+li    $a3, 2
+div   $a3, $t6, $a3
+sle   $t6, $a3, $v0
+blez  $t6, find127
+sll   $t3, $a3, 2
+addu  $t5, $a2, $t3
+lw    $t3, 0($t5)
+sll   $t3, $t3, 1
+addiu $t3, $t3, 1
+sw    $t4, 0($t5)
+addiu $t4, $t3, -1
+li    $t3, 2
+div   $t3, $t4, $t3
+sw    $t3, 0($t2)
+sll   $a3, $a3, 1
+addiu $t3, $a3, 3
+sll   $v0, $v0, 1
+addiu $t5, $v0, -1
+j     find127
+find88:
+sll   $v0, $v0, 1
+addiu $t5, $v0, -1
+j     find102
+find105:
+sll   $v0, $v0, 1
+addiu $t3, $v0, 3
+j     find119
 # end find
 
 # begin _main
-_main27:
+_main43:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 jal   readln
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 4($gp)
 jal   readln
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 sw    $v0, 8($gp)
-lw    $a0, 8($gp)
-jal   input27
+lw    $v0, 8($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
+jal   input43
 sw    $v0, 0($gp)
-lw    $a0, 8($gp)
-lw    $a1, 4($gp)
-lw    $a2, 0($gp)
-jal   find68
-lw    $a0, 0($gp)
+lw    $v0, 8($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 lw    $v0, 4($gp)
+addiu $a1, $v0, -1
+li    $v0, 2
+div   $a1, $a1, $v0
+lw    $a2, 0($gp)
+jal   find172
+lw    $a1, 0($gp)
+lw    $v0, 4($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 2
-addu  $v0, $a0, $v0
+addu  $v0, $a1, $v0
 lw    $a0, 0($v0)
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4

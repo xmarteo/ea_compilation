@@ -76,33 +76,63 @@ syscall
 j     $ra             
 
 # begin k
-k26:
+k63:
 addiu $sp, $sp, -12
 sw    $ra, 8($sp)
 sw    $s1, 4($sp)
 sw    $s0, 0($sp)
 move  $s1, $a0
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 li    $a1, 1
-move  $a0, $s1
-jal   g14
-move  $s0, $v0
+jal   g22
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $s0, $a0, $v0
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 li    $a1, 2
-move  $a0, $s1
-jal   g14
-addu  $s0, $s0, $v0
+jal   g22
+addu  $v0, $s0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $s0, $a0, $v0
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 li    $a1, 3
-move  $a0, $s1
-jal   g14
-addu  $s0, $s0, $v0
+jal   g22
+addu  $v0, $s0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $s0, $a0, $v0
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 li    $a1, 4
-move  $a0, $s1
-jal   g14
-addu  $s0, $s0, $v0
+jal   g22
+addu  $v0, $s0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $s0, $a0, $v0
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 li    $a1, 5
-move  $a0, $s1
-jal   g14
-addu  $s0, $s0, $v0
-move  $v0, $s0
+jal   g22
+addu  $v0, $s0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 lw    $ra, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
@@ -111,33 +141,68 @@ jr    $ra
 # end k
 
 # begin h
-h28:
+h69:
 addiu $sp, $sp, -12
 sw    $ra, 8($sp)
 sw    $s1, 4($sp)
 sw    $s0, 0($sp)
 move  $s1, $a0
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 li    $a1, 1
-move  $a0, $s1
-jal   g14
-move  $s0, $v0
+jal   g22
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $s0, $a0, $v0
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 li    $a1, 2
-move  $a0, $s1
-jal   g14
-addu  $s0, $s0, $v0
+jal   g22
+addu  $v0, $s0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $s0, $a0, $v0
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 li    $a1, 3
-move  $a0, $s1
-jal   g14
-addu  $s0, $s0, $v0
+jal   g22
+addu  $v0, $s0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $s0, $a0, $v0
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 li    $a1, 4
-move  $a0, $s1
-jal   g14
-addu  $s0, $s0, $v0
+jal   g22
+addu  $v0, $s0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $s0, $a0, $v0
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 li    $a1, 5
-move  $a0, $s1
-jal   g14
-addu  $s0, $s0, $v0
-move  $v0, $s0
+jal   g22
+addu  $v0, $s0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 lw    $ra, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
@@ -146,13 +211,21 @@ jr    $ra
 # end h
 
 # begin g
-g14:
-addu  $v0, $a0, $a1
+g22:
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+addiu $a1, $a1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+addu  $v0, $v0, $a0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 jr    $ra
 # end g
 
 # begin f
-f26:
+f43:
 addiu $sp, $sp, -24
 sw    $ra, 20($sp)
 sw    $s4, 16($sp)
@@ -161,29 +234,41 @@ sw    $s2, 8($sp)
 sw    $s1, 4($sp)
 sw    $s0, 0($sp)
 move  $s4, $a0
+addiu $a0, $s4, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 li    $a1, 1
-move  $a0, $s4
-jal   g14
+jal   g22
 move  $s3, $v0
+addiu $a0, $s4, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 li    $a1, 2
-move  $a0, $s4
-jal   g14
+jal   g22
 move  $s2, $v0
+addiu $a0, $s4, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 li    $a1, 3
-move  $a0, $s4
-jal   g14
+jal   g22
 move  $s1, $v0
+addiu $a0, $s4, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 li    $a1, 4
-move  $a0, $s4
-jal   g14
+jal   g22
 move  $s0, $v0
+addiu $a0, $s4, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 li    $a1, 5
-move  $a0, $s4
-jal   g14
+jal   g22
 addu  $v0, $s0, $v0
 addu  $v0, $s1, $v0
 addu  $v0, $s2, $v0
 addu  $v0, $s3, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 lw    $ra, 20($sp)
 lw    $s4, 16($sp)
 lw    $s3, 12($sp)
@@ -199,15 +284,15 @@ _main19:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 li    $a0, 10
-jal   f26
+jal   f43
 move  $a0, $v0
 jal   writeln
 li    $a0, 10
-jal   h28
+jal   h69
 move  $a0, $v0
 jal   writeln
 li    $a0, 10
-jal   k26
+jal   k63
 move  $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4

@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main27              
+j     _main30              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,13 +76,17 @@ syscall
 j     $ra             
 
 # begin g
-g13:
-move  $v0, $a0
+g17:
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 jr    $ra
 # end g
 
 # begin f
-f30:
+f62:
 addiu $sp, $sp, -24
 lw    $v0, 20($sp)
 lw    $t0, 16($sp)
@@ -90,29 +94,64 @@ lw    $t1, 12($sp)
 lw    $t2, 8($sp)
 lw    $t3, 4($sp)
 lw    $t4, 0($sp)
+addiu $t5, $a0, -1
+li    $a0, 2
+div   $a0, $t5, $a0
+addiu $t5, $a1, -1
+li    $a1, 2
+div   $a1, $t5, $a1
 addu  $a0, $a0, $a1
-addu  $a0, $a0, $a2
-addu  $a0, $a0, $a3
+addiu $a2, $a2, -1
+li    $a1, 2
+div   $a1, $a2, $a1
+addu  $a0, $a0, $a1
+addiu $a2, $a3, -1
+li    $a1, 2
+div   $a1, $a2, $a1
+addu  $a0, $a0, $a1
+addiu $a1, $v0, -1
+li    $v0, 2
+div   $v0, $a1, $v0
 addu  $v0, $a0, $v0
-addu  $v0, $v0, $t0
-addu  $v0, $v0, $t1
-addu  $v0, $v0, $t2
-addu  $v0, $v0, $t3
-addu  $v0, $v0, $t4
+addiu $a1, $t0, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+addu  $v0, $v0, $a0
+addiu $a1, $t1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+addu  $v0, $v0, $a0
+addiu $a1, $t2, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+addu  $v0, $v0, $a0
+addiu $a1, $t3, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+addu  $v0, $v0, $a0
+addiu $a1, $t4, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+addu  $v0, $v0, $a0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 addiu $sp, $sp, 24
 jr    $ra
 # end f
 
 # begin _main
-_main27:
+_main30:
 addiu $sp, $sp, -32
 sw    $ra, 28($sp)
-li    $v0, 1
+li    $v0, 3
 sw    $v0, 0($gp)
-lw    $v1, 0($gp)
+lw    $v0, 0($gp)
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v1, $a0, $v0
 sw    $v1, 0($sp)
 li    $a0, 2
-jal   g13
+jal   g17
 sw    $v0, 4($sp)
 li    $v1, 3
 sw    $v1, 8($sp)
@@ -125,9 +164,9 @@ sw    $v1, 20($sp)
 li    $v1, 7
 sw    $v1, 24($sp)
 li    $a0, 8
-jal   g13
+jal   g17
 move  $a0, $v0
-jal   g13
+jal   g17
 li    $t1, 9
 li    $t0, 10
 lw    $a0, 0($sp)
@@ -143,7 +182,7 @@ sw    $v1, -12($sp)
 sw    $v0, -16($sp)
 sw    $t1, -20($sp)
 sw    $t0, -24($sp)
-jal   f30
+jal   f62
 move  $a0, $v0
 lw    $ra, 28($sp)
 addiu $sp, $sp, 32

@@ -76,37 +76,74 @@ syscall
 j     $ra             
 
 # begin f
-f35:
+f91:
 addiu $sp, $sp, -16
 sw    $ra, 12($sp)
 sw    $s2, 8($sp)
 sw    $s1, 4($sp)
 sw    $s0, 0($sp)
-move  $s1, $a0
-f54:
-move  $a0, $s1
+move  $s0, $a0
+f72:
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $s1, $v0, 1
+addiu $a0, $s1, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 jal   writeln
-move  $s0, $s1
-bgtz  $s0, f12
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $s0, $v0, 1
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bgtz  $v0, f54
 lw    $ra, 12($sp)
 lw    $s2, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 16
 jr    $ra
-f12:
-addiu $s2, $s1, -1
-move  $s1, $s2
-addu  $a0, $s0, $s2
-jal   f35
-addu  $a0, $s0, $s2
-jal   f35
-addu  $s1, $s0, $s1
-j     f54
+f54:
+addiu $a1, $s1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $s1, $a0, -1
+addiu $a1, $s1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $s2, $a0, 1
+addiu $a1, $s2, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+addu  $a0, $v0, $a0
+jal   f91
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+addiu $a1, $s2, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+addu  $a0, $v0, $a0
+jal   f91
+addiu $a0, $s0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+addiu $a1, $s1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+addu  $s0, $v0, $a0
+j     f72
 # end f
 
 # begin _main
 _main12:
 li    $a0, 0
-j     f35
+j     f91
 # end _main

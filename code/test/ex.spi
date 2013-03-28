@@ -76,20 +76,33 @@ syscall
 j     $ra             
 
 # begin f
-f30:
-addiu $a2, $a1, -1
-f15:
-bgtz  $a2, f14
+f58:
+addiu $a1, $a1, -1
+li    $v0, 2
+div   $v0, $a1, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, -1
+f39:
+addiu $a1, $v0, -1
+li    $v0, 2
+div   $v0, $a1, $v0
+bgtz  $v0, f32
 jr    $ra
-f14:
-sll   $v0, $a2, 2
-addu  $v0, $a0, $v0
-lw    $a1, 0($v0)
-lw    $a3, -4($v0)
-sw    $a3, 0($v0)
-sw    $a1, -4($v0)
-addiu $a2, $a2, -1
-j     f15
+f32:
+sll   $a1, $v0, 2
+addu  $a1, $a0, $a1
+lw    $a2, 0($a1)
+sll   $a2, $a2, 1
+addiu $a2, $a2, 1
+lw    $a3, -4($a1)
+sw    $a3, 0($a1)
+addiu $a3, $a2, -1
+li    $a2, 2
+div   $a2, $a3, $a2
+sw    $a2, -4($a1)
+sll   $v0, $v0, 1
+addiu $v0, $v0, -1
+j     f39
 # end f
 
 # begin _main
@@ -102,5 +115,5 @@ li    $a1, 101
 move  $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
-j     f30
+j     f58
 # end _main

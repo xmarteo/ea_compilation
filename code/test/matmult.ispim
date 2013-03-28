@@ -1,9 +1,19 @@
-30
-24
-18
-84
-69
-54
-138
-114
-90
+Exception occurred at PC=0x00400248
+  Bad address in data/stack read: 0x00000000
+  Exception 7  [Bad data address]  occurred and ignored
+Exception occurred at PC=0x00400248
+  Bad address in data/stack read: 0x00000000
+  Exception 7  [Bad data address]  occurred and ignored
+Exception occurred at PC=0x00400438
+  Bad address in data/stack read: 0x00000000
+  Exception 7  [Bad data address]  occurred and ignored
+Exception occurred at PC=0x00400464
+  Bad address in data/stack read: 0x00000000
+  Exception 7  [Bad data address]  occurred and ignored
+Exception occurred at PC=0x004003e4
+  Bad address in data/stack read: 0x00000000
+  Exception 7  [Bad data address]  occurred and ignored
+Exception occurred at PC=0x0040065c
+  Bad address in data/stack read: 0x00000000
+  Exception 7  [Bad data address]  occurred and ignored
+0

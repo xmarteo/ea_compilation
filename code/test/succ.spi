@@ -76,8 +76,12 @@ syscall
 j     $ra             
 
 # begin succ
-succ13:
-addiu $v0, $a0, 1
+succ17:
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 3
 jr    $ra
 # end succ
 
@@ -86,7 +90,7 @@ _main13:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 li    $a0, 3
-jal   succ13
+jal   succ17
 move  $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4

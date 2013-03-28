@@ -81,7 +81,7 @@ addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 li    $a0, 0
 jal   writeln
-li    $v0, 1
+li    $v0, 3
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra

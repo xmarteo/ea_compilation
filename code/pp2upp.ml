@@ -30,14 +30,14 @@ open LPP
    have been assigned in the global storage area. *)
 
 type genv =
-    offset StringMap.t
+    (offset * PP.typ) StringMap.t
 
 (* A local environment is a set of local variables. A variable is
    considered local if its name appears in the local environment,
    and global otherwise. *)
 
 type env =
-    StringSet.t
+    PP.typ StringMap.t
 
 (* ------------------------------------------------------------------------- *)
 
@@ -46,6 +46,15 @@ type env =
 
 let w2b (e : UPP.expression) : UPP.expression =
   Upp2upp.mkbinop OpMul (UPP.EConst MIPS.word) e
+
+let convert (e : UPP.expression) : UPP.expression =
+  let mul = Upp2upp.mkbinop OpMul (UPP.EConst 2l) e in
+  Upp2upp.mkbinop OpAdd mul (UPP.EConst 1l)
+  
+let unconvert (e : UPP.expression) : UPP.expression =
+  let temp = Upp2upp.mkbinop OpSub e (UPP.EConst 1l) in
+  Upp2upp.mkbinop OpDiv temp (UPP.EConst 2l)
+  
 
 (* Convert a pair of an array base address and element index into an
    element address. This involves adding the base address to the
@@ -102,18 +111,31 @@ let rec translate_expression (genv : genv) (env : env) = function
     (* Variable access. Distinguish globals and locals. *)
 
   | PP.EGetVar v ->
-      if StringSet.mem v env then
+      if StringMap.mem v env then
 
         (* This is a local variable. *)
-
-	UPP.EGetVar v
-
+        
+        begin
+        match (StringMap.find v env) with
+        | TypArray _ ->
+	  UPP.EGetVar v
+	| _ ->
+	  unconvert (UPP.EGetVar v)
+	end
       else
 
 	(* This is a global variable. Translate to a global variable
 	   access instruction. *)
-
-	UPP.EGetGlobal (StringMap.find v genv)
+	   
+	let (offset, typ) = StringMap.find v genv in
+	let ex = UPP.EGetGlobal offset in
+	begin
+	match typ with
+	| TypArray _ ->
+	  ex
+	| _ ->
+	  unconvert ex
+	end
 
     (* Operator applications. Their sub-expressions are easily translated
        using recursive calls to [translate_expression]. Then, the translation
@@ -121,7 +143,6 @@ let rec translate_expression (genv : genv) (env : env) = function
 
   | PP.EUnOp (op, e) ->
       Upp2upp.mkunop op (translate_expression genv env e)
-
   | PP.EBinOp (op, e1, e2) ->
       Upp2upp.mkbinop op (translate_expression genv env e1) (translate_expression genv env e2)
 
@@ -191,18 +212,29 @@ let rec translate_instruction (genv : genv) (env : env) = function
     (* Variable update. Distinguish globals and locals. *)
 
   | PP.ISetVar (v, e) ->
-      if StringSet.mem v env then
+      if StringMap.mem v env then
 
         (* This is a local variable. *)
-
-	UPP.ISetVar (v, translate_expression genv env e)
-
+        begin
+	  match (StringMap.find v env) with
+	  | PP.TypArray _ ->
+	    UPP.ISetVar (v, translate_expression genv env e)
+	  | _  ->
+             UPP.ISetVar (v, convert (translate_expression genv env e))
+	end
+	
       else
 
 	(* This is a global variable. Translate to a global variable
 	   update instruction. *)
-
-	UPP.ISetGlobal (StringMap.find v genv, translate_expression genv env e)
+        let (offset, typ) = (StringMap.find v genv) in
+	begin
+	  match typ with
+	  | PP.TypArray _ -> 
+	    UPP.ISetGlobal (offset, translate_expression genv env e)
+	  | _ ->
+	    UPP.ISetGlobal (offset, convert (translate_expression genv env e))
+	end
 
     (* Array write. We compute the element's address and access it. *)
 
@@ -246,23 +278,29 @@ let translate_procedure genv f proc =
   (* Obtain a list of the formal parameters' names (without their
      types). *)
 
-  let formals = List.map fst proc.PP.formals in
+  let formals = proc.PP.formals in
 
   (* Build the procedure's local environment -- here, simply a set of
     local variable names that allows distinguishing global and local
     variables. (Local variables hide global variables, so [genv] alone
     isn't enough to distinguish.) *)
 
-  let env = StringSet.of_list formals in
+  let rec make_env env = function
+    | [] -> env
+    | (s, t)::tail ->
+      make_env (StringMap.add s t env) tail
+  in
+  let env = make_env StringMap.empty formals
+  in
   let result, env =
     match proc.PP.result with
     | None ->
 	false, env
-    | Some _ ->
-	true, StringSet.add f env
+    | Some typ ->
+	true, StringMap.add f typ env
   in
-  let locals = StringMap.domain proc.PP.locals in
-  let env = StringSet.union locals env in
+  let locals = proc.PP.locals in
+  let env = StringMap.fold StringMap.add locals env in
 
   (* Translate the procedure's body. *)
 
@@ -318,8 +356,8 @@ let allocate_globals (p : PP.program) : genv * int32 =
      allocated. The final value of [next] is the overall space required
      by the global variables. *)
 
-  StringMap.fold (fun global (_ : PP.typ) (genv, next) ->
-    StringMap.add global next genv,
+  StringMap.fold (fun global (t : PP.typ) (genv, next) ->
+    StringMap.add global (next, t) genv,
     next + MIPS.word
   ) p.PP.globals (StringMap.empty, 0l)
 
@@ -338,8 +376,8 @@ let translate_program (p : PP.program) : UPP.program =
   let main = {
     UPP.formals = [];
     UPP.result = false;
-    UPP.locals = StringSet.empty;
-    UPP.body = translate_instruction genv StringSet.empty p.PP.main
+    UPP.locals = StringMap.empty;
+    UPP.body = translate_instruction genv StringMap.empty p.PP.main
   } in
 
   (* Build a transformed program. *)

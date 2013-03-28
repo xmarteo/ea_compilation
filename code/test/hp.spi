@@ -76,46 +76,226 @@ syscall
 j     $ra             
 
 # begin factSSA
-factSSA67:
-li    $v0, 1
-factSSA23:
-bgtz  $a0, factSSA16
-jr    $ra
-factSSA16:
-move  $a1, $a0
-mul   $v0, $a0, $v0
+factSSA182:
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a1, $v0, 1
+li    $v0, 3
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a1, $a1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $a0, $a0, 1
+addiu $a1, $a0, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $a0, $a0, 1
+addiu $a1, $v0, -1
+li    $v0, 2
+div   $v0, $a1, $v0
+sll   $v0, $v0, 1
+addiu $a1, $v0, 1
+factSSA114:
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bgtz  $v0, factSSA110
 addiu $a0, $a1, -1
-j     factSSA23
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+jr    $ra
+factSSA110:
+addiu $a1, $a1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $a0, $a0, 1
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a1, $v0, -1
+li    $v0, 2
+div   $v0, $a1, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a1, $a0, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $a0, $a0, 1
+addiu $a1, $v0, -1
+li    $v0, 2
+div   $v0, $a1, $v0
+sll   $a1, $v0, 1
+addiu $a1, $a1, 1
+addiu $a2, $a0, -1
+li    $a0, 2
+div   $a0, $a2, $a0
+mul   $v0, $v0, $a0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a1, $a1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $a0, $a0, 1
+addiu $a1, $v0, -1
+li    $v0, 2
+div   $v0, $a1, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a1, $a0, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $a0, $a0, -1
+addiu $a1, $v0, -1
+li    $v0, 2
+div   $v0, $a1, $v0
+sll   $v0, $v0, 1
+addiu $a1, $v0, 1
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+j     factSSA114
 # end factSSA
 
 # begin fact
-fact41:
-move  $v0, $a0
-move  $a1, $v0
-li    $v0, 1
-move  $a2, $a1
-move  $a1, $v0
-move  $v0, $a2
-fact19:
-bgtz  $v0, fact18
-move  $v0, $a1
+fact136:
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a2, $v0, 1
+addiu $a0, $a2, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a1, $v0, 1
+li    $a2, 3
+addiu $a0, $a1, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a1, $a2, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $a1, $a0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a2, $v0, 1
+fact94:
+addiu $a0, $a2, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bgtz  $v0, fact90
+addiu $a0, $a1, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a2, $v0, 1
+addiu $a0, $a2, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 jr    $ra
-fact18:
-move  $a0, $a1
-move  $a1, $v0
-move  $a2, $a0
-move  $a0, $a1
-move  $v0, $a2
-move  $a2, $a0
-move  $a1, $v0
-move  $v0, $a2
-mul   $v0, $v0, $a1
-move  $a1, $a0
-move  $a2, $a1
-move  $a1, $v0
-move  $v0, $a2
-addiu $v0, $v0, -1
-j     fact19
+fact90:
+addiu $a1, $a1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $a0, $a0, 1
+sll   $v0, $v0, 1
+addiu $a1, $v0, 1
+addiu $a0, $a0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a1, $a1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $a0, $a0, 1
+addiu $a1, $v0, -1
+li    $v0, 2
+div   $v0, $a1, $v0
+sll   $v0, $v0, 1
+addiu $a2, $v0, 1
+move  $v0, $a0
+addiu $a1, $a2, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $a1, $a0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a2, $v0, 1
+addiu $a0, $a2, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+addiu $a1, $a1, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+mul   $a0, $v0, $a0
+sll   $a0, $a0, 1
+addiu $a2, $a0, 1
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
+addiu $a1, $a2, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $a1, $a0, 1
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a2, $v0, 1
+addiu $a0, $a2, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a2, $v0, -1
+j     fact94
 # end fact
 
 # begin _main
@@ -123,11 +303,11 @@ _main16:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 li    $a0, 5
-jal   fact41
+jal   fact136
 move  $a0, $v0
 jal   writeln
 li    $a0, 5
-jal   factSSA67
+jal   factSSA182
 move  $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4

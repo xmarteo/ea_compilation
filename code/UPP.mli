@@ -97,7 +97,7 @@ and procedure = {
 
   (* A list of formal arguments. *)
 
-  formals: string list;
+  formals: (string * PP.typ) list;
 
   (* By convention, functions return a result by writing into a local
      variable whose name is that of the function. Procedures return no
@@ -107,7 +107,7 @@ and procedure = {
 
   (* A set of local variables. *)
 
-  locals: StringSet.t;
+  locals: PP.typ StringMap.t ;
 
   (* The body of the function. *)
 
