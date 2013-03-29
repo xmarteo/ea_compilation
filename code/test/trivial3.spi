@@ -32,6 +32,8 @@ nl:
 .align 2              
 .text                 
 writeln:              
+sub   $a0, 1          
+div   $a0, $a0, $t9   
 li    $v0, 1          
 syscall               
 la    $a0, nl         
@@ -82,17 +84,27 @@ sw    $v0, 4($gp)
 li    $v0, 1
 sw    $v0, 0($gp)
 lw    $v0, 4($gp)
+<<<<<<< HEAD
 addiu $a0, $v0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 3
+=======
+sub $v0, 1          
+div $v0, $v0, $t9    
+addiu $v0, $v0, 1 
+mul $v0, $v0, $t9    
+addi $v0, 1         
+
+>>>>>>> 76e14c7f28141ff309545b60f037966ebf6496af
 sw    $v0, 4($gp)
 lw    $v0, 0($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
 div   $a0, $a0, $v0
 lw    $v0, 4($gp)
+<<<<<<< HEAD
 addiu $a1, $v0, -1
 li    $v0, 2
 div   $v0, $a1, $v0
@@ -102,12 +114,29 @@ addiu $a0, $a0, 1
 sw    $a0, 0($gp)
 sll   $v0, $v0, 1
 addiu $v0, $v0, 3
+=======
+sub $a0, 1          
+div $a0, $a0, $t9    
+sub $v0, 1          
+div $v0, $v0, $t9    
+addu  $a0, $a0, $v0      
+mul $a0, $a0, $t9    
+addi $a0, 1
+sw    $a0, 0($gp)
+sub $v0, 1          
+div $v0, $v0, $t9    
+addiu $v0, $v0, 1 
+mul $v0, $v0, $t9    
+addi $v0, 1         
+
+>>>>>>> 76e14c7f28141ff309545b60f037966ebf6496af
 sw    $v0, 4($gp)
 lw    $v0, 0($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
 div   $a0, $a0, $v0
 lw    $v0, 4($gp)
+<<<<<<< HEAD
 addiu $a1, $v0, -1
 li    $v0, 2
 div   $v0, $a1, $v0
@@ -117,12 +146,29 @@ addiu $a0, $a0, 1
 sw    $a0, 0($gp)
 sll   $v0, $v0, 1
 addiu $v0, $v0, 3
+=======
+sub $a0, 1          
+div $a0, $a0, $t9    
+sub $v0, 1          
+div $v0, $v0, $t9    
+addu  $a0, $a0, $v0      
+mul $a0, $a0, $t9    
+addi $a0, 1
+sw    $a0, 0($gp)
+sub $v0, 1          
+div $v0, $v0, $t9    
+addiu $v0, $v0, 1 
+mul $v0, $v0, $t9    
+addi $v0, 1         
+
+>>>>>>> 76e14c7f28141ff309545b60f037966ebf6496af
 sw    $v0, 4($gp)
 lw    $v0, 0($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
 div   $a0, $a0, $v0
 lw    $v0, 4($gp)
+<<<<<<< HEAD
 addiu $a1, $v0, -1
 li    $v0, 2
 div   $v0, $a1, $v0
@@ -132,18 +178,44 @@ addiu $a0, $a0, 1
 sw    $a0, 0($gp)
 sll   $v0, $v0, 1
 addiu $v0, $v0, 3
+=======
+sub $a0, 1          
+div $a0, $a0, $t9    
+sub $v0, 1          
+div $v0, $v0, $t9    
+addu  $a0, $a0, $v0      
+mul $a0, $a0, $t9    
+addi $a0, 1
+sw    $a0, 0($gp)
+sub $v0, 1          
+div $v0, $v0, $t9    
+addiu $v0, $v0, 1 
+mul $v0, $v0, $t9    
+addi $v0, 1         
+
+>>>>>>> 76e14c7f28141ff309545b60f037966ebf6496af
 sw    $v0, 4($gp)
 lw    $v0, 0($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
 div   $a1, $a0, $v0
 lw    $v0, 4($gp)
+<<<<<<< HEAD
 addiu $a0, $v0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 addu  $v0, $a1, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
+=======
+sub $a0, 1          
+div $a0, $a0, $t9    
+sub $v0, 1          
+div $v0, $v0, $t9    
+addu  $v0, $a0, $v0      
+mul $v0, $v0, $t9    
+addi $v0, 1
+>>>>>>> 76e14c7f28141ff309545b60f037966ebf6496af
 sw    $v0, 0($gp)
 lw    $v0, 0($gp)
 addiu $a0, $v0, -1

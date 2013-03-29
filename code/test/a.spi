@@ -32,6 +32,8 @@ nl:
 .align 2              
 .text                 
 writeln:              
+sub   $a0, 1          
+div   $a0, $a0, $t9   
 li    $v0, 1          
 syscall               
 la    $a0, nl         
@@ -76,24 +78,45 @@ syscall
 j     $ra             
 
 # begin g
+<<<<<<< HEAD
 g17:
 addiu $a0, $a0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
+=======
+g13:
+sub $a0, 1          
+div $a0, $a0, $t9    
+move  $v0, $a0 
+mul $a0, $a0, $t9    
+addi $a0, 1         
+
+>>>>>>> 76e14c7f28141ff309545b60f037966ebf6496af
 jr    $ra
 # end g
 
 # begin f
+<<<<<<< HEAD
 f62:
 addiu $sp, $sp, -24
+=======
+f30:
+sub $sp, 1          
+div $sp, $sp, $t9    
+addiu $sp, $sp, -24 
+mul $sp, $sp, $t9    
+addi $sp, 1         
+
+>>>>>>> 76e14c7f28141ff309545b60f037966ebf6496af
 lw    $v0, 20($sp)
 lw    $t0, 16($sp)
 lw    $t1, 12($sp)
 lw    $t2, 8($sp)
 lw    $t3, 4($sp)
 lw    $t4, 0($sp)
+<<<<<<< HEAD
 addiu $t5, $a0, -1
 li    $a0, 2
 div   $a0, $t5, $a0
@@ -136,14 +159,105 @@ addu  $v0, $v0, $a0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
 addiu $sp, $sp, 24
+=======
+sub $a0, 1          
+div $a0, $a0, $t9    
+sub $a1, 1          
+div $a1, $a1, $t9    
+addu  $a0, $a0, $a1      
+mul $a0, $a0, $t9    
+addi $a0, 1
+sub $a0, 1          
+div $a0, $a0, $t9    
+sub $a2, 1          
+div $a2, $a2, $t9    
+addu  $a0, $a0, $a2      
+mul $a0, $a0, $t9    
+addi $a0, 1
+sub $a0, 1          
+div $a0, $a0, $t9    
+sub $a3, 1          
+div $a3, $a3, $t9    
+addu  $a0, $a0, $a3      
+mul $a0, $a0, $t9    
+addi $a0, 1
+sub $a0, 1          
+div $a0, $a0, $t9    
+sub $v0, 1          
+div $v0, $v0, $t9    
+addu  $v0, $a0, $v0      
+mul $v0, $v0, $t9    
+addi $v0, 1
+sub $v0, 1          
+div $v0, $v0, $t9    
+sub $t0, 1          
+div $t0, $t0, $t9    
+addu  $v0, $v0, $t0      
+mul $v0, $v0, $t9    
+addi $v0, 1
+sub $v0, 1          
+div $v0, $v0, $t9    
+sub $t1, 1          
+div $t1, $t1, $t9    
+addu  $v0, $v0, $t1      
+mul $v0, $v0, $t9    
+addi $v0, 1
+sub $v0, 1          
+div $v0, $v0, $t9    
+sub $t2, 1          
+div $t2, $t2, $t9    
+addu  $v0, $v0, $t2      
+mul $v0, $v0, $t9    
+addi $v0, 1
+sub $v0, 1          
+div $v0, $v0, $t9    
+sub $t3, 1          
+div $t3, $t3, $t9    
+addu  $v0, $v0, $t3      
+mul $v0, $v0, $t9    
+addi $v0, 1
+sub $v0, 1          
+div $v0, $v0, $t9    
+sub $t4, 1          
+div $t4, $t4, $t9    
+addu  $v0, $v0, $t4      
+mul $v0, $v0, $t9    
+addi $v0, 1
+sub $sp, 1          
+div $sp, $sp, $t9    
+addiu $sp, $sp, 24 
+mul $sp, $sp, $t9    
+addi $sp, 1         
+
+>>>>>>> 76e14c7f28141ff309545b60f037966ebf6496af
 jr    $ra
 # end f
 
 # begin _main
+<<<<<<< HEAD
 _main50:
+=======
+<<<<<<< HEAD
+_main30:
+>>>>>>> c699039a32be6d4b3c498f0676172ed60d109d48
 addiu $sp, $sp, -32
 sw    $ra, 28($sp)
 li    $v0, 3
+=======
+_main27:
+sub $sp, 1          
+div $sp, $sp, $t9    
+addiu $sp, $sp, -32 
+mul $sp, $sp, $t9    
+addi $sp, 1         
+
+sw    $ra, 28($sp)
+li    $t9, 2       
+li    $v0, 1      
+mul   $v0, $v0, $t9  
+addi  $v0, 1        
+
+>>>>>>> 76e14c7f28141ff309545b60f037966ebf6496af
 sw    $v0, 0($gp)
 lw    $v0, 0($gp)
 addiu $a0, $v0, -1
@@ -152,6 +266,7 @@ div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v1, $v0, 1
 sw    $v1, 0($sp)
+<<<<<<< HEAD
 li    $a0, 5
 jal   g17
 addiu $a0, $v0, -1
@@ -171,6 +286,52 @@ sw    $v1, 20($sp)
 li    $v1, 15
 sw    $v1, 24($sp)
 li    $a0, 17
+=======
+<<<<<<< HEAD
+li    $a0, 2
+jal   g17
+=======
+li    $t9, 2       
+li    $a0, 2      
+mul   $a0, $a0, $t9  
+addi  $a0, 1        
+
+jal   g13
+>>>>>>> 76e14c7f28141ff309545b60f037966ebf6496af
+sw    $v0, 4($sp)
+li    $t9, 2       
+li    $v1, 3      
+mul   $v1, $v1, $t9  
+addi  $v1, 1        
+
+sw    $v1, 8($sp)
+li    $t9, 2       
+li    $v1, 4      
+mul   $v1, $v1, $t9  
+addi  $v1, 1        
+
+sw    $v1, 12($sp)
+li    $t9, 2       
+li    $v1, 5      
+mul   $v1, $v1, $t9  
+addi  $v1, 1        
+
+sw    $v1, 16($sp)
+li    $t9, 2       
+li    $v1, 6      
+mul   $v1, $v1, $t9  
+addi  $v1, 1        
+
+sw    $v1, 20($sp)
+li    $t9, 2       
+li    $v1, 7      
+mul   $v1, $v1, $t9  
+addi  $v1, 1        
+
+sw    $v1, 24($sp)
+<<<<<<< HEAD
+li    $a0, 8
+>>>>>>> c699039a32be6d4b3c498f0676172ed60d109d48
 jal   g17
 addiu $a0, $v0, -1
 li    $v0, 2
@@ -178,6 +339,7 @@ div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $a0, $v0, 1
 jal   g17
+<<<<<<< HEAD
 addiu $a0, $v0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
@@ -185,6 +347,35 @@ sll   $v0, $v0, 1
 addiu $t1, $v0, 1
 li    $t0, 19
 li    $v0, 21
+=======
+li    $t1, 9
+li    $t0, 10
+=======
+li    $t9, 2       
+li    $a0, 8      
+mul   $a0, $a0, $t9  
+addi  $a0, 1        
+
+jal   g13
+sub $v0, 1          
+div $v0, $v0, $t9    
+move  $a0, $v0 
+mul $v0, $v0, $t9    
+addi $v0, 1         
+
+jal   g13
+li    $t9, 2       
+li    $t1, 9      
+mul   $t1, $t1, $t9  
+addi  $t1, 1        
+
+li    $t9, 2       
+li    $t0, 10      
+mul   $t0, $t0, $t9  
+addi  $t0, 1        
+
+>>>>>>> 76e14c7f28141ff309545b60f037966ebf6496af
+>>>>>>> c699039a32be6d4b3c498f0676172ed60d109d48
 lw    $a0, 0($sp)
 lw    $a1, 4($sp)
 lw    $a2, 8($sp)
@@ -195,6 +386,7 @@ lw    $v1, 20($sp)
 sw    $v1, -8($sp)
 lw    $v1, 24($sp)
 sw    $v1, -12($sp)
+<<<<<<< HEAD
 sw    $t1, -16($sp)
 sw    $t0, -20($sp)
 sw    $v0, -24($sp)
@@ -202,7 +394,29 @@ jal   f62
 addiu $a0, $v0, -1
 li    $v0, 2
 div   $a0, $a0, $v0
+=======
+sw    $v0, -16($sp)
+sw    $t1, -20($sp)
+sw    $t0, -24($sp)
+<<<<<<< HEAD
+jal   f62
+move  $a0, $v0
+=======
+jal   f30
+sub $v0, 1          
+div $v0, $v0, $t9    
+move  $a0, $v0 
+mul $v0, $v0, $t9    
+addi $v0, 1         
+
+>>>>>>> 76e14c7f28141ff309545b60f037966ebf6496af
+>>>>>>> c699039a32be6d4b3c498f0676172ed60d109d48
 lw    $ra, 28($sp)
-addiu $sp, $sp, 32
+sub $sp, 1          
+div $sp, $sp, $t9    
+addiu $sp, $sp, 32 
+mul $sp, $sp, $t9    
+addi $sp, 1         
+
 j     writeln
 # end _main
