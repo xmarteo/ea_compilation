@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main65              
+j     _main56              
 write:                
 li    $v0, 1          
 syscall               
@@ -184,7 +184,7 @@ j     input22
 # end input
 
 # begin heapsort
-heapsort77:
+heapsort71:
 addiu $sp, $sp, -16
 sw    $ra, 12($sp)
 sw    $s2, 8($sp)
@@ -200,70 +200,67 @@ li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s0, $v0, 1
-heapsort56:
+heapsort50:
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-bgez  $v0, heapsort52
+bgez  $v0, heapsort43
 addiu $a0, $s2, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s0, $v0, -1
-heapsort28:
+heapsort24:
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-bgtz  $v0, heapsort24
+bgtz  $v0, heapsort20
 lw    $ra, 12($sp)
 lw    $s2, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 16
 jr    $ra
-heapsort24:
-sll   $a0, $s1, 1
-addiu $a0, $a0, 1
+heapsort20:
 li    $a1, 1
 sll   $v0, $v0, 1
 addiu $a2, $v0, 1
+move  $a0, $s1
 jal   swap43
-sll   $v0, $s1, 1
-addiu $a0, $v0, 1
 li    $a1, 1
-addiu $a2, $s0, -1
+addiu $a0, $s0, -1
 li    $v0, 2
-div   $v0, $a2, $v0
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $a2, $v0, -1
-jal   downheap106
+move  $a0, $s1
+jal   downheap102
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s0, $v0, -1
-j     heapsort28
-heapsort52:
-sll   $a0, $s1, 1
-addiu $a0, $a0, 1
+j     heapsort24
+heapsort43:
 sll   $v0, $v0, 1
 addiu $a1, $v0, 1
-addiu $a2, $s2, -1
+addiu $a0, $s2, -1
 li    $v0, 2
-div   $v0, $a2, $v0
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $a2, $v0, -1
-jal   downheap106
+move  $a0, $s1
+jal   downheap102
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s0, $v0, -1
-j     heapsort56
+j     heapsort50
 # end heapsort
 
 # begin downheap
-downheap106:
+downheap102:
 addiu $sp, $sp, -16
 sw    $ra, 12($sp)
 sw    $s2, 8($sp)
@@ -271,7 +268,7 @@ sw    $s1, 4($sp)
 sw    $s0, 0($sp)
 move  $s1, $a0
 move  $s2, $a2
-downheap91:
+downheap87:
 addiu $a0, $a1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
@@ -284,44 +281,41 @@ addiu $a2, $s2, -1
 li    $a0, 2
 div   $a0, $a2, $a0
 sle   $a2, $v0, $a0
-bgtz  $a2, downheap75
-downheap117:
+bgtz  $a2, downheap71
+downheap113:
 lw    $ra, 12($sp)
 lw    $s2, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 16
 jr    $ra
-downheap75:
+downheap71:
 addiu $a2, $v0, 1
 sle   $a0, $a2, $a0
-bgtz  $a0, downheap66
+bgtz  $a0, downheap62
 sll   $v0, $v0, 1
 addiu $s0, $v0, 1
-downheap40:
+downheap36:
 addiu $a0, $a1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $a0, $v0, 2
 addu  $a0, $s1, $a0
-lw    $a0, 0($a0)
+lw    $a1, 0($a0)
 addiu $a2, $s0, -1
-li    $a1, 2
-div   $a2, $a2, $a1
-sll   $a1, $a2, 2
-addu  $a1, $s1, $a1
-lw    $a1, 0($a1)
-slt   $a0, $a0, $a1
-blez  $a0, downheap117
-sll   $a0, $s1, 1
-addiu $a0, $a0, 1
+li    $a0, 2
+div   $a0, $a2, $a0
+sll   $a2, $a0, 2
+addu  $a2, $s1, $a2
+lw    $a2, 0($a2)
+slt   $a1, $a1, $a2
+blez  $a1, downheap113
 sll   $v0, $v0, 1
 addiu $a1, $v0, 1
-sll   $v0, $a2, 1
+sll   $v0, $a0, 1
 addiu $a2, $v0, 1
+move  $a0, $s1
 jal   swap43
-sll   $v0, $s1, 1
-addiu $s1, $v0, 1
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
@@ -332,51 +326,46 @@ li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s2, $v0, 1
-j     downheap91
-downheap66:
+j     downheap87
+downheap62:
 sll   $a0, $v0, 2
 addu  $a0, $s1, $a0
 lw    $a2, 0($a0)
 lw    $a0, 4($a0)
 slt   $a0, $a2, $a0
-bgtz  $a0, downheap52
+bgtz  $a0, downheap48
 sll   $v0, $v0, 1
 addiu $s0, $v0, 1
-j     downheap40
-downheap52:
+j     downheap36
+downheap48:
 sll   $v0, $v0, 1
 addiu $s0, $v0, 3
-j     downheap40
+j     downheap36
 # end downheap
 
 # begin _main
-_main65:
+_main56:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 jal   readln
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
 sw    $v0, 0($gp)
-_main51:
+_main42:
 lw    $v0, 0($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-bgtz  $v0, _main42
+bgtz  $v0, _main33
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra
-_main42:
+_main33:
 sll   $v0, $v0, 1
 addiu $a0, $v0, 1
 jal   input42
-addiu $a0, $v0, -1
-li    $v0, 2
-div   $v0, $a0, $v0
 sw    $v0, 4($gp)
-lw    $v0, 4($gp)
-sll   $v0, $v0, 1
-addiu $a0, $v0, 1
+lw    $a0, 4($gp)
 lw    $v0, 0($gp)
 addiu $a1, $v0, -1
 li    $v0, 2
@@ -384,19 +373,15 @@ div   $v0, $a1, $v0
 sll   $v0, $v0, 1
 addiu $a1, $v0, 1
 jal   output35
-lw    $v0, 4($gp)
-sll   $v0, $v0, 1
-addiu $a0, $v0, 1
+lw    $a0, 4($gp)
 lw    $v0, 0($gp)
 addiu $a1, $v0, -1
 li    $v0, 2
 div   $v0, $a1, $v0
 sll   $v0, $v0, 1
 addiu $a1, $v0, 1
-jal   heapsort77
-lw    $v0, 4($gp)
-sll   $v0, $v0, 1
-addiu $a0, $v0, 1
+jal   heapsort71
+lw    $a0, 4($gp)
 lw    $v0, 0($gp)
 addiu $a1, $v0, -1
 li    $v0, 2
@@ -408,5 +393,5 @@ jal   readln
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
 sw    $v0, 0($gp)
-j     _main51
+j     _main42
 # end _main

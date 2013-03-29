@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main61              
+j     _main46              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,7 +76,7 @@ syscall
 j     $ra             
 
 # begin mread
-mread74:
+mread71:
 addiu $sp, $sp, -20
 sw    $ra, 16($sp)
 sw    $s3, 12($sp)
@@ -90,9 +90,7 @@ div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $a0, $v0, 1
 jal   malloc46
-addiu $a0, $v0, -1
-li    $v0, 2
-div   $s0, $a0, $v0
+move  $s0, $v0
 li    $s2, 1
 mread48:
 addiu $a0, $s2, -1
@@ -121,14 +119,14 @@ addiu $a0, $s3, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 slt   $v0, $a1, $v0
-bgtz  $v0, mread88
+bgtz  $v0, mread85
 addiu $a0, $s2, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s2, $v0, 3
 j     mread48
-mread88:
+mread85:
 jal   readln
 sll   $v0, $v0, 1
 addiu $a0, $v0, 1
@@ -153,7 +151,7 @@ j     mread39
 # end mread
 
 # begin mmult
-mmult121:
+mmult118:
 addiu $sp, $sp, -16
 sw    $ra, 12($sp)
 sw    $s2, 8($sp)
@@ -168,9 +166,6 @@ div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $a0, $v0, 1
 jal   malloc46
-addiu $a0, $v0, -1
-li    $v0, 2
-div   $v0, $a0, $v0
 li    $a2, 1
 mmult92:
 addiu $a1, $a2, -1
@@ -375,7 +370,7 @@ j     affiche33
 # end affiche
 
 # begin _main
-_main61:
+_main46:
 addiu $sp, $sp, -8
 sw    $ra, 4($sp)
 sw    $s0, 0($sp)
@@ -389,10 +384,7 @@ li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $a0, $v0, 1
-jal   mread74
-addiu $a0, $v0, -1
-li    $v0, 2
-div   $v0, $a0, $v0
+jal   mread71
 sw    $v0, 0($gp)
 lw    $v0, 4($gp)
 addiu $a0, $v0, -1
@@ -400,10 +392,7 @@ li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $a0, $v0, 1
-jal   mread74
-addiu $a0, $v0, -1
-li    $v0, 2
-div   $v0, $a0, $v0
+jal   mread71
 sw    $v0, 8($gp)
 lw    $v0, 4($gp)
 addiu $a0, $v0, -1
@@ -411,20 +400,12 @@ li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s0, $v0, 1
-lw    $v0, 0($gp)
-sll   $v0, $v0, 1
-addiu $a1, $v0, 1
-lw    $v0, 8($gp)
-sll   $v0, $v0, 1
-addiu $a2, $v0, 1
+lw    $a1, 0($gp)
+lw    $a2, 8($gp)
 move  $a0, $s0
-jal   mmult121
-addiu $a0, $v0, -1
-li    $v0, 2
-div   $v0, $a0, $v0
-sll   $v0, $v0, 1
-addiu $a1, $v0, 1
+jal   mmult118
 move  $a0, $s0
+move  $a1, $v0
 lw    $ra, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 8

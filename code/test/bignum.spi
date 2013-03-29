@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main63              
+j     _main46              
 write:                
 li    $v0, 1          
 syscall               
@@ -196,7 +196,7 @@ j     smallmult98
 # end smallmult
 
 # begin pow
-pow77:
+pow48:
 addiu $sp, $sp, -20
 sw    $ra, 16($sp)
 sw    $s3, 12($sp)
@@ -210,56 +210,44 @@ addiu $a0, $s2, -1
 li    $v0, 2
 div   $a0, $a0, $v0
 li    $v0, 1
-beq   $a0, $v0, pow58
+beq   $a0, $v0, pow94
 li    $a0, 1
 jal   grandir60
-addiu $a0, $v0, -1
+move  $s0, $v0
+addiu $a0, $s2, -1
 li    $v0, 2
-div   $s0, $a0, $v0
-sll   $v0, $s0, 1
-addiu $a0, $v0, 1
-addiu $a1, $s2, -1
+div   $a0, $a0, $v0
 li    $v0, 2
-div   $a1, $a1, $v0
-li    $v0, 2
-div   $v0, $a1, $v0
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $a1, $v0, 1
-sll   $v0, $s3, 1
-addiu $a2, $v0, 1
-jal   pow77
-sll   $v0, $s1, 1
-addiu $a0, $v0, 1
-sll   $v0, $s0, 1
-addiu $a2, $v0, 1
-move  $a1, $a2
-jal   bigmult60
+move  $a0, $s0
+move  $a2, $s3
+jal   pow48
+move  $a0, $s1
+move  $a1, $s0
+move  $a2, $s0
+jal   bigmult45
 addiu $a0, $s2, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 li    $a0, 2
 div   $a0, $v0, $a0
 sll   $a0, $a0, 1
-beq   $a0, $v0, pow7
-sll   $v0, $s0, 1
-addiu $a0, $v0, 1
-sll   $v0, $s3, 1
-addiu $a1, $v0, 1
-sll   $v0, $s1, 1
-addiu $a2, $v0, 1
-jal   bigmult60
-sll   $v0, $s1, 1
-addiu $a0, $v0, 1
-sll   $v0, $s0, 1
-addiu $a1, $v0, 1
+beq   $a0, $v0, pow5
+move  $a0, $s0
+move  $a1, $s3
+move  $a2, $s1
+jal   bigmult45
+move  $a0, $s1
+move  $a1, $s0
 jal   copy38
-pow7:
+pow5:
 addiu $a0, $s2, -1
 li    $v0, 2
 div   $a0, $a0, $v0
 jal   writeln
-sll   $v0, $s1, 1
-addiu $a0, $v0, 1
+move  $a0, $s1
 lw    $ra, 16($sp)
 lw    $s3, 12($sp)
 lw    $s2, 8($sp)
@@ -267,13 +255,11 @@ lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 20
 j     affiche41
-pow58:
-sll   $v0, $s1, 1
-addiu $a0, $v0, 1
-sll   $v0, $s3, 1
-addiu $a1, $v0, 1
+pow94:
+move  $a0, $s1
+move  $a1, $s3
 jal   copy38
-j     pow7
+j     pow5
 # end pow
 
 # begin modulo
@@ -379,7 +365,7 @@ j     copy22
 # end copy
 
 # begin bigmult
-bigmult60:
+bigmult45:
 addiu $sp, $sp, -24
 sw    $ra, 20($sp)
 sw    $s4, 16($sp)
@@ -393,17 +379,15 @@ move  $s4, $a2
 sw    $zero, 0($s2)
 li    $a0, 1
 jal   grandir60
-addiu $a0, $v0, -1
-li    $v0, 2
-div   $s0, $a0, $v0
+move  $s0, $v0
 lw    $v0, 0($s4)
 sll   $v0, $v0, 1
 addiu $s1, $v0, 1
-bigmult35:
+bigmult23:
 addiu $a0, $s1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-bgtz  $v0, bigmult31
+bgtz  $v0, bigmult68
 lw    $ra, 20($sp)
 lw    $s4, 16($sp)
 lw    $s3, 12($sp)
@@ -412,42 +396,36 @@ lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 24
 jr    $ra
-bigmult31:
-sll   $v0, $s0, 1
-addiu $a0, $v0, 1
-sll   $v0, $s3, 1
-addiu $a1, $v0, 1
+bigmult68:
+move  $a0, $s0
+move  $a1, $s3
 jal   copy38
-sll   $v0, $s0, 1
-addiu $a0, $v0, 1
-addiu $a1, $s1, -1
+addiu $a0, $s1, -1
 li    $v0, 2
-div   $v0, $a1, $v0
+div   $v0, $a0, $v0
 sll   $v0, $v0, 2
 addu  $v0, $s4, $v0
 lw    $v0, 0($v0)
 sll   $v0, $v0, 1
 addiu $a1, $v0, 1
+move  $a0, $s0
 jal   smallmult118
-sll   $v0, $s2, 1
-addiu $a0, $v0, 1
 li    $a1, 21
+move  $a0, $s2
 jal   smallmult118
-sll   $v0, $s2, 1
-addiu $a0, $v0, 1
-sll   $v0, $s0, 1
-addiu $a1, $v0, 1
+move  $a0, $s2
+move  $a1, $s0
 jal   bigadd200
 addiu $a0, $s1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s1, $v0, -1
-j     bigmult35
+j     bigmult23
 # end bigmult
 
 # begin bigfact
-bigfact37:
+bigfact32:
 addiu $sp, $sp, -12
 sw    $ra, 8($sp)
 sw    $s1, 4($sp)
@@ -455,32 +433,29 @@ sw    $s0, 0($sp)
 move  $s1, $a0
 li    $a0, 3
 jal   grandir60
-addiu $a0, $v0, -1
-li    $v0, 2
-div   $s0, $a0, $v0
-bigfact19:
+move  $s0, $v0
+bigfact17:
 addiu $a0, $s1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-bgtz  $v0, bigfact15
+bgtz  $v0, bigfact10
 move  $v0, $s0
 lw    $ra, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 12
 jr    $ra
-bigfact15:
-sll   $a0, $s0, 1
-addiu $a0, $a0, 1
+bigfact10:
 sll   $v0, $v0, 1
 addiu $a1, $v0, 1
+move  $a0, $s0
 jal   smallmult118
 addiu $a0, $s1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s1, $v0, -1
-j     bigfact19
+j     bigfact17
 # end bigfact
 
 # begin bigadd
@@ -704,61 +679,45 @@ j     affiche26
 # end affiche
 
 # begin _main
-_main63:
+_main46:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 li    $v0, 201
 sw    $v0, 4($gp)
 li    $a0, 5
 jal   grandir60
-addiu $a0, $v0, -1
-li    $v0, 2
-div   $v0, $a0, $v0
 sw    $v0, 8($gp)
 li    $a0, 1
 jal   grandir60
-addiu $a0, $v0, -1
-li    $v0, 2
-div   $v0, $a0, $v0
 sw    $v0, 12($gp)
-lw    $v0, 12($gp)
-sll   $v0, $v0, 1
-addiu $a0, $v0, 1
+lw    $a0, 12($gp)
 li    $a1, 33
-lw    $v0, 8($gp)
-sll   $v0, $v0, 1
-addiu $a2, $v0, 1
-jal   pow77
-lw    $v0, 12($gp)
-sll   $v0, $v0, 1
-addiu $a0, $v0, 1
+lw    $a2, 8($gp)
+jal   pow48
+lw    $a0, 12($gp)
 jal   affiche41
 jal   readln
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
 sw    $v0, 16($gp)
-_main23:
+_main18:
 lw    $v0, 16($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-bgtz  $v0, _main14
+bgtz  $v0, _main9
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra
-_main14:
+_main9:
 sll   $v0, $v0, 1
 addiu $a0, $v0, 1
-jal   bigfact37
-addiu $a0, $v0, -1
-li    $v0, 2
-div   $v0, $a0, $v0
-sll   $v0, $v0, 1
-addiu $a0, $v0, 1
+jal   bigfact32
+move  $a0, $v0
 jal   affiche41
 jal   readln
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
 sw    $v0, 16($gp)
-j     _main23
+j     _main18
 # end _main

@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main23              
+j     _main21              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,7 +76,7 @@ syscall
 j     $ra             
 
 # begin tri
-tri162:
+tri158:
 addiu $sp, $sp, -16
 sw    $ra, 12($sp)
 sw    $s2, 8($sp)
@@ -84,7 +84,7 @@ sw    $s1, 4($sp)
 sw    $s0, 0($sp)
 move  $s1, $a0
 move  $s2, $a2
-tri145:
+tri141:
 addiu $a0, $a1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
@@ -92,14 +92,14 @@ addiu $a2, $s2, -1
 li    $a0, 2
 div   $a0, $a2, $a0
 slt   $a0, $v0, $a0
-bgtz  $a0, tri134
+bgtz  $a0, tri130
 lw    $ra, 12($sp)
 lw    $s2, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 16
 jr    $ra
-tri134:
+tri130:
 sll   $a0, $v0, 2
 addu  $a0, $s1, $a0
 lw    $a0, 0($a0)
@@ -108,7 +108,7 @@ addiu $a2, $a0, 1
 sll   $v0, $v0, 1
 addiu $s0, $v0, 1
 addiu $v0, $v0, 3
-tri119:
+tri115:
 addiu $a0, $v0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
@@ -116,7 +116,7 @@ addiu $a3, $s2, -1
 li    $a0, 2
 div   $a0, $a3, $a0
 slt   $a0, $v0, $a0
-bgtz  $a0, tri108
+bgtz  $a0, tri104
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
@@ -136,15 +136,12 @@ addiu $a3, $t1, -1
 li    $a0, 2
 div   $a0, $a3, $a0
 sw    $a0, 0($a2)
-sll   $a0, $s1, 1
-addiu $a0, $a0, 1
-sll   $a1, $a1, 1
-addiu $a1, $a1, 1
+sll   $a0, $a1, 1
+addiu $a1, $a0, 1
 sll   $v0, $v0, 1
 addiu $a2, $v0, 1
-jal   tri162
-sll   $v0, $s1, 1
-addiu $s1, $v0, 1
+move  $a0, $s1
+jal   tri158
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
@@ -155,8 +152,8 @@ li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s2, $v0, 1
-j     tri145
-tri108:
+j     tri141
+tri104:
 sll   $a0, $v0, 2
 addu  $a0, $s1, $a0
 lw    $a3, 0($a0)
@@ -164,11 +161,11 @@ addiu $t1, $a2, -1
 li    $t0, 2
 div   $t0, $t1, $t0
 slt   $t0, $a3, $t0
-bgtz  $t0, tri100
+bgtz  $t0, tri96
 sll   $v0, $v0, 1
 addiu $v0, $v0, 3
-j     tri119
-tri100:
+j     tri115
+tri96:
 addiu $t1, $s0, -1
 li    $t0, 2
 div   $t0, $t1, $t0
@@ -189,7 +186,7 @@ div   $a3, $t0, $a3
 sw    $a3, 0($a0)
 sll   $v0, $v0, 1
 addiu $v0, $v0, 3
-j     tri119
+j     tri115
 # end tri
 
 # begin lire
@@ -277,13 +274,11 @@ j     affiche23
 # end affiche
 
 # begin _main
-_main23:
+_main21:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 jal   lire53
-lw    $v0, 4($gp)
-sll   $v0, $v0, 1
-addiu $a0, $v0, 1
+lw    $a0, 4($gp)
 li    $a1, 1
 lw    $v0, 0($gp)
 addiu $a2, $v0, -1
@@ -291,7 +286,7 @@ li    $v0, 2
 div   $v0, $a2, $v0
 sll   $v0, $v0, 1
 addiu $a2, $v0, 1
-jal   tri162
+jal   tri158
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 j     affiche35

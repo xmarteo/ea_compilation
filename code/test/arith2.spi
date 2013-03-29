@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main122              
+j     _main120              
 write:                
 li    $v0, 1          
 syscall               
@@ -179,7 +179,7 @@ j     arraydouble55
 # end arraydouble
 
 # begin _main
-_main122:
+_main120:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 jal   readln
@@ -203,17 +203,15 @@ div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
 sw    $v0, 8($gp)
-_main90:
+_main88:
 lw    $v0, 12($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-bgtz  $v0, _main74
-bne   $v0, $zero, _main75
-_main50:
-lw    $v0, 0($gp)
-sll   $v0, $v0, 1
-addiu $a0, $v0, 1
+bgtz  $v0, _main72
+bne   $v0, $zero, _main73
+_main48:
+lw    $a0, 0($gp)
 lw    $v0, 8($gp)
 addiu $a1, $v0, -1
 li    $v0, 2
@@ -233,10 +231,10 @@ lw    $v0, 12($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-beq   $v0, $zero, _main133
+beq   $v0, $zero, _main131
 bgtz  $v0, _main17
 bgez  $v0, _main17
-_main133:
+_main131:
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra
@@ -258,9 +256,9 @@ addu  $v0, $a1, $v0
 lw    $a0, 0($v0)
 jal   writeln
 j     _main33
-_main75:
-bltz  $v0, _main50
-_main74:
+_main73:
+bltz  $v0, _main48
+_main72:
 lw    $v0, 12($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
@@ -284,5 +282,5 @@ addiu $a0, $v0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sw    $v0, 0($a1)
-j     _main90
+j     _main88
 # end _main

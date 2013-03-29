@@ -76,7 +76,7 @@ syscall
 j     $ra             
 
 # begin triangle
-triangle108:
+triangle96:
 addiu $sp, $sp, -20
 sw    $ra, 16($sp)
 sw    $s3, 12($sp)
@@ -92,7 +92,7 @@ sll   $v0, $v0, 2
 addiu $a0, $v0, 4
 jal   alloc
 move  $s2, $v0
-triangle87:
+triangle75:
 addiu $a0, $s1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
@@ -100,9 +100,9 @@ addiu $a1, $s3, -1
 li    $a0, 2
 div   $a0, $a1, $a0
 sle   $a0, $v0, $a0
-bgtz  $a0, triangle76
+bgtz  $a0, triangle64
 li    $s0, 1
-triangle23:
+triangle21:
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
@@ -110,7 +110,7 @@ addiu $a1, $s3, -1
 li    $a0, 2
 div   $a0, $a1, $a0
 sle   $a0, $v0, $a0
-bgtz  $a0, triangle12
+bgtz  $a0, triangle10
 lw    $ra, 16($sp)
 lw    $s3, 12($sp)
 lw    $s2, 8($sp)
@@ -118,32 +118,27 @@ lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 20
 jr    $ra
-triangle12:
+triangle10:
 sll   $v0, $v0, 2
 addu  $v0, $s2, $v0
-lw    $v0, 0($v0)
-sll   $v0, $v0, 1
-addiu $a0, $v0, 1
+lw    $a0, 0($v0)
 jal   affiche41
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s0, $v0, 3
-j     triangle23
-triangle76:
+j     triangle21
+triangle64:
 sll   $v0, $v0, 1
 addiu $s0, $v0, -1
-triangle74:
+triangle62:
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-bgtz  $v0, triangle67
+bgtz  $v0, triangle55
 li    $a0, 3
 jal   grandir60
-addiu $a0, $v0, -1
-li    $v0, 2
-div   $v0, $a0, $v0
 sw    $v0, 0($s2)
 addiu $a0, $s1, -1
 li    $v0, 2
@@ -152,32 +147,25 @@ sll   $v0, $v0, 2
 addu  $s0, $s2, $v0
 li    $a0, 3
 jal   grandir60
-addiu $a0, $v0, -1
-li    $v0, 2
-div   $v0, $a0, $v0
 sw    $v0, 0($s0)
 addiu $a0, $s1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s1, $v0, 3
-j     triangle87
-triangle67:
+j     triangle75
+triangle55:
 sll   $v0, $v0, 2
 addu  $v0, $s2, $v0
 lw    $a0, 0($v0)
-sll   $a0, $a0, 1
-addiu $a0, $a0, 1
-lw    $v0, -4($v0)
-sll   $v0, $v0, 1
-addiu $a1, $v0, 1
+lw    $a1, -4($v0)
 jal   bigadd200
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s0, $v0, -1
-j     triangle74
+j     triangle62
 # end triangle
 
 # begin modulo
@@ -520,5 +508,5 @@ sll   $v0, $v0, 1
 addiu $a0, $v0, 1
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
-j     triangle108
+j     triangle96
 # end _main

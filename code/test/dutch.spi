@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main56              
+j     _main49              
 write:                
 li    $v0, 1          
 syscall               
@@ -229,33 +229,28 @@ j     dutch113
 # end dutch
 
 # begin _main
-_main56:
+_main49:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 jal   readln
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
 sw    $v0, 0($gp)
-_main42:
+_main35:
 lw    $v0, 0($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-bgtz  $v0, _main33
+bgtz  $v0, _main26
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra
-_main33:
+_main26:
 sll   $v0, $v0, 1
 addiu $a0, $v0, 1
 jal   input42
-addiu $a0, $v0, -1
-li    $v0, 2
-div   $v0, $a0, $v0
 sw    $v0, 4($gp)
-lw    $v0, 4($gp)
-sll   $v0, $v0, 1
-addiu $a0, $v0, 1
+lw    $a0, 4($gp)
 lw    $v0, 0($gp)
 addiu $a1, $v0, -1
 li    $v0, 2
@@ -264,9 +259,7 @@ sll   $v0, $v0, 1
 addiu $a1, $v0, 1
 jal   output35
 jal   dutch133
-lw    $v0, 4($gp)
-sll   $v0, $v0, 1
-addiu $a0, $v0, 1
+lw    $a0, 4($gp)
 lw    $v0, 0($gp)
 addiu $a1, $v0, -1
 li    $v0, 2
@@ -278,5 +271,5 @@ jal   readln
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
 sw    $v0, 0($gp)
-j     _main42
+j     _main35
 # end _main

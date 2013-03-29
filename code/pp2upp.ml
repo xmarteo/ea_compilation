@@ -38,6 +38,12 @@ type genv =
 
 type env =
     PP.typ StringMap.t
+    
+(* The environment of functions defined in the PP program, with the list
+   of their formal parameters types *)
+    
+type fenv =
+    ((PP.typ list) * (PP.typ option)) StringMap.t
 
 (* ------------------------------------------------------------------------- *)
 
@@ -97,7 +103,7 @@ let mkstore (e1 : UPP.expression) (e2 : UPP.expression) : UPP.instruction =
 
 (* Translating expressions. *)
 
-let rec translate_expression (genv : genv) (env : env) = function
+let rec translate_expression (fenv : fenv) (genv : genv) (env : env) = function
 
     (* Constants. Drop type distinctions. *)
 
@@ -142,24 +148,42 @@ let rec translate_expression (genv : genv) (env : env) = function
        of the operator application itself is delegated to [Upp2upp]. *)
 
   | PP.EUnOp (op, e) ->
-      Upp2upp.mkunop op (translate_expression genv env e)
+      Upp2upp.mkunop op (translate_expression fenv genv env e)
   | PP.EBinOp (op, e1, e2) ->
-      Upp2upp.mkbinop op (translate_expression genv env e1) (translate_expression genv env e2)
+      Upp2upp.mkbinop op (translate_expression fenv genv env e1) (translate_expression fenv genv env e2)
 
     (* Function call. *)
 
   | PP.EFunCall (callee, es) ->
-      let expr = UPP.EFunCall (callee, List.map (fun x -> convert (translate_expression genv env x)) es) in
-      if callee = CPrimitiveFunction Readln then expr else (unconvert expr)
-
+      begin
+      match callee with
+      | CPrimitiveFunction _ -> UPP.EFunCall (callee, List.map (fun x -> translate_expression fenv genv env x) es)
+      | CUserFunction funcString ->
+          let typList, retour = StringMap.find funcString fenv in
+	  let fullList = List.combine es typList in
+	  let trans (expr, typ) =
+	    begin
+	    match typ with
+	    | TypArray _ -> translate_expression fenv genv env expr
+	    | _ -> convert (translate_expression fenv genv env expr)
+	    end
+	  in
+	  let newExpr = UPP.EFunCall (callee, List.map trans fullList) in
+	  begin
+	  match retour with
+	  | Some (TypArray _) -> newExpr
+	  | _ -> unconvert newExpr
+	  end
+      end
+      
     (* Array read. We compute the element's address and access it. *)
 
   | PP.EArrayGet (earray, eindex) ->
 
       mkload (
         element_address
-          (translate_expression genv env earray)
-          (translate_expression genv env eindex)
+          (translate_expression fenv genv env earray)
+          (translate_expression fenv genv env eindex)
       )
 
     (* Array allocation. Forget about the type and convert the
@@ -167,7 +191,7 @@ let rec translate_expression (genv : genv) (env : env) = function
     *)
 
   | PP.EArrayAlloc (t, e) ->
-      let len = translate_expression genv env e in
+      let len = translate_expression fenv genv env e in
       UPP.ENewArray(w2b len)
       
   (* the length of an array t is stored in t[-1] *)
@@ -175,7 +199,7 @@ let rec translate_expression (genv : genv) (env : env) = function
   | PP.EArrayLength earray ->
       mkload (
         element_address
-          (translate_expression genv env earray)
+          (translate_expression fenv genv env earray)
           (UPP.EConst Int32.minus_one)
       )
       
@@ -183,34 +207,46 @@ let rec translate_expression (genv : genv) (env : env) = function
      except mess with the typechecking *)
      
   | PP.ECastVar (e, _) ->
-      translate_expression genv env e
+      translate_expression fenv genv env e
 
 (* ------------------------------------------------------------------------- *)
 
 (* Translating conditions. *)
 
-let rec translate_condition (genv : genv) (env : env) = function
+let rec translate_condition (fenv : fenv) (genv : genv) (env : env) = function
   | PP.CExpression e ->
-      UPP.CExpression (translate_expression genv env e)
+      UPP.CExpression (translate_expression fenv genv env e)
   | PP.CNot c ->
-      UPP.CNot (translate_condition genv env c)
+      UPP.CNot (translate_condition fenv genv env c)
   | PP.CAnd (c1, c2) ->
-      UPP.CAnd (translate_condition genv env c1, translate_condition genv env c2)
+      UPP.CAnd (translate_condition fenv genv env c1, translate_condition fenv genv env c2)
   | PP.COr (c1, c2) ->
-      UPP.COr (translate_condition genv env c1, translate_condition genv env c2)
+      UPP.COr (translate_condition fenv genv env c1, translate_condition fenv genv env c2)
 
 (* ------------------------------------------------------------------------- *)
 
 (* Translating instructions. *)
 
-let rec translate_instruction (genv : genv) (env : env) = function
+let rec translate_instruction (fenv : fenv) (genv : genv) (env : env) = function
 
     (* Procedure call. *)
 
   | PP.IProcCall (callee, es) ->
-      if (callee = CPrimitiveFunction Writeln || callee = CPrimitiveFunction Write)
-	then UPP.IProcCall (callee, List.map (translate_expression genv env) es)
-	else UPP.IProcCall (callee, List.map (fun x -> convert (translate_expression genv env x)) es)
+      begin
+      match callee with
+      | CPrimitiveFunction _ -> UPP.IProcCall (callee, List.map (fun x -> translate_expression fenv genv env x) es)
+      | CUserFunction funcString ->
+	  let typList, _ = StringMap.find funcString fenv in
+	  let fullList = List.combine es typList in
+	  let trans (expr, typ) =
+	    begin
+	    match typ with
+	    | TypArray _ -> translate_expression fenv genv env expr
+	    | _ -> convert (translate_expression fenv genv env expr)
+	    end
+	  in
+	  UPP.IProcCall (callee, List.map trans fullList)
+      end
 
     (* Variable update. Distinguish globals and locals. *)
 
@@ -221,9 +257,9 @@ let rec translate_instruction (genv : genv) (env : env) = function
         begin
 	  match (StringMap.find v env) with
 	  | PP.TypArray _ ->
-	    UPP.ISetVar (v, translate_expression genv env e)
+	    UPP.ISetVar (v, translate_expression fenv genv env e)
 	  | _  ->
-             UPP.ISetVar (v, convert (translate_expression genv env e))
+             UPP.ISetVar (v, convert (translate_expression fenv genv env e))
 	end
 	
       else
@@ -234,9 +270,9 @@ let rec translate_instruction (genv : genv) (env : env) = function
 	begin
 	  match typ with
 	  | PP.TypArray _ -> 
-	    UPP.ISetGlobal (offset, translate_expression genv env e)
+	    UPP.ISetGlobal (offset, translate_expression fenv genv env e)
 	  | _ ->
-	    UPP.ISetGlobal (offset, convert (translate_expression genv env e))
+	    UPP.ISetGlobal (offset, convert (translate_expression fenv genv env e))
 	end
 
     (* Array write. We compute the element's address and access it. *)
@@ -245,40 +281,40 @@ let rec translate_instruction (genv : genv) (env : env) = function
 
       mkstore (
           element_address
-            (translate_expression genv env earray)
-            (translate_expression genv env eindex)
+            (translate_expression fenv genv env earray)
+            (translate_expression fenv genv env eindex)
         )
-	(translate_expression genv env evalue)
+	(translate_expression fenv genv env evalue)
 
     (* Sequence. *)
 
   | PP.ISeq is ->
-      UPP.ISeq (List.map (translate_instruction genv env) is)
+      UPP.ISeq (List.map (translate_instruction fenv genv env) is)
 
     (* Conditional. *)
 
   | PP.IIf (c, i1, i2) ->
       UPP.IIf (
-        translate_condition genv env c,
-        translate_instruction genv env i1,
-        translate_instruction genv env i2
+        translate_condition fenv genv env c,
+        translate_instruction fenv genv env i1,
+        translate_instruction fenv genv env i2
       )
 
     (* While. *)
 
   | PP.IWhile (c, i) ->
       UPP.IWhile (
-        translate_condition genv env c,
-        translate_instruction genv env i
+        translate_condition fenv genv env c,
+        translate_instruction fenv genv env i
       )
 
 (* ------------------------------------------------------------------------- *)
 
 (* Translating procedures. *)
 
-let translate_procedure genv f proc =
+let translate_procedure fenv genv f proc =
 
-  (* Obtain a list of the formal parameters' names (without their
+  (* Obtain a list of the formal parameters' names (with their
      types). *)
 
   let formals = proc.PP.formals in
@@ -308,7 +344,7 @@ let translate_procedure genv f proc =
   (* Translate the procedure's body. *)
 
   let body =
-    [ translate_instruction genv env proc.PP.body ]
+    [ translate_instruction fenv genv env proc.PP.body ]
   in
 
   (* Insert instructions to initialize every local variable (including
@@ -351,7 +387,7 @@ let translate_procedure genv f proc =
 (* Building the global environment. This involves choosing the offsets
    at which global variables are stored. *)
 
-let allocate_globals (p : PP.program) : genv * int32 =
+let allocate_globals (p : PP.program) : fenv * genv * int32 =
 
   (* [next] holds the next available location. All data is word-sized,
      so [next] is incremented by 4 bytes every time we allocate a new
@@ -359,10 +395,18 @@ let allocate_globals (p : PP.program) : genv * int32 =
      allocated. The final value of [next] is the overall space required
      by the global variables. *)
 
-  StringMap.fold (fun global (t : PP.typ) (genv, next) ->
+  let (u,v) = StringMap.fold (fun global (t : PP.typ) (genv, next) ->
     StringMap.add global (next, t) genv,
     next + MIPS.word
   ) p.PP.globals (StringMap.empty, 0l)
+  in
+  let w = StringMap.fold (fun name def newMap ->
+    let l = def.PP.formals in
+    let result = def.PP.result in
+    let typs = List.map snd l in
+    StringMap.add name (typs, result) newMap)
+    p.PP.defs StringMap.empty
+  in (w, u, v)
 
 (* Translating programs. *)
 
@@ -371,7 +415,7 @@ let translate_program (p : PP.program) : UPP.program =
   (* Build the global environment and compute how much space
      is needed to hold the global variables. *)
 
-  let genv, globals = allocate_globals p in
+  let fenv, genv, globals = allocate_globals p in
 
   (* Translate the program body to a procedure, for greater
      uniformity. *)
@@ -380,13 +424,13 @@ let translate_program (p : PP.program) : UPP.program =
     UPP.formals = [];
     UPP.result = false;
     UPP.locals = StringMap.empty;
-    UPP.body = translate_instruction genv StringMap.empty p.PP.main
+    UPP.body = translate_instruction fenv genv StringMap.empty p.PP.main
   } in
 
   (* Build a transformed program. *)
 
   {
     UPP.globals = globals;
-    UPP.defs = StringMap.add "_main" main (StringMap.mapi (translate_procedure genv) p.PP.defs)
+    UPP.defs = StringMap.add "_main" main (StringMap.mapi (translate_procedure fenv genv) p.PP.defs)
   }
 
