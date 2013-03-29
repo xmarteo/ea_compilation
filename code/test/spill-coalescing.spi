@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main12              
+j     _main15              
 write:                
 li    $v0, 1          
 syscall               
@@ -86,7 +86,7 @@ jr    $ra
 # end increment
 
 # begin artificial
-artificial332:
+artificial442:
 addiu $sp, $sp, -52
 sw    $ra, 48($sp)
 sw    $s7, 44($sp)
@@ -114,72 +114,127 @@ sw    $v1, 12($sp)
 lw    $v1, 4($sp)
 addiu $a0, $v1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v1, $v0, 1
 sw    $v1, 4($sp)
 lw    $v1, 8($sp)
 addiu $a0, $v1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v1, $v0, 1
 sw    $v1, 8($sp)
 addiu $a0, $s7, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s7, $v0, 1
 addiu $a0, $s6, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s6, $v0, 1
 addiu $a0, $s5, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s5, $v0, 1
 addiu $a0, $s4, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s4, $v0, 1
 addiu $a0, $s3, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s3, $v0, 1
 addiu $a0, $s2, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s2, $v0, 1
 addiu $a0, $s1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s1, $v0, 1
 addiu $a0, $s0, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s0, $v0, 1
 lw    $v1, 12($sp)
 addiu $a0, $v1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v1, $v0, 1
 sw    $v1, 12($sp)
@@ -260,72 +315,127 @@ sw    $v1, 12($sp)
 lw    $v1, 4($sp)
 addiu $a0, $v1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v1, $v0, 1
 sw    $v1, 4($sp)
 lw    $v1, 8($sp)
 addiu $a0, $v1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v1, $v0, 1
 sw    $v1, 8($sp)
 addiu $a0, $s7, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s7, $v0, 1
 addiu $a0, $s6, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s6, $v0, 1
 addiu $a0, $s5, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s5, $v0, 1
 addiu $a0, $s4, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s4, $v0, 1
 addiu $a0, $s3, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s3, $v0, 1
 addiu $a0, $s2, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s2, $v0, 1
 addiu $a0, $s1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s1, $v0, 1
 addiu $a0, $s0, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s0, $v0, 1
 lw    $v1, 12($sp)
 addiu $a0, $v1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   increment17
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v1, $v0, 1
 sw    $v1, 12($sp)
@@ -401,11 +511,13 @@ jr    $ra
 # end artificial
 
 # begin _main
-_main12:
+_main15:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
-jal   artificial332
-move  $a0, $v0
+jal   artificial442
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 j     writeln

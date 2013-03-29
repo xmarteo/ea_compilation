@@ -1,2 +1,64 @@
-Can't expand stack segment by 8 bytes to 524288 bytes
-Use -lstack # with # > 524288
+Exception occurred at PC=0x004003ec
+  Unaligned address in inst/data fetch: 0x20040007
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400418
+  Unaligned address in inst/data fetch: 0x20040007
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x004003ec
+  Unaligned address in inst/data fetch: 0x2004000b
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400418
+  Unaligned address in inst/data fetch: 0x2004000f
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x004003ec
+  Unaligned address in inst/data fetch: 0x20040007
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400418
+  Unaligned address in inst/data fetch: 0x2004000b
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x004003ec
+  Unaligned address in inst/data fetch: 0x2004000b
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400418
+  Unaligned address in inst/data fetch: 0x20040013
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x004003ec
+  Unaligned address in inst/data fetch: 0x2004000f
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400418
+  Unaligned address in inst/data fetch: 0x20040007
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x004003ec
+  Unaligned address in inst/data fetch: 0x20040013
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400418
+  Unaligned address in inst/data fetch: 0x2004000f
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x004003ec
+  Unaligned address in inst/data fetch: 0x2004000f
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400418
+  Unaligned address in inst/data fetch: 0x2004000b
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x004003ec
+  Unaligned address in inst/data fetch: 0x20040013
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400418
+  Unaligned address in inst/data fetch: 0x20040013
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x004006c4
+  Unaligned address in inst/data fetch: 0x0801000b
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+0
+Exception occurred at PC=0x004006c4
+  Unaligned address in inst/data fetch: 0x0801000f
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+0
+Exception occurred at PC=0x004006c4
+  Unaligned address in inst/data fetch: 0x08010013
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+0
+Exception occurred at PC=0x004006c4
+  Unaligned address in inst/data fetch: 0x08010017
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+0

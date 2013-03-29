@@ -149,7 +149,8 @@ let rec translate_expression (genv : genv) (env : env) = function
     (* Function call. *)
 
   | PP.EFunCall (callee, es) ->
-      UPP.EFunCall (callee, List.map (translate_expression genv env) es)
+      let expr = UPP.EFunCall (callee, List.map (fun x -> convert (translate_expression genv env x)) es) in
+      if callee = CPrimitiveFunction Readln then expr else (unconvert expr)
 
     (* Array read. We compute the element's address and access it. *)
 
@@ -207,7 +208,9 @@ let rec translate_instruction (genv : genv) (env : env) = function
     (* Procedure call. *)
 
   | PP.IProcCall (callee, es) ->
-      UPP.IProcCall (callee, List.map (translate_expression genv env) es)
+      if (callee = CPrimitiveFunction Writeln || callee = CPrimitiveFunction Write)
+	then UPP.IProcCall (callee, List.map (translate_expression genv env) es)
+	else UPP.IProcCall (callee, List.map (fun x -> convert (translate_expression genv env x)) es)
 
     (* Variable update. Distinguish globals and locals. *)
 

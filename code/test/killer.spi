@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main13              
+j     _main16              
 write:                
 li    $v0, 1          
 syscall               
@@ -119,18 +119,21 @@ jr    $ra
 # end g
 
 # begin f
-f21:
+f24:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
-li    $a0, 1
-li    $a1, 2
-li    $a2, 3
-li    $a3, 4
-li    $t0, 5
-li    $v0, 6
+li    $a0, 3
+li    $a1, 5
+li    $a2, 7
+li    $a3, 9
+li    $t0, 11
+li    $v0, 13
 sw    $t0, -4($sp)
 sw    $v0, -8($sp)
 jal   g51
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
 lw    $ra, 0($sp)
@@ -139,12 +142,14 @@ jr    $ra
 # end f
 
 # begin _main
-_main13:
+_main16:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
-li    $a0, 10
-jal   f21
-move  $a0, $v0
+li    $a0, 21
+jal   f24
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 j     writeln

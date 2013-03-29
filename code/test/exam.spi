@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main14              
+j     _main17              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,42 +76,50 @@ syscall
 j     $ra             
 
 # begin sum
-sum36:
+sum42:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 addiu $a0, $a0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-bgtz  $v0, sum16
+bgtz  $v0, sum22
 addiu $a0, $a1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-sum47:
+sum53:
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra
-sum16:
-addiu $a0, $v0, -1
+sum22:
+sll   $a0, $v0, 1
+addiu $a0, $a0, -1
 addiu $a2, $a1, -1
 li    $a1, 2
 div   $a1, $a2, $a1
-addu  $a1, $a1, $v0
-jal   sum36
+addu  $v0, $a1, $v0
+sll   $v0, $v0, 1
+addiu $a1, $v0, 1
+jal   sum42
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-j     sum47
+j     sum53
 # end sum
 
 # begin _main
-_main14:
+_main17:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
-li    $a0, 10
-li    $a1, 0
-jal   sum36
-move  $a0, $v0
+li    $a0, 21
+li    $a1, 1
+jal   sum42
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 j     writeln

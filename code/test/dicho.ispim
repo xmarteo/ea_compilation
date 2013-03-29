@@ -1,4 +1,40 @@
-1
-1
-1
-1
+Exception occurred at PC=0x004002ac
+  Unaligned address in inst/data fetch: 0x20040011
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x004002ac
+  Unaligned address in inst/data fetch: 0x4008001f
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x0040037c
+  Unaligned address in inst/data fetch: 0x80100033
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+0
+Exception occurred at PC=0x004002ac
+  Unaligned address in inst/data fetch: 0x20040011
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x004002ac
+  Unaligned address in inst/data fetch: 0x4008001f
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x0040037c
+  Unaligned address in inst/data fetch: 0x80100033
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+0
+Exception occurred at PC=0x00400190
+  Unaligned address in inst/data fetch: 0x20040011
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400190
+  Unaligned address in inst/data fetch: 0x20040015
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x004001e8
+  Unaligned address in inst/data fetch: 0x20040015
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+0
+Exception occurred at PC=0x00400190
+  Unaligned address in inst/data fetch: 0x20040011
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400190
+  Unaligned address in inst/data fetch: 0x20040015
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x004001e8
+  Unaligned address in inst/data fetch: 0x20040015
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+0

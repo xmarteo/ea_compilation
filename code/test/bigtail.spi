@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main30              
+j     _main36              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,205 +76,247 @@ syscall
 j     $ra             
 
 # begin somme2
-somme2_88:
+somme2_105:
 addiu $sp, $sp, -20
 sw    $ra, 0($sp)
-lw    $t3, 16($sp)
+lw    $t2, 16($sp)
 lw    $t1, 12($sp)
 lw    $t0, 8($sp)
-lw    $t2, 4($sp)
+lw    $t3, 4($sp)
 addiu $t4, $a0, -1
 li    $v0, 2
 div   $v0, $t4, $v0
-beq   $v0, $zero, somme2_64
-somme2_29:
+beq   $v0, $zero, somme2_81
+somme2_46:
 addiu $a1, $a1, -1
 li    $v0, 2
 div   $v0, $a1, $v0
+sll   $v0, $v0, 1
+addiu $v0, $v0, 1
 addiu $a2, $a2, -1
 li    $a1, 2
 div   $a1, $a2, $a1
+sll   $a1, $a1, 1
+addiu $a1, $a1, 1
 addiu $a3, $a3, -1
 li    $a2, 2
 div   $a2, $a3, $a2
-addiu $t3, $t3, -1
+sll   $a2, $a2, 1
+addiu $a2, $a2, 1
+addiu $t2, $t2, -1
 li    $a3, 2
-div   $a3, $t3, $a3
-addiu $t3, $t1, -1
+div   $a3, $t2, $a3
+sll   $a3, $a3, 1
+addiu $a3, $a3, 1
+addiu $t2, $t1, -1
 li    $t1, 2
-div   $t1, $t3, $t1
-addiu $t3, $t0, -1
+div   $t1, $t2, $t1
+sll   $t1, $t1, 1
+addiu $t2, $t1, 1
+addiu $t1, $t0, -1
 li    $t0, 2
-div   $t0, $t3, $t0
-addiu $t3, $a0, -1
+div   $t0, $t1, $t0
+sll   $t0, $t0, 1
+addiu $t1, $t0, 1
+li    $t0, 1
+addiu $t4, $a0, -1
 li    $a0, 2
-div   $a0, $t3, $a0
-addiu $t3, $t2, -1
-li    $t2, 2
-div   $t2, $t3, $t2
-addu  $t2, $a0, $t2
+div   $a0, $t4, $a0
+addiu $t4, $t3, -1
+li    $t3, 2
+div   $t3, $t4, $t3
+addu  $a0, $a0, $t3
+sll   $a0, $a0, 1
+addiu $t3, $a0, 1
 move  $a0, $v0
-sw    $t1, -4($sp)
-sw    $t0, -8($sp)
-sw    $zero, -12($sp)
-sw    $t2, -16($sp)
-jal   somme2_88
+sw    $t2, -4($sp)
+sw    $t1, -8($sp)
+sw    $t0, -12($sp)
+sw    $t3, -16($sp)
+jal   somme2_105
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-somme2_99:
+somme2_116:
 lw    $ra, 0($sp)
 addiu $sp, $sp, 20
 jr    $ra
-somme2_64:
+somme2_81:
 addiu $t4, $a1, -1
 li    $v0, 2
 div   $v0, $t4, $v0
-bne   $v0, $zero, somme2_29
+bne   $v0, $zero, somme2_46
 addiu $t4, $a2, -1
 li    $v0, 2
 div   $v0, $t4, $v0
-bne   $v0, $zero, somme2_29
+bne   $v0, $zero, somme2_46
 addiu $t4, $a3, -1
 li    $v0, 2
 div   $v0, $t4, $v0
-bne   $v0, $zero, somme2_29
-addiu $t4, $t3, -1
+bne   $v0, $zero, somme2_46
+addiu $t4, $t2, -1
 li    $v0, 2
 div   $v0, $t4, $v0
-bne   $v0, $zero, somme2_29
+bne   $v0, $zero, somme2_46
 addiu $t4, $t1, -1
 li    $v0, 2
 div   $v0, $t4, $v0
-bne   $v0, $zero, somme2_29
+bne   $v0, $zero, somme2_46
 addiu $t4, $t0, -1
 li    $v0, 2
 div   $v0, $t4, $v0
-bne   $v0, $zero, somme2_29
-addiu $a0, $t2, -1
+bne   $v0, $zero, somme2_46
+addiu $a0, $t3, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-j     somme2_99
+j     somme2_116
 # end somme2
 
 # begin somme
-somme88:
+somme105:
 addiu $sp, $sp, -20
 sw    $ra, 0($sp)
-lw    $t3, 16($sp)
-lw    $t2, 12($sp)
-lw    $t5, 8($sp)
-lw    $t6, 4($sp)
+lw    $t4, 16($sp)
+lw    $t3, 12($sp)
+lw    $t6, 8($sp)
+lw    $t7, 4($sp)
 addiu $t0, $a0, -1
 li    $v0, 2
 div   $v0, $t0, $v0
-beq   $v0, $zero, somme64
-somme28:
-addiu $a0, $a0, -1
-li    $v0, 2
-div   $v0, $a0, $v0
+beq   $v0, $zero, somme81
+somme46:
+li    $v0, 1
+addiu $t0, $a0, -1
+li    $a0, 2
+div   $a0, $t0, $a0
+sll   $a0, $a0, 1
+addiu $t0, $a0, 1
 addiu $a1, $a1, -1
 li    $a0, 2
-div   $t0, $a1, $a0
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $t1, $a0, 1
 addiu $a1, $a2, -1
 li    $a0, 2
-div   $t1, $a1, $a0
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $t2, $a0, 1
 addiu $a1, $a3, -1
 li    $a0, 2
-div   $t4, $a1, $a0
-addiu $a1, $t3, -1
-li    $a0, 2
-div   $t3, $a1, $a0
-addiu $a1, $t2, -1
-li    $a0, 2
-div   $t2, $a1, $a0
-addiu $a1, $t5, -1
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $t5, $a0, 1
+addiu $a1, $t4, -1
 li    $a0, 2
 div   $a0, $a1, $a0
-addiu $a2, $t6, -1
+sll   $a0, $a0, 1
+addiu $t4, $a0, 1
+addiu $a1, $t3, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $t3, $a0, 1
+addiu $a1, $t6, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+addiu $a2, $t7, -1
 li    $a1, 2
 div   $a1, $a2, $a1
-addu  $t5, $a0, $a1
-move  $a0, $zero
-move  $a1, $v0
-move  $a2, $t0
-move  $a3, $t1
-sw    $t4, -4($sp)
-sw    $t3, -8($sp)
-sw    $t2, -12($sp)
-sw    $t5, -16($sp)
-jal   somme88
+addu  $a0, $a0, $a1
+sll   $a0, $a0, 1
+addiu $t6, $a0, 1
+move  $a0, $v0
+move  $a1, $t0
+move  $a2, $t1
+move  $a3, $t2
+sw    $t5, -4($sp)
+sw    $t4, -8($sp)
+sw    $t3, -12($sp)
+sw    $t6, -16($sp)
+jal   somme105
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-somme99:
+somme116:
 lw    $ra, 0($sp)
 addiu $sp, $sp, 20
 jr    $ra
-somme64:
+somme81:
 addiu $t0, $a1, -1
 li    $v0, 2
 div   $v0, $t0, $v0
-bne   $v0, $zero, somme28
+bne   $v0, $zero, somme46
 addiu $t0, $a2, -1
 li    $v0, 2
 div   $v0, $t0, $v0
-bne   $v0, $zero, somme28
+bne   $v0, $zero, somme46
 addiu $t0, $a3, -1
 li    $v0, 2
 div   $v0, $t0, $v0
-bne   $v0, $zero, somme28
+bne   $v0, $zero, somme46
+addiu $t0, $t4, -1
+li    $v0, 2
+div   $v0, $t0, $v0
+bne   $v0, $zero, somme46
 addiu $t0, $t3, -1
 li    $v0, 2
 div   $v0, $t0, $v0
-bne   $v0, $zero, somme28
-addiu $t0, $t2, -1
+bne   $v0, $zero, somme46
+addiu $t0, $t6, -1
 li    $v0, 2
 div   $v0, $t0, $v0
-bne   $v0, $zero, somme28
-addiu $t0, $t5, -1
-li    $v0, 2
-div   $v0, $t0, $v0
-bne   $v0, $zero, somme28
-addiu $a0, $t6, -1
+bne   $v0, $zero, somme46
+addiu $a0, $t7, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-j     somme99
+j     somme116
 # end somme
 
 # begin _main
-_main30:
+_main36:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
-li    $a0, 1
-li    $a1, 2
-li    $a2, 3
-li    $a3, 4
-li    $t1, 5
-li    $t0, 6
-li    $v0, 7
-sw    $t1, -4($sp)
-sw    $t0, -8($sp)
-sw    $v0, -12($sp)
-sw    $zero, -16($sp)
-jal   somme88
-move  $a0, $v0
+li    $a0, 3
+li    $a1, 5
+li    $a2, 7
+li    $a3, 9
+li    $t2, 11
+li    $t1, 13
+li    $t0, 15
+li    $v0, 1
+sw    $t2, -4($sp)
+sw    $t1, -8($sp)
+sw    $t0, -12($sp)
+sw    $v0, -16($sp)
+jal   somme105
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 jal   writeln
-li    $a0, 1
-li    $a1, 2
-li    $a2, 3
-li    $a3, 4
-li    $t1, 5
-li    $t0, 6
-li    $v0, 7
-sw    $t1, -4($sp)
-sw    $t0, -8($sp)
-sw    $v0, -12($sp)
-sw    $zero, -16($sp)
-jal   somme2_88
-move  $a0, $v0
+li    $a0, 3
+li    $a1, 5
+li    $a2, 7
+li    $a3, 9
+li    $t2, 11
+li    $t1, 13
+li    $t0, 15
+li    $v0, 1
+sw    $t2, -4($sp)
+sw    $t1, -8($sp)
+sw    $t0, -12($sp)
+sw    $v0, -16($sp)
+jal   somme2_105
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 j     writeln

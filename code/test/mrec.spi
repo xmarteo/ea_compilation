@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main20              
+j     _main25              
 write:                
 li    $v0, 1          
 syscall               
@@ -90,7 +90,7 @@ jr    $ra
 # end sum
 
 # begin fib2
-fib2_36:
+fib2_51:
 addiu $sp, $sp, -12
 sw    $ra, 8($sp)
 sw    $s1, 4($sp)
@@ -98,38 +98,52 @@ sw    $s0, 0($sp)
 move  $s1, $a0
 addiu $a0, $s1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-li    $a1, -2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+li    $a1, -3
 jal   sum22
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s1, $v0, 1
 addiu $a0, $s1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-slti  $v0, $a0, 2
-bgtz  $v0, fib2_12
-jal   fib1_34
-move  $s0, $v0
+div   $v0, $a0, $v0
+slti  $a0, $v0, 2
+bgtz  $a0, fib2_22
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+jal   fib1_44
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $s0, $a0, $v0
 addiu $a0, $s1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-jal   fib2_36
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+jal   fib2_51
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 addu  $v0, $s0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-fib2_47:
+fib2_62:
 lw    $ra, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 12
 jr    $ra
-fib2_12:
+fib2_22:
 li    $v0, 3
-j     fib2_47
+j     fib2_62
 # end fib2
 
 # begin fib1
-fib1_34:
+fib1_44:
 addiu $sp, $sp, -12
 sw    $ra, 8($sp)
 sw    $s1, 4($sp)
@@ -142,31 +156,40 @@ sll   $v0, $v0, 1
 addiu $s1, $v0, -1
 addiu $a0, $s1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-slti  $v0, $a0, 2
-bgtz  $v0, fib1_12
-jal   fib1_34
-move  $s0, $v0
+div   $v0, $a0, $v0
+slti  $a0, $v0, 2
+bgtz  $a0, fib1_22
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+jal   fib1_44
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $s0, $a0, $v0
 addiu $a0, $s1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-jal   fib2_36
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+jal   fib2_51
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 addu  $v0, $s0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-fib1_45:
+fib1_55:
 lw    $ra, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 12
 jr    $ra
-fib1_12:
+fib1_22:
 li    $v0, 3
-j     fib1_45
+j     fib1_55
 # end fib1
 
 # begin fib
-fib29:
+fib46:
 addiu $sp, $sp, -12
 sw    $ra, 8($sp)
 sw    $s1, 4($sp)
@@ -174,33 +197,48 @@ sw    $s0, 0($sp)
 move  $s1, $a0
 addiu $a0, $s1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-slti  $v0, $a0, 2
-bgtz  $v0, fib12
-jal   fib1_34
-move  $s0, $v0
+div   $v0, $a0, $v0
+slti  $a0, $v0, 2
+bgtz  $a0, fib29
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+jal   fib1_44
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $s0, $v0, 1
 addiu $a0, $s1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-jal   fib2_36
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+jal   fib2_51
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a1, $v0, 1
 move  $a0, $s0
-move  $a1, $v0
 jal   sum22
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-fib40:
+fib57:
 lw    $ra, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 12
 jr    $ra
-fib12:
+fib29:
 li    $v0, 3
-j     fib40
+j     fib57
 # end fib
 
 # begin _main
-_main20:
+_main25:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 jal   readln
@@ -210,9 +248,13 @@ sw    $v0, 0($gp)
 lw    $v0, 0($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+jal   fib46
+addiu $a0, $v0, -1
+li    $v0, 2
 div   $a0, $a0, $v0
-jal   fib29
-move  $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 j     writeln

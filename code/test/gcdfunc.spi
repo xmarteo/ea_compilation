@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main28              
+j     _main35              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,48 +76,62 @@ syscall
 j     $ra             
 
 # begin gcd
-gcd67:
+gcd81:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 addiu $a0, $a0, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-beq   $a0, $zero, gcd49
+div   $v0, $a0, $v0
+beq   $v0, $zero, gcd63
 addiu $a1, $a1, -1
+li    $a0, 2
+div   $a1, $a1, $a0
+beq   $a1, $zero, gcd50
+slt   $a0, $v0, $a1
+bgtz  $a0, gcd37
+subu  $v0, $v0, $a1
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+sll   $v0, $a1, 1
+addiu $a1, $v0, 1
+jal   gcd81
+addiu $a0, $v0, -1
 li    $v0, 2
-div   $a1, $a1, $v0
-beq   $a1, $zero, gcd36
-slt   $v0, $a0, $a1
-bgtz  $v0, gcd17
-subu  $a0, $a0, $a1
-jal   gcd67
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-gcd78:
+gcd92:
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra
-gcd17:
-subu  $a1, $a1, $a0
-jal   gcd67
+gcd37:
+sll   $a0, $v0, 1
+addiu $a0, $a0, 1
+subu  $v0, $a1, $v0
+sll   $v0, $v0, 1
+addiu $a1, $v0, 1
+jal   gcd81
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-j     gcd78
-gcd36:
-sll   $v0, $a0, 1
+j     gcd92
+gcd50:
+sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-j     gcd78
-gcd49:
+j     gcd92
+gcd63:
 addiu $a0, $a1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-j     gcd78
+j     gcd92
 # end gcd
 
 # begin _main
-_main28:
+_main35:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 jal   readln
@@ -131,13 +145,19 @@ sw    $v0, 4($gp)
 lw    $v0, 0($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 lw    $v0, 4($gp)
 addiu $a1, $v0, -1
 li    $v0, 2
-div   $a1, $a1, $v0
-jal   gcd67
-move  $a0, $v0
+div   $v0, $a1, $v0
+sll   $v0, $v0, 1
+addiu $a1, $v0, 1
+jal   gcd81
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 j     writeln

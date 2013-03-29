@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main21              
+j     _main23              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,7 +76,7 @@ syscall
 j     $ra             
 
 # begin triangle
-triangle96:
+triangle108:
 addiu $sp, $sp, -20
 sw    $ra, 16($sp)
 sw    $s3, 12($sp)
@@ -92,7 +92,7 @@ sll   $v0, $v0, 2
 addiu $a0, $v0, 4
 jal   alloc
 move  $s2, $v0
-triangle75:
+triangle87:
 addiu $a0, $s1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
@@ -100,9 +100,9 @@ addiu $a1, $s3, -1
 li    $a0, 2
 div   $a0, $a1, $a0
 sle   $a0, $v0, $a0
-bgtz  $a0, triangle64
+bgtz  $a0, triangle76
 li    $s0, 1
-triangle21:
+triangle23:
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
@@ -110,7 +110,7 @@ addiu $a1, $s3, -1
 li    $a0, 2
 div   $a0, $a1, $a0
 sle   $a0, $v0, $a0
-bgtz  $a0, triangle10
+bgtz  $a0, triangle12
 lw    $ra, 16($sp)
 lw    $s3, 12($sp)
 lw    $s2, 8($sp)
@@ -118,54 +118,66 @@ lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 20
 jr    $ra
-triangle10:
+triangle12:
 sll   $v0, $v0, 2
 addu  $v0, $s2, $v0
-lw    $a0, 0($v0)
+lw    $v0, 0($v0)
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   affiche41
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s0, $v0, 3
-j     triangle21
-triangle64:
+j     triangle23
+triangle76:
 sll   $v0, $v0, 1
 addiu $s0, $v0, -1
-triangle62:
+triangle74:
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-bgtz  $v0, triangle55
-li    $a0, 1
-jal   grandir55
+bgtz  $v0, triangle67
+li    $a0, 3
+jal   grandir60
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sw    $v0, 0($s2)
 addiu $a0, $s1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 2
 addu  $s0, $s2, $v0
-li    $a0, 1
-jal   grandir55
+li    $a0, 3
+jal   grandir60
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sw    $v0, 0($s0)
 addiu $a0, $s1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s1, $v0, 3
-j     triangle75
-triangle55:
+j     triangle87
+triangle67:
 sll   $v0, $v0, 2
 addu  $v0, $s2, $v0
 lw    $a0, 0($v0)
-lw    $a1, -4($v0)
-jal   bigadd185
+sll   $a0, $a0, 1
+addiu $a0, $a0, 1
+lw    $v0, -4($v0)
+sll   $v0, $v0, 1
+addiu $a1, $v0, 1
+jal   bigadd200
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s0, $v0, -1
-j     triangle62
+j     triangle74
 # end triangle
 
 # begin modulo
@@ -185,7 +197,7 @@ jr    $ra
 # end modulo
 
 # begin grandir
-grandir55:
+grandir60:
 addiu $sp, $sp, -20
 sw    $ra, 16($sp)
 sw    $s3, 12($sp)
@@ -202,11 +214,11 @@ addiu $a0, $v0, 4
 jal   alloc
 move  $s1, $v0
 li    $s2, 1
-grandir33:
+grandir38:
 addiu $a0, $s3, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-bgtz  $a0, grandir29
+div   $v0, $a0, $v0
+bgtz  $v0, grandir34
 addiu $a0, $s2, -1
 li    $v0, 2
 div   $v0, $a0, $v0
@@ -219,19 +231,24 @@ lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 20
 jr    $ra
-grandir29:
+grandir34:
 addiu $a1, $s2, -1
-li    $v0, 2
-div   $v0, $a1, $v0
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 1
+addiu $s2, $a0, 3
+addiu $a1, $s2, -1
+li    $a0, 2
+div   $a0, $a1, $a0
+sll   $a0, $a0, 2
+addu  $s0, $s1, $a0
 sll   $v0, $v0, 1
-addiu $s2, $v0, 3
-addiu $a1, $s2, -1
-li    $v0, 2
-div   $v0, $a1, $v0
-sll   $v0, $v0, 2
-addu  $s0, $s1, $v0
-li    $a1, 10
+addiu $a0, $v0, 1
+li    $a1, 21
 jal   modulo30
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sw    $v0, 0($s0)
 addiu $a0, $s3, -1
 li    $v0, 2
@@ -240,7 +257,7 @@ li    $v0, 10
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s3, $v0, 1
-j     grandir33
+j     grandir38
 # end grandir
 
 # begin copy
@@ -266,7 +283,7 @@ j     copy22
 # end copy
 
 # begin bigadd
-bigadd185:
+bigadd200:
 addiu $sp, $sp, -28
 sw    $ra, 24($sp)
 sw    $s5, 20($sp)
@@ -280,13 +297,13 @@ move  $s5, $a1
 lw    $v0, 0($s4)
 lw    $a0, 0($s5)
 slt   $a1, $v0, $a0
-bgtz  $a1, bigadd165
+bgtz  $a1, bigadd180
 sll   $v0, $a0, 1
 addiu $s2, $v0, 1
-bigadd160:
+bigadd175:
 li    $s3, 3
 li    $s1, 1
-bigadd158:
+bigadd173:
 addiu $a0, $s3, -1
 li    $v0, 2
 div   $v0, $a0, $v0
@@ -294,21 +311,21 @@ addiu $a1, $s2, -1
 li    $a0, 2
 div   $a0, $a1, $a0
 sle   $a0, $v0, $a0
-bgtz  $a0, bigadd147
-bigadd107:
+bgtz  $a0, bigadd162
+bigadd117:
 addiu $a0, $s3, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 lw    $a0, 0($s4)
 sle   $a0, $v0, $a0
-bgtz  $a0, bigadd98
-bigadd65:
+bgtz  $a0, bigadd108
+bigadd70:
 addiu $a0, $s3, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 lw    $a0, 0($s5)
 sle   $a0, $v0, $a0
-bgtz  $a0, bigadd56
+bgtz  $a0, bigadd61
 addiu $a1, $s1, -1
 li    $a0, 2
 div   $a0, $a1, $a0
@@ -317,7 +334,7 @@ sll   $a1, $v0, 2
 addu  $a1, $s4, $a1
 sw    $a0, 0($a1)
 sw    $v0, 0($s4)
-bigadd196:
+bigadd211:
 lw    $ra, 24($sp)
 lw    $s5, 20($sp)
 lw    $s4, 16($sp)
@@ -330,8 +347,8 @@ jr    $ra
 bigadd15:
 addiu $v0, $v0, -1
 sw    $v0, 0($s4)
-j     bigadd196
-bigadd56:
+j     bigadd211
+bigadd61:
 sll   $v0, $v0, 2
 addu  $a0, $s5, $v0
 lw    $a0, 0($a0)
@@ -344,9 +361,14 @@ addiu $s1, $a0, 1
 addu  $s0, $s4, $v0
 addiu $a0, $s1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-li    $a1, 10
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+li    $a1, 21
 jal   modulo30
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sw    $v0, 0($s0)
 addiu $a0, $s1, -1
 li    $v0, 2
@@ -360,8 +382,8 @@ li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s3, $v0, 3
-j     bigadd65
-bigadd98:
+j     bigadd70
+bigadd108:
 sll   $v0, $v0, 2
 addu  $s0, $s4, $v0
 lw    $v0, 0($s0)
@@ -373,9 +395,14 @@ sll   $v0, $v0, 1
 addiu $s1, $v0, 1
 addiu $a0, $s1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-li    $a1, 10
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+li    $a1, 21
 jal   modulo30
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sw    $v0, 0($s0)
 addiu $a0, $s1, -1
 li    $v0, 2
@@ -389,8 +416,8 @@ li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s3, $v0, 3
-j     bigadd107
-bigadd147:
+j     bigadd117
+bigadd162:
 sll   $v0, $v0, 2
 addu  $s0, $s4, $v0
 lw    $a0, 0($s0)
@@ -405,9 +432,14 @@ sll   $v0, $v0, 1
 addiu $s1, $v0, 1
 addiu $a0, $s1, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-li    $a1, 10
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+li    $a1, 21
 jal   modulo30
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sw    $v0, 0($s0)
 addiu $a0, $s1, -1
 li    $v0, 2
@@ -421,11 +453,11 @@ li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s3, $v0, 3
-j     bigadd158
-bigadd165:
+j     bigadd173
+bigadd180:
 sll   $v0, $v0, 1
 addiu $s2, $v0, 1
-j     bigadd160
+j     bigadd175
 # end bigadd
 
 # begin affiche
@@ -471,7 +503,7 @@ j     affiche26
 # end affiche
 
 # begin _main
-_main21:
+_main23:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 li    $v0, 65
@@ -483,8 +515,10 @@ sw    $v0, 4($gp)
 lw    $v0, 4($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
-j     triangle96
+j     triangle108
 # end _main

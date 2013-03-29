@@ -1,0 +1,1200 @@
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040199
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040195
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040199
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040195
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040195
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040191
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040195
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040191
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040191
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004018d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040191
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004018d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004018d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040189
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004018d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040189
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040189
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040185
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040189
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040185
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040185
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040181
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040185
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040181
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040181
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004017d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040181
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004017d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004017d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040179
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004017d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040179
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040179
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040175
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040179
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040175
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040175
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040171
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040175
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040171
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040171
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004016d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040171
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004016d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004016d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040169
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004016d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040169
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040169
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040165
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040169
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040165
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040165
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040161
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040165
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040161
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040161
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004015d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040161
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004015d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004015d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040159
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004015d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040159
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040159
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040155
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040159
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040155
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040155
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040151
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040155
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040151
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040151
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004014d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040151
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004014d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004014d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040149
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004014d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040149
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040149
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040145
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040149
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040145
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040145
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040141
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040145
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040141
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040141
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004013d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040141
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004013d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004013d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040139
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004013d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040139
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040139
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040135
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040139
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040135
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040135
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040131
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040135
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040131
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040131
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004012d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040131
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004012d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004012d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040129
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004012d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040129
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040129
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040125
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040129
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040125
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040125
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040121
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040125
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040121
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040121
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004011d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040121
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004011d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004011d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040119
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004011d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040119
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040119
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040115
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040119
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040115
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040115
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040111
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040115
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040111
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040111
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004010d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040111
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004010d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004010d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040109
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004010d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040109
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040109
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040105
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040109
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040105
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040105
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040101
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040105
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040101
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040101
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400fd
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040101
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400fd
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400fd
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400f9
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400fd
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400f9
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400f9
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400f5
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400f9
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400f5
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400f5
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400f1
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400f5
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400f1
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400f1
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400ed
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400f1
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400ed
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400ed
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400e9
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400ed
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400e9
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400e9
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400e5
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400e9
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400e5
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400e5
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400e1
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400e5
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400e1
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400e1
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400dd
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400e1
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400dd
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400dd
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400d9
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400dd
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400d9
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400d9
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400d5
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400d9
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400d5
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400d5
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400d1
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400d5
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400d1
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400d1
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400cd
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400d1
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400cd
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400cd
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400c9
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400cd
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400c9
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400c9
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400c5
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400c9
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400c5
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400c5
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400c1
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400c5
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400c1
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400c1
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400bd
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400c1
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400bd
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400bd
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400b9
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400bd
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400b9
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400b9
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400b5
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400b9
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400b5
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400b5
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400b1
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400b5
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400b1
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400b1
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400ad
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400b1
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400ad
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400ad
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400a9
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400ad
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400a9
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400a9
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400a5
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400a9
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400a5
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400a5
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x200400a1
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400a5
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x200400a1
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x200400a1
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004009d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x200400a1
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004009d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004009d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040099
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004009d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040099
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040099
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040095
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040099
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040095
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040095
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040091
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040095
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040091
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040091
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004008d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040091
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004008d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004008d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040089
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004008d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040089
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040089
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040085
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040089
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040085
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040085
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040081
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040085
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040081
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040081
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004007d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040081
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004007d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004007d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040079
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004007d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040079
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040079
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040075
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040079
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040075
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040075
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040071
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040075
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040071
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040071
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004006d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040071
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004006d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004006d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040069
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004006d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040069
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040069
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040065
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040069
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040065
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040065
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040061
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040065
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040061
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040061
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004005d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040061
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004005d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004005d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040059
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004005d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040059
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040059
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040055
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040059
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040055
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040055
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040051
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040055
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040051
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040051
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004004d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040051
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004004d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004004d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040049
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004004d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040049
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040049
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040045
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040049
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040045
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040045
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040041
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040045
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040041
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040041
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004003d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040041
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004003d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004003d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040039
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004003d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040039
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040039
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040035
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040039
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040035
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040035
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040031
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040035
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040031
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040031
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004002d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040031
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004002d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004002d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040029
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004002d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040029
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040029
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040025
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040029
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040025
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040025
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040021
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040025
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040021
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040021
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004001d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040021
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004001d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004001d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040019
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004001d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040019
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040019
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040015
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040019
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040015
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040015
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040011
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040015
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040011
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x20040011
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x2004000d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x20040011
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x2004000d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400128
+  Unaligned address in inst/data fetch: 0x2004000d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400134
+  Unaligned address in inst/data fetch: 0x20040009
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400138
+  Unaligned address in store: 0x2004000d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400154
+  Unaligned address in store: 0x20040009
+  Exception 5  [Address error in store]  occurred and ignored

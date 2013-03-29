@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main30              
+j     _main32              
 write:                
 li    $v0, 1          
 syscall               
@@ -200,27 +200,29 @@ j     writeln
 # end coucou
 
 # begin _main
-_main30:
+_main32:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 jal   readln
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
 sw    $v0, 0($gp)
-_main16:
+_main18:
 lw    $v0, 0($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-bne   $a0, $zero, _main44
+div   $v0, $a0, $v0
+bne   $v0, $zero, _main8
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra
-_main44:
+_main8:
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   coucou390
 jal   readln
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
 sw    $v0, 0($gp)
-j     _main16
+j     _main18
 # end _main

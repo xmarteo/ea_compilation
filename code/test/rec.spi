@@ -76,12 +76,12 @@ syscall
 j     $ra             
 
 # begin count
-count24:
+count25:
 addiu $sp, $sp, -8
 sw    $ra, 4($sp)
 sw    $s0, 0($sp)
 move  $s0, $a0
-count13:
+count14:
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $a0, $a0, $v0
@@ -89,18 +89,19 @@ jal   writeln
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-bgtz  $v0, count2
+bgtz  $v0, count3
 lw    $ra, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 8
 jr    $ra
-count2:
+count3:
+sll   $v0, $v0, 1
 addiu $s0, $v0, -1
-j     count13
+j     count14
 # end count
 
 # begin _main
 _main12:
-li    $a0, 10
-j     count24
+li    $a0, 21
+j     count25
 # end _main

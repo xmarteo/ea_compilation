@@ -76,13 +76,13 @@ syscall
 j     $ra             
 
 # begin f
-f51:
+f53:
 addiu $sp, $sp, -12
 sw    $ra, 8($sp)
 sw    $s1, 4($sp)
 sw    $s0, 0($sp)
 move  $s1, $a0
-f36:
+f38:
 addiu $a0, $s1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
@@ -100,13 +100,13 @@ addiu $v0, $v0, 1
 addiu $a0, $v0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-bgtz  $v0, f18
+bgtz  $v0, f20
 lw    $ra, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 12
 jr    $ra
-f18:
+f20:
 addiu $a1, $s0, -1
 li    $a0, 2
 div   $a0, $a1, $a0
@@ -120,12 +120,14 @@ addiu $a0, $a0, 1
 addiu $a1, $a0, -1
 li    $a0, 2
 div   $a0, $a1, $a0
-addu  $s1, $v0, $a0
-j     f36
+addu  $v0, $v0, $a0
+sll   $v0, $v0, 1
+addiu $s1, $v0, 1
+j     f38
 # end f
 
 # begin _main
 _main12:
-li    $a0, 0
-j     f51
+li    $a0, 1
+j     f53
 # end _main

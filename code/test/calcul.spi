@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main19              
+j     _main28              
 write:                
 li    $v0, 1          
 syscall               
@@ -111,18 +111,26 @@ jr    $ra
 # end f
 
 # begin _main
-_main19:
+_main28:
 addiu $sp, $sp, -8
 sw    $ra, 4($sp)
-li    $a0, 0
-jal   f47
-move  $a0, $v0
-jal   writeln
 li    $a0, 1
 jal   f47
-sw    $v0, 0($sp)
-li    $a0, 2
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
+jal   writeln
+li    $a0, 3
 jal   f47
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v1, $a0, $v0
+sw    $v1, 0($sp)
+li    $a0, 5
+jal   f47
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 lw    $v1, 0($sp)
 addu  $a0, $v1, $v0
 lw    $ra, 4($sp)

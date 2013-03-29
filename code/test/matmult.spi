@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main38              
+j     _main61              
 write:                
 li    $v0, 1          
 syscall               
@@ -76,7 +76,7 @@ syscall
 j     $ra             
 
 # begin mread
-mread69:
+mread74:
 addiu $sp, $sp, -20
 sw    $ra, 16($sp)
 sw    $s3, 12($sp)
@@ -86,9 +86,13 @@ sw    $s0, 0($sp)
 move  $s3, $a0
 addiu $a0, $s3, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   malloc46
-move  $s0, $v0
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $s0, $a0, $v0
 li    $s2, 1
 mread48:
 addiu $a0, $s2, -1
@@ -117,14 +121,14 @@ addiu $a0, $s3, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 slt   $v0, $a1, $v0
-bgtz  $v0, mread83
+bgtz  $v0, mread88
 addiu $a0, $s2, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s2, $v0, 3
 j     mread48
-mread83:
+mread88:
 jal   readln
 sll   $v0, $v0, 1
 addiu $a0, $v0, 1
@@ -149,7 +153,7 @@ j     mread39
 # end mread
 
 # begin mmult
-mmult116:
+mmult121:
 addiu $sp, $sp, -16
 sw    $ra, 12($sp)
 sw    $s2, 8($sp)
@@ -160,8 +164,13 @@ move  $s1, $a1
 move  $s2, $a2
 addiu $a0, $s0, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 jal   malloc46
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 li    $a2, 1
 mmult92:
 addiu $a1, $a2, -1
@@ -366,7 +375,7 @@ j     affiche33
 # end affiche
 
 # begin _main
-_main38:
+_main61:
 addiu $sp, $sp, -8
 sw    $ra, 4($sp)
 sw    $s0, 0($sp)
@@ -377,25 +386,45 @@ sw    $v0, 4($gp)
 lw    $v0, 4($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-jal   mread69
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+jal   mread74
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sw    $v0, 0($gp)
 lw    $v0, 4($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-jal   mread69
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+jal   mread74
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sw    $v0, 8($gp)
 lw    $v0, 4($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
-div   $s0, $a0, $v0
-lw    $a1, 0($gp)
-lw    $a2, 8($gp)
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $s0, $v0, 1
+lw    $v0, 0($gp)
+sll   $v0, $v0, 1
+addiu $a1, $v0, 1
+lw    $v0, 8($gp)
+sll   $v0, $v0, 1
+addiu $a2, $v0, 1
 move  $a0, $s0
-jal   mmult116
+jal   mmult121
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a1, $v0, 1
 move  $a0, $s0
-move  $a1, $v0
 lw    $ra, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 8

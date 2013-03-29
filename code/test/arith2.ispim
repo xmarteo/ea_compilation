@@ -1,7 +1,49 @@
+Exception occurred at PC=0x00400268
+  Unaligned address in inst/data fetch: 0x20040009
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400290
+  Unaligned address in store: 0x20040009
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400268
+  Unaligned address in inst/data fetch: 0x2004000d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400290
+  Unaligned address in store: 0x2004000d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400268
+  Unaligned address in inst/data fetch: 0x20040011
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400290
+  Unaligned address in store: 0x20040011
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400268
+  Unaligned address in inst/data fetch: 0x20040015
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400290
+  Unaligned address in store: 0x20040015
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400268
+  Unaligned address in inst/data fetch: 0x20040019
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400290
+  Unaligned address in store: 0x20040019
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400268
+  Unaligned address in inst/data fetch: 0x2004001d
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400290
+  Unaligned address in store: 0x2004001d
+  Exception 5  [Address error in store]  occurred and ignored
+Exception occurred at PC=0x00400268
+  Unaligned address in inst/data fetch: 0x20040021
+  Exception 4  [Address error in inst/data fetch]  occurred and ignored
+Exception occurred at PC=0x00400290
+  Unaligned address in store: 0x20040021
+  Exception 5  [Address error in store]  occurred and ignored
 4
 89
 0
 -2
-347
+-345
 1
-5
+4

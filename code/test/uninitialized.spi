@@ -136,7 +136,7 @@ addiu $a0, $v0, -1
 li    $v0, 2
 div   $a0, $a0, $v0
 jal   writeln
-li    $a0, 100
+li    $a0, 201
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 j     tab40

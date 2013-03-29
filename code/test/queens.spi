@@ -76,7 +76,7 @@ syscall
 j     $ra             
 
 # begin try
-try148:
+try149:
 addiu $sp, $sp, -12
 sw    $ra, 8($sp)
 sw    $s1, 4($sp)
@@ -89,9 +89,9 @@ lw    $v0, 12($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-beq   $a1, $v0, try172
+beq   $a1, $v0, try173
 li    $s0, 1
-try126:
+try127:
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
@@ -100,13 +100,13 @@ addiu $a1, $a0, -1
 li    $a0, 2
 div   $a0, $a1, $a0
 slt   $a0, $v0, $a0
-bgtz  $a0, try117
+bgtz  $a0, try118
 lw    $ra, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 12
 jr    $ra
-try117:
+try118:
 lw    $a0, 16($gp)
 sll   $a1, $v0, 2
 addu  $a1, $a0, $a1
@@ -137,8 +137,9 @@ lw    $a1, 0($gp)
 sll   $a2, $a0, 2
 addu  $a1, $a1, $a2
 sw    $v0, 0($a1)
-addiu $a0, $a0, 1
-jal   try148
+sll   $v0, $a0, 1
+addiu $a0, $v0, 3
+jal   try149
 lw    $a0, 16($gp)
 addiu $a1, $s0, -1
 li    $v0, 2
@@ -165,8 +166,8 @@ li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s0, $v0, 3
-j     try126
-try172:
+j     try127
+try173:
 lw    $ra, 8($sp)
 lw    $s1, 4($sp)
 lw    $s0, 0($sp)
@@ -279,8 +280,8 @@ sll   $v0, $v0, 3
 addiu $a0, $v0, -4
 jal   alloc
 sw    $v0, 8($gp)
-li    $a0, 0
+li    $a0, 1
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
-j     try148
+j     try149
 # end _main

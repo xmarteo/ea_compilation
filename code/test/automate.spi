@@ -76,75 +76,87 @@ syscall
 j     $ra             
 
 # begin odd
-odd25:
+odd29:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 addiu $a0, $a0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-beq   $v0, $zero, odd8
+beq   $v0, $zero, odd12
+sll   $v0, $v0, 1
 addiu $a0, $v0, -1
-jal   even25
+jal   even29
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-odd36:
+odd40:
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra
-odd8:
+odd12:
 li    $v0, 1
-j     odd36
+j     odd40
 # end odd
 
 # begin even
-even25:
+even29:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 addiu $a0, $a0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-beq   $v0, $zero, even8
+beq   $v0, $zero, even12
+sll   $v0, $v0, 1
 addiu $a0, $v0, -1
-jal   odd25
+jal   odd29
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-even36:
+even40:
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra
-even8:
+even12:
 li    $v0, 3
-j     even36
+j     even40
 # end even
 
 # begin check
-check27:
+check32:
 addiu $sp, $sp, -8
 sw    $ra, 4($sp)
 sw    $s0, 0($sp)
 li    $s0, 201
-check15:
+check20:
 addiu $a0, $s0, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-bgez  $a0, check42
+div   $v0, $a0, $v0
+bgez  $v0, check13
 lw    $ra, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 8
 jr    $ra
-check42:
-jal   even25
-move  $a0, $v0
+check13:
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+jal   even29
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 jal   writeln
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s0, $v0, -1
-j     check15
+j     check20
 # end check
 
 # begin _main
 _main11:
-j     check27
+j     check32
 # end _main

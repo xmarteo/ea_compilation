@@ -45,9 +45,9 @@ let rec expr0 () = function
   | EConst i ->
       sprintf "%ld" i
   | EGetVar x ->
-      sprintf "%s" x
+      sprintf "getvar %s" x
   | EGetGlobal offset ->
-      sprintf "global(%ld)" offset
+      sprintf "getglobal global(%ld)" offset
   | EFunCall (c, es) ->
       sprintf "%s(%a)" (PrintPrimitive.callee c) (seplist comma expr) es
   | ENewArray e ->
@@ -118,9 +118,9 @@ let rec instr () = function
   | IProcCall (c, es) ->
       sprintf "%s(%a)" (PrintPrimitive.callee c) (seplist comma expr) es
   | ISetVar (x, e) ->
-      sprintf "%s := %a" x expr e
+      sprintf "setvar %s := %a" x expr e
   | ISetGlobal (offset, e) ->
-      sprintf "global(%ld) := %a" offset expr e
+      sprintf "setglobal global(%ld) := %a" offset expr e
   | IStore (ea, offset, ev) ->
       sprintf "%a[%ld] := %a" expr1 ea offset expr ev
   | IIf (c, i1, i2) ->

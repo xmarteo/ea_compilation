@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main65              
+j     _main85              
 write:                
 li    $v0, 1          
 syscall               
@@ -142,54 +142,74 @@ j     findLoop79
 # end findLoop
 
 # begin find
-find101:
+find123:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 addiu $a0, $a0, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
 addiu $a1, $a1, -1
-li    $v0, 2
-div   $v0, $a1, $v0
-beq   $a0, $v0, find78
-addiu $a1, $a0, 1
-beq   $a1, $v0, find66
-addu  $t0, $a0, $v0
-li    $a1, 2
-div   $a1, $t0, $a1
-sll   $a1, $a1, 1
-addiu $a1, $a1, 1
-addiu $t0, $a1, -1
-li    $a1, 2
-div   $a1, $t0, $a1
-sll   $t0, $a1, 2
-addu  $t0, $a2, $t0
-lw    $t0, 0($t0)
+li    $a0, 2
+div   $a1, $a1, $a0
+beq   $v0, $a1, find100
+addiu $a0, $v0, 1
+beq   $a0, $a1, find88
+addu  $t0, $v0, $a1
+li    $a0, 2
+div   $a0, $t0, $a0
+sll   $a0, $a0, 1
+addiu $a0, $a0, 1
+addiu $t0, $a0, -1
+li    $a0, 2
+div   $t0, $t0, $a0
+sll   $a0, $t0, 2
+addu  $a0, $a2, $a0
+lw    $a0, 0($a0)
 addiu $t1, $a3, -1
 li    $a3, 2
 div   $a3, $t1, $a3
-slt   $t1, $t0, $a3
-bgtz  $t1, find125
-beq   $t0, $a3, find13
-jal   find101
+slt   $t1, $a0, $a3
+bgtz  $t1, find54
+beq   $a0, $a3, find24
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+sll   $v0, $t0, 1
+addiu $a1, $v0, 1
+sll   $v0, $a2, 1
+addiu $a2, $v0, 1
+sll   $v0, $a3, 1
+addiu $a3, $v0, 1
+jal   find123
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-find112:
+find134:
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra
-find13:
+find24:
 li    $v0, 3
-j     find112
-find125:
-move  $a0, $a1
-move  $a1, $v0
-jal   find101
+j     find134
+find54:
+sll   $v0, $t0, 1
+addiu $a0, $v0, 1
+sll   $v0, $a1, 1
+addiu $a1, $v0, 1
+sll   $v0, $a2, 1
+addiu $a2, $v0, 1
+sll   $v0, $a3, 1
+addiu $a3, $v0, 1
+jal   find123
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-j     find112
-find66:
-sll   $v0, $a0, 2
+j     find134
+find88:
+sll   $v0, $v0, 2
 addu  $v0, $a2, $v0
 lw    $v0, 0($v0)
 addiu $a1, $a3, -1
@@ -198,78 +218,98 @@ div   $a0, $a1, $a0
 seq   $v0, $v0, $a0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
-j     find112
-find78:
+j     find134
+find100:
 li    $v0, 1
-j     find112
+j     find134
 # end find
 
 # begin _main
-_main65:
+_main85:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 li    $a0, 16
 jal   alloc
 sw    $v0, 0($gp)
-lw    $a2, 0($gp)
-li    $v0, 3
-sw    $v0, 0($a2)
-li    $v0, 5
-sw    $v0, 4($a2)
-li    $v0, 7
-sw    $v0, 8($a2)
-li    $v0, 48
-sw    $v0, 12($a2)
+lw    $v0, 0($gp)
+li    $a0, 3
+sw    $a0, 0($v0)
+li    $a0, 5
+sw    $a0, 4($v0)
+li    $a0, 7
+sw    $a0, 8($v0)
+li    $a0, 48
+sw    $a0, 12($v0)
+li    $a0, 1
+li    $a1, 9
+sll   $v0, $v0, 1
+addiu $a2, $v0, 1
+li    $a3, 15
+jal   find123
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bgtz  $v0, _main49
 li    $a0, 0
-li    $a1, 4
-li    $a3, 7
-jal   find101
+jal   writeln
+_main45:
+li    $a0, 1
+li    $a1, 9
+lw    $v0, 0($gp)
+sll   $v0, $v0, 1
+addiu $a2, $v0, 1
+li    $a3, 107
+jal   find123
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 bgtz  $v0, _main34
 li    $a0, 0
 jal   writeln
 _main30:
-li    $a0, 0
-li    $a1, 4
-lw    $a2, 0($gp)
-li    $a3, 53
-jal   find101
-bgtz  $v0, _main24
+li    $a0, 1
+li    $a1, 9
+lw    $v0, 0($gp)
+sll   $v0, $v0, 1
+addiu $a2, $v0, 1
+li    $a3, 7
+jal   findLoop97
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bgtz  $v0, _main19
 li    $a0, 0
 jal   writeln
-_main20:
-li    $a0, 0
-li    $a1, 4
-lw    $a2, 0($gp)
-li    $a3, 3
+_main15:
+li    $a0, 1
+li    $a1, 9
+lw    $v0, 0($gp)
+sll   $v0, $v0, 1
+addiu $a2, $v0, 1
+li    $a3, 9
 jal   findLoop97
-bgtz  $v0, _main14
-li    $a0, 0
-jal   writeln
-_main10:
-li    $a0, 0
-li    $a1, 4
-lw    $a2, 0($gp)
-li    $a3, 4
-jal   findLoop97
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 bgtz  $v0, _main4
 li    $a0, 0
-_main87:
+_main107:
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 j     writeln
 _main4:
 li    $a0, 1
-j     _main87
-_main14:
+j     _main107
+_main19:
 li    $a0, 1
 jal   writeln
-j     _main10
-_main24:
-li    $a0, 1
-jal   writeln
-j     _main20
+j     _main15
 _main34:
 li    $a0, 1
 jal   writeln
 j     _main30
+_main49:
+li    $a0, 1
+jal   writeln
+j     _main45
 # end _main

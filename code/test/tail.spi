@@ -76,7 +76,7 @@ syscall
 j     $ra             
 
 # begin succ
-succ23:
+succ27:
 addiu $sp, $sp, -8
 sw    $ra, 4($sp)
 sw    $s0, 0($sp)
@@ -88,8 +88,12 @@ jal   writeln
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-addiu $a0, $v0, 1
+sll   $v0, $v0, 1
+addiu $a0, $v0, 3
 jal   id21
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $v0, $v0, 1
 lw    $ra, 4($sp)
@@ -106,17 +110,17 @@ li    $a0, 1
 jal   writeln
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
-j     p17
+j     p20
 # end q
 
 # begin p
-p17:
+p20:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 li    $a0, 2
 jal   writeln
-li    $a0, 3
-jal   succ23
+li    $a0, 7
+jal   succ27
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra

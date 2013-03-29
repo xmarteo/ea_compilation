@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main14              
+j     _main17              
 write:                
 li    $v0, 1          
 syscall               
@@ -88,16 +88,19 @@ jr    $ra
 # end vrai
 
 # begin _main
-_main14:
+_main17:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
-bgtz  $zero, _main27
-_main25:
+bgtz  $zero, _main30
+_main28:
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 jr    $ra
-_main27:
+_main30:
 jal   vrai14
-bgtz  $v0, _main25
-j     _main25
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+bgtz  $v0, _main28
+j     _main28
 # end _main

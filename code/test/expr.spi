@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main16              
+j     _main24              
 write:                
 li    $v0, 1          
 syscall               
@@ -180,16 +180,22 @@ j     branche10
 # end branche
 
 # begin _main
-_main16:
+_main24:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
-li    $a0, 3
-li    $a1, 4
+li    $a0, 7
+li    $a1, 9
 jal   f25
-li    $a1, 5
-move  $a0, $v0
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+li    $a1, 11
 jal   min31
-move  $a0, $v0
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $a0, $a0, $v0
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
 j     writeln

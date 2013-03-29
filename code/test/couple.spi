@@ -76,65 +76,68 @@ syscall
 j     $ra             
 
 # begin g
-g35:
+g37:
 addiu $sp, $sp, -8
 sw    $ra, 4($sp)
 sw    $s0, 0($sp)
 move  $s0, $a0
-g24:
+g26:
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-beq   $v0, $zero, g19
+beq   $v0, $zero, g21
 li    $a0, 1
-beq   $v0, $a0, g12
-addiu $a0, $v0, -2
-jal   g35
+beq   $v0, $a0, g14
+sll   $v0, $v0, 1
+addiu $a0, $v0, -3
+jal   g37
 addiu $a0, $s0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
+sll   $v0, $v0, 1
 addiu $s0, $v0, -1
-j     g24
-g12:
+j     g26
+g14:
 li    $a0, 1
-g61:
+g63:
 lw    $ra, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 8
 j     writeln
-g19:
+g21:
 li    $a0, 0
-j     g61
+j     g63
 # end g
 
 # begin f
-f30:
-f19:
+f31:
+f20:
 addiu $a0, $a0, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-beq   $v0, $zero, f14
+beq   $v0, $zero, f15
 li    $a0, 1
-beq   $v0, $a0, f7
-addiu $a0, $v0, -2
-j     f19
-f7:
+beq   $v0, $a0, f8
+sll   $v0, $v0, 1
+addiu $a0, $v0, -3
+j     f20
+f8:
 li    $a0, 1
-f45:
+f46:
 j     writeln
-f14:
+f15:
 li    $a0, 0
-j     f45
+j     f46
 # end f
 
 # begin _main
 _main14:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
-li    $a0, 10
-jal   f30
-li    $a0, 10
+li    $a0, 21
+jal   f31
+li    $a0, 21
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
-j     g35
+j     g37
 # end _main

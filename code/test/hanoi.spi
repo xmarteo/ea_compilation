@@ -21,7 +21,7 @@ sw    $v0, 4($a0)
 # end of heap         
 add   $a2, $a2, $v0   
 sw    $a2, 8($a0)     
-j     _main21              
+j     _main23              
 write:                
 li    $v0, 1          
 syscall               
@@ -111,7 +111,7 @@ j     other38
 # end other
 
 # begin hanoi
-hanoi59:
+hanoi76:
 addiu $sp, $sp, -20
 sw    $ra, 16($sp)
 sw    $s3, 12($sp)
@@ -121,11 +121,11 @@ sw    $s0, 0($sp)
 move  $s1, $a0
 move  $s2, $a1
 move  $s3, $a2
-hanoi45:
+hanoi62:
 addiu $a0, $s1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
-bgtz  $v0, hanoi41
+bgtz  $v0, hanoi58
 lw    $ra, 16($sp)
 lw    $s3, 12($sp)
 lw    $s2, 8($sp)
@@ -133,27 +133,39 @@ lw    $s1, 4($sp)
 lw    $s0, 0($sp)
 addiu $sp, $sp, 20
 jr    $ra
-hanoi41:
+hanoi58:
 addiu $a0, $s2, -1
 li    $v0, 2
-div   $a0, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
 addiu $a1, $s3, -1
 li    $v0, 2
-div   $a1, $a1, $v0
+div   $v0, $a1, $v0
+sll   $v0, $v0, 1
+addiu $a1, $v0, 1
 jal   other36
+addiu $a0, $v0, -1
+li    $v0, 2
+div   $v0, $a0, $v0
 sll   $v0, $v0, 1
 addiu $s0, $v0, 1
 addiu $a0, $s1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
+sll   $v0, $v0, 1
 addiu $a0, $v0, -1
 addiu $a1, $s2, -1
 li    $v0, 2
-div   $a1, $a1, $v0
+div   $v0, $a1, $v0
+sll   $v0, $v0, 1
+addiu $a1, $v0, 1
 addiu $a2, $s0, -1
 li    $v0, 2
-div   $a2, $a2, $v0
-jal   hanoi59
+div   $v0, $a2, $v0
+sll   $v0, $v0, 1
+addiu $a2, $v0, 1
+jal   hanoi76
 li    $v0, 10
 addiu $a1, $s2, -1
 li    $a0, 2
@@ -167,18 +179,23 @@ jal   writeln
 addiu $a0, $s1, -1
 li    $v0, 2
 div   $v0, $a0, $v0
+sll   $v0, $v0, 1
 addiu $s1, $v0, -1
 addiu $a0, $s0, -1
 li    $v0, 2
-div   $s2, $a0, $v0
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $s2, $v0, 1
 addiu $a0, $s3, -1
 li    $v0, 2
-div   $s3, $a0, $v0
-j     hanoi45
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $s3, $v0, 1
+j     hanoi62
 # end hanoi
 
 # begin _main
-_main21:
+_main23:
 addiu $sp, $sp, -4
 sw    $ra, 0($sp)
 jal   readln
@@ -188,10 +205,12 @@ sw    $v0, 0($gp)
 lw    $v0, 0($gp)
 addiu $a0, $v0, -1
 li    $v0, 2
-div   $a0, $a0, $v0
-li    $a1, 1
-li    $a2, 3
+div   $v0, $a0, $v0
+sll   $v0, $v0, 1
+addiu $a0, $v0, 1
+li    $a1, 3
+li    $a2, 7
 lw    $ra, 0($sp)
 addiu $sp, $sp, 4
-j     hanoi59
+j     hanoi76
 # end _main
