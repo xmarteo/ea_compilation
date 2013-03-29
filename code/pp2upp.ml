@@ -40,7 +40,7 @@ type env =
     PP.typ StringMap.t
     
 (* The environment of functions defined in the PP program, with the list
-   of their formal parameters types *)
+   of their formal parameters types, and the possible return type *)
     
 type fenv =
     ((PP.typ list) * (PP.typ option)) StringMap.t
@@ -154,6 +154,13 @@ let rec translate_expression (fenv : fenv) (genv : genv) (env : env) = function
 
     (* Function call. *)
 
+    (*
+       Main guideline to EFunCall and IProcCall is "this is how I managed to get it working".
+       Readln returns a "fresh" value, not in form 2n+1, so there is no need to "unconvert" it ; 
+       same for Alloc.
+       Otherwise, we "convert" to 2n+1 form earch argument, or not, depending on its type, 
+       specified in fenv. We "unconvert" then the return value, if necessary.
+    *)
   | PP.EFunCall (callee, es) ->
       begin
       match callee with
@@ -230,6 +237,8 @@ let rec translate_condition (fenv : fenv) (genv : genv) (env : env) = function
 let rec translate_instruction (fenv : fenv) (genv : genv) (env : env) = function
 
     (* Procedure call. *)
+    
+    (* Cf. EFunCall for comments. *)
 
   | PP.IProcCall (callee, es) ->
       begin
@@ -400,6 +409,9 @@ let allocate_globals (p : PP.program) : fenv * genv * int32 =
     next + MIPS.word
   ) p.PP.globals (StringMap.empty, 0l)
   in
+  (* w is the program's fenv object. for each function/procedure
+     defined in p.PP.defs, we add its formal arguments' types,
+     and return type to the fenv. *)
   let w = StringMap.fold (fun name def newMap ->
     let l = def.PP.formals in
     let result = def.PP.result in
